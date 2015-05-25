@@ -1,18 +1,15 @@
-# matchDog
 A aplicação Match Dog é um projeto da disciplina [MPI906-2015] de Engenharia de Software do Mestrado Profissional - UFPE
-==========================
+
 Equipe:
 - Artur C. Alves /~aca5
 - Plínio A. Garcia /~pag2
 - Tiago Heineck /~th
-==========================
 
-Match Dog!
+<b>Match Dog!</b>
 
 Serviço que permite o encontro entre "pet lovers" e seus cachorros. 
 
 Os usuários realizam um cadastro e devem preencher:
-
     Foto, nome e sexo do dono(a)
     Foto, nome, raça e sexo do animal
     Interessado em [homens, mulheres ou indiferente], donos de [raça e sexo do animal], interessados em [cruzar e/ou passear] (fazendo uma alusão à "namoro ou amizade")
