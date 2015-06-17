@@ -1,4 +1,6 @@
 class LoginController < ApplicationController
+  layout "initial"
+
 
   def index
   end
