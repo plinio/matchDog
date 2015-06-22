@@ -12,7 +12,24 @@
     <%= yield(:head) %>
   </head>
   <body>
-    <header class="navbar navbar-fixed-top">
+    <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1458025767830877',
+      xfbml      : true,
+      version    : 'v2.3'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+    <header class="navbar">
       <nav class="navbar-inner">
         <div class="container">
           <h1>É nóis</h1>
@@ -28,6 +45,12 @@
             </div>
           </div>
           <footer>
+            <div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
           </footer>
         </div>
       </div> <!--! end of .container -->
