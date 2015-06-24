@@ -1,1 +1,51 @@
+<% content_for :side_left_content do %>
+<p>
+    Aqui vai entrar um texto legal explicando o MatchDog e quem sabe se der tempo um vídeo bem bacanudo!
+  Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum  
+  Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+</p>
+<% end %>
 
+<% content_for :side_right_content do %>
+
+
+<form class="form-horizontal">
+
+<fieldset>
+<legend>Entrar</legend>
+<div class="form-group">
+  <div class="col-md-9">
+      <input id="input_email" name="login_email" type="email" placeholder="e-mail" class="form-control input-md">
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-md-6">
+    <input id="input_password" name="login_password" type="password" placeholder="senha" class="form-control input-md">
+  </div>
+  <div class="col-md-4">
+    <button id="singlebutton" name="singlebutton" class="btn btn-success">Login</button>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-md-10">
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Entrar com Facebook</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+<br>
+<fieldset>
+    <legend>Ainda não tem cadastro?</legend>
+    <div class="form-group">
+      <div class="col-md-12">
+        <button id="singlebutton" name="cadastro" class="btn btn-primary">
+            Cadastre-se
+        </button>
+        </div>
+    </div>
+</fieldset>
+
+<% end %>
