@@ -14,11 +14,119 @@
 ActiveRecord::Schema.define(version: 20150624202416) do
 
   create_table "cidades", force: :cascade do |t|
+    t.string   "nome",                 null: false
+    t.string   "estado",     limit: 2, null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "curtidas", force: :cascade do |t|
+    t.integer  "dog_id",      null: false
+    t.integer  "dog_alvo_id", null: false
+    t.boolean  "curtiu",      null: false
+    t.integer  "match_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "curtidas", ["dog_id"], name: "index_curtidas_on_dog_id"
+
+  create_table "dogs", force: :cascade do |t|
+    t.integer  "dono_id",                                     null: false
+    t.string   "nome",                                        null: false
+    t.string   "sexo",              limit: 1,                 null: false
+    t.integer  "raca_id",                                     null: false
+    t.integer  "cidade_id",                                   null: false
+    t.integer  "foto_id"
+    t.text     "descricao_perfil"
+    t.boolean  "tem_pedigree",                default: false, null: false
+    t.boolean  "interessa_cruzar",            default: true,  null: false
+    t.boolean  "interessa_passear",           default: true,  null: false
+    t.datetime "datahora_excluido"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "dogs", ["dono_id"], name: "index_dogs_on_dono_id"
+
+  create_table "donos", force: :cascade do |t|
+    t.string   "nome",                 null: false
+    t.string   "sexo",       limit: 1, null: false
+    t.string   "email",                null: false
+    t.integer  "foto_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "faros", force: :cascade do |t|
+    t.integer  "dog_id",                           null: false
+    t.string   "sexo_dono",              limit: 1
+    t.string   "sexo_dog",               limit: 1
+    t.integer  "raca_id"
+    t.integer  "cidade_id"
+    t.boolean  "interessa_tem_pedigree"
+    t.boolean  "interessa_cruzar"
+    t.boolean  "interessa_passear"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "faros", ["dog_id"], name: "index_faros_on_dog_id"
+
+  create_table "fotos", force: :cascade do |t|
+    t.string   "url",        null: false
+    t.text     "descricao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "fotos_dogs", force: :cascade do |t|
+    t.integer  "dog_id"
+    t.integer  "foto_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "fotos_dogs", ["dog_id"], name: "index_fotos_dogs_on_dog_id"
+
+  create_table "fotos_donos", force: :cascade do |t|
+    t.integer  "dono_id",    null: false
+    t.integer  "foto_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "fotos_donos", ["dono_id"], name: "index_fotos_donos_on_dono_id"
+
+  create_table "latidas", force: :cascade do |t|
+    t.integer  "match_id",    null: false
+    t.integer  "de_dog_id",   null: false
+    t.integer  "para_dog_id", null: false
+    t.text     "mensagem",    null: false
+    t.datetime "enviada_em",  null: false
+    t.datetime "lida_em"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "latidas", ["match_id"], name: "index_latidas_on_match_id"
+
+  create_table "matches", force: :cascade do |t|
+    t.integer  "dog1_id",                null: false
+    t.integer  "dog2_id",                null: false
+    t.datetime "datahora_dog1_viu"
+    t.datetime "datahora_dog2_viu"
+    t.datetime "datahora_dog1_desistiu"
+    t.datetime "datahora_dog2_desistiu"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "matches", ["dog1_id"], name: "index_matches_on_dog1_id"
+  add_index "matches", ["dog2_id"], name: "index_matches_on_dog2_id"
+
   create_table "racas", force: :cascade do |t|
+    t.string   "nome",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
