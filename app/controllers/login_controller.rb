@@ -8,4 +8,5 @@ class LoginController < ApplicationController
     # default: render 'new' template
   end
 
+
 end
