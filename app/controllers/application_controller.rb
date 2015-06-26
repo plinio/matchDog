@@ -17,8 +17,7 @@ class ApplicationController < ActionController::Base
   
   private 
   def require_cadastro_completo
-    fotos = Foto.count(:url)
-      redirect_to "/perfil" if (@current_user.sexo == "I" || @current_user.foto == nil || fotos == 0)
+      redirect_to "/perfil" if (@current_user.sexo == "I" || @current_user.foto == nil || @current_user.fotos_donos == nil)
   end
   
   
