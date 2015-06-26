@@ -5,12 +5,21 @@ class ApplicationController < ActionController::Base
   
   before_filter :require_login
   
+  before_filter :require_cadastro_completo
   
   private
   def require_login
     if session[:user_id] == nil
       redirect_to "/login"
     end
+    @current_user = Dono.find(session[:user_id]) if session[:user_id]
   end
+  
+  private 
+  def require_cadastro_completo
+    fotos = Foto.count(:url)
+      redirect_to "/perfil" if (@current_user.sexo == "I" || @current_user.foto == nil || fotos == 0)
+  end
+  
   
 end

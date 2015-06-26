@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   
   skip_before_filter :require_login
+  skip_before_filter :require_cadastro_completo
   
   def create
     user = Dono.omniauth(env['omniauth.auth'])
