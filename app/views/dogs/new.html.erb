@@ -1,2 +1,29 @@
-<h1>Dogs#new</h1>
-<p>Find me in app/views/dogs/new.html.erb</p>
+<h1>+ Dog</h1>
+<p>Adicionando seu cãozinho</p>
+<%= form_tag("/dogs", method: "post", multipart: true) %>
+
+<label for="nome">Nome:</label>
+<input id="nome"  type="text" name="dog[nome]" class="form-control">
+<label for="sexo">Sexo</label>
+<select id="sexo" name="dog[sexo]" class="form-control">
+    <option value="M">Masculino</option>
+    <option value="F">Feminino</option>
+</select>
+<label for="cidade">Cidade:</label>
+<%= select("dog","cidade_id",@cidades,{},{'class' => 'form-control'}) %>
+<label for="raca">Raça:</label>
+<%= select("dog","raca_id",@racas,{},{'class' => 'form-control'}) %>
+<label for="descricao">Descrição do Perfil</label>
+<textarea id="descricao" name="dog[descricao_perfil]" class="form-control"></textarea>
+<label for="pedigree">Tem pedigree?</label>
+<select id="pedigree" name="dog[tem_pedigree]" class="form-control">
+    <option value="1">Sim</option>
+    <option value="0">Não</option>
+</select>
+<label for="cruzar">Interessa cruzar?</label>
+<select id="cruzar" name="dog[interessa_cruzar]" class="form-control">
+    <option value="1">Sim</option>
+    <option value="0">Não</option>
+</select>
+<input type="submit" name="Salvar">
+</form>
