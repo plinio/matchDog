@@ -1,8 +1,14 @@
-@import "bootstrap";
+@import "bootstrap-sprockets"; @import "bootstrap";
 body { margin: 0; }
 .navbar{ border:0; }
 .navbar-inner {
     background-color: #FACA00;
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('/assets/fonts/glyphicons-halflings-regular.eot');
+  src: url('/assets/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
 .container-logo-initial{
@@ -20,4 +26,19 @@ body { margin: 0; }
 .footer .container p{
     text-align: center;
     font-style: italic;
+}
+
+.title-session{
+    font-size: 30px !important;
+    color:#333;
+}
+
+.glyphicon.title-session{
+    margin-right: 5px;
+}
+.col-padding-reduce{
+    padding: 0;
+    width: inherit;
+    margin-right: -8px;
+    margin-left: 16px;
 }

@@ -1,30 +1,57 @@
 <% content_for :side_left_content do %>
-<p>
-    Que bom que você quer fazer parte dessa nossa turma.
-</p>
-<% end %>
-<% content_for :side_right_content do %>
+<span class="title-session glyphicon glyphicon-edit"></span><span class="title-session">Seus dados</span>
+<%= form_tag("cadastro", method: "post", multipart: true, class: "form-horizontal") %>
 
-<fieldset>
-<legend>Cadastrar</legend>
-<%= form_tag("cadastro", method: "post", multipart: true) %>
-
-
-<input type="text" name="dono[nome]" placeholder="Seu nome" class="form-control">
-<input type="text" name="dono[email]" placeholder="E-mail" class="form-control">
-<input type="password" name="dono[password]" placeholder="Senha" class="form-control">
-<label for="sexo">Sexo: </label>
+<div class="form-group">
+  <div class="col-md-12">
+      <input type="text" name="dono[nome]" placeholder="Seu nome" class="form-control">
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-md-7">
+    <input type="text" name="dono[email]" placeholder="E-mail" class="form-control">
+  </div>
+  <div class="col-sm-1">
+    <label for="sexo">Sexo: </label>
+  </div>
+  <div class="col-md-4">
     <select id="sexo" name="dono[sexo]" class="form-control">
         <option value="M">Masculino</option>
         <option value="F">Feminino</option>
     </select>
+  </div>
+</div>
 
-<label for="foto">Foto: </label>
-    <input type="file" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
-<br>
+<div class="form-group">
+    <div class="col-md-6">
+        <input type="password" name="dono[password]" placeholder="Senha" class="form-control">
+    </div>
+    <div class="col-md-6">
+        <input type="password" name="dono[password-r]" placeholder="Repita a senha" class="form-control">
+    </div>
+</div>
 
-<input type="submit" class="btn btn-success btn-block" value="Salvar">
+<div class="form-group">
+    <div class="col-sm-1 col-padding-reduce">
+      <span class="glyphicon glyphicon-camera"></span>
+    </div>
+    <div class="col-sm-1">
+        <label for="foto">Foto: </label> 
+    </div>
+    <div class="col-md-10">
+        <input type="file" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
+    </div>
+</div>
 
+
+
+
+
+<% end %>
+<% content_for :side_right_content do %>
+
+<div class="form-group">
+    <input type="submit" class="btn btn-success btn-block" value="Salvar">
+</div>
 </form>
-</fieldset>
 <% end %>
