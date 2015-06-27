@@ -1,0 +1,20 @@
+<h1>Meus Dogs <a class="btn btn-info" href="/dogs/new">+ Dog</a></h1> 
+<p>Lista dos meus Dogs</p>
+<table class="table table-striped">
+        <tr>
+            <th>Nome</th>
+            <th>Sexo</th>
+            <th>Raça</th>
+            <th>Cidade</th>
+        </tr>
+    <% @dogs.each do |d|  %>
+        
+        <tr>
+            <td><%= d.nome %></td>
+            <td><%= d.sexo %></td>
+            <td><%= d.raca.nome %></td>
+            <td><%= d.cidade.nome %></td>
+        </tr>
+    
+    <% end %>
+</table>

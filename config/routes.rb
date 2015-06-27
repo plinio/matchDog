@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
+  
+  get 'cadastro', to: 'cadastro#new'
+  post 'cadastro', to: 'cadastro#save'
+
+  resources :dogs
+
   #rotas do login via facebook
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
   
   
   get 'home/index'
+
+  get 'perfil', to: 'perfil#index'
+
+  post 'perfil', to: 'perfil#salvar'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
