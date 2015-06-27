@@ -1,1 +1,26 @@
 <h1>Perfil do <%= current_user.nome %></h1> 
+
+
+<%= form_tag("perfil", method: "post", multipart: true) %>
+  
+
+    <label for="nome">Nome:</label>
+    <input id="nome" type="text" class="form-control" value="<%= current_user.nome %>" disabled>
+    
+    <label for="email">E-mail</label>
+    <input id="email" type="email" value="<%= current_user.email %>" class="form-control" <%= "disabled" if current_user.provider == 'facebook' %> >
+    
+    <label for="sexo">Sexo: </label>
+    <select id="sexo" name="sexo" class="form-control">
+        <option value="M" <%=  'selected="selected"' if current_user.sexo == "M" %>>Masculino</option>
+        <option value="F" <%=  'selected="selected"' if current_user.sexo == "F" %>>Feminino</option>
+    </select>
+    
+    <label for="foto">Foto: </label>
+    <input type="file" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
+    
+    <input type="submit" class="btn btn-success btn-block" value="Salvar">
+    
+</form>
+
+<hr>
