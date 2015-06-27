@@ -14,10 +14,8 @@
 ActiveRecord::Schema.define(version: 20150624202416) do
 
   create_table "cidades", force: :cascade do |t|
-    t.string   "nome",                 null: false
-    t.string   "estado",     limit: 2, null: false
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "curtidas", force: :cascade do |t|
@@ -81,8 +79,8 @@ ActiveRecord::Schema.define(version: 20150624202416) do
   end
 
   create_table "fotos_dogs", force: :cascade do |t|
-    t.integer  "dog_id"
-    t.integer  "foto_id"
+    t.integer  "dog_id",     null: false
+    t.integer  "foto_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -126,7 +124,6 @@ ActiveRecord::Schema.define(version: 20150624202416) do
   add_index "matches", ["dog2_id"], name: "index_matches_on_dog2_id"
 
   create_table "racas", force: :cascade do |t|
-    t.string   "nome",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
