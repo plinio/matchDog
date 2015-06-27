@@ -17,7 +17,9 @@
     </select>
     
     <label for="foto">Foto: </label>
+    <% if current_user.foto %>
     <img src="/images/<%= current_user.foto.url %>">
+    <% end %>
     <input type="file" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
     
     <input type="submit" class="btn btn-success btn-block" value="Salvar">

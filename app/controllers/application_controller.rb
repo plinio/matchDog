@@ -17,7 +17,11 @@ class ApplicationController < ActionController::Base
   
   private 
   def require_cadastro_completo
-      redirect_to "/perfil" if (@current_user.sexo == "I" || @current_user.foto == nil || @current_user.foto == nil)
+    if (@current_user.sexo == "I" || @current_user.foto == nil || @current_user.foto == nil)
+      redirect_to "/perfil" 
+    else
+      redirect_to "/dogs" if (@current_user.dogs.count == 0)
+    end
   end
   
   

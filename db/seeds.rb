@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+racas = Raca.create([{nome: 'Poodle'},{nome: 'Border Colie'},{nome: 'Buldog Francês'}])
+cidades = Cidade.create([{nome: 'Recife',estado: 'PE'},{nome: 'Blumenau',estado: 'SC'},{nome: 'Videira',estado: 'SC'},{nome: 'Belo Horizonte',estado: 'MG'}])
