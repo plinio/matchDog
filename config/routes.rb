@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  get 'cadastro', to: 'cadastro#new'
+  post 'cadastro', to: 'cadastro#save'
+
   resources :dogs
 
   #rotas do login via facebook

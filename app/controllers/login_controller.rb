@@ -11,5 +11,14 @@ class LoginController < ApplicationController
     
   end
 
+  def create
+    email = params[:email]
+    password = Digest::MD5.hexdigest(params[:password])
+    @dono = Dono.where(:email=>email).where(:password=>password).take
+    unless @dono == nil
+      session[:user_id] = @dono.id
+    end
+    redirect_to root_url
+  end
 
 end

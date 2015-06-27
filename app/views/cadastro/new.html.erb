@@ -1,0 +1,30 @@
+<% content_for :side_left_content do %>
+<p>
+    Que bom que você quer fazer parte dessa nossa turma.
+</p>
+<% end %>
+<% content_for :side_right_content do %>
+
+<fieldset>
+<legend>Cadastrar</legend>
+<%= form_tag("cadastro", method: "post", multipart: true) %>
+
+
+<input type="text" name="dono[nome]" placeholder="Seu nome" class="form-control">
+<input type="text" name="dono[email]" placeholder="E-mail" class="form-control">
+<input type="password" name="dono[password]" placeholder="Senha" class="form-control">
+<label for="sexo">Sexo: </label>
+    <select id="sexo" name="dono[sexo]" class="form-control">
+        <option value="M">Masculino</option>
+        <option value="F">Feminino</option>
+    </select>
+
+<label for="foto">Foto: </label>
+    <input type="file" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
+<br>
+
+<input type="submit" class="btn btn-success btn-block" value="Salvar">
+
+</form>
+</fieldset>
+<% end %>

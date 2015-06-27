@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625231735) do
+ActiveRecord::Schema.define(version: 20150627170644) do
 
   create_table "cidades", force: :cascade do |t|
     t.string   "nome",                 null: false
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 20150625231735) do
     t.string   "image"
     t.string   "token"
     t.string   "expires_at"
+    t.string   "senha"
+    t.string   "password"
   end
 
   create_table "faros", force: :cascade do |t|
