@@ -1,7 +1,17 @@
 class DogsController < ApplicationController
-  layout "initial"
+  layout :resolve_layout
   
   skip_before_filter :require_cadastro_completo
+  
+  private
+  def resolve_layout
+    case action_name
+    when "new", "create"
+      "initial"
+    else
+      "application"
+    end
+  end
   
   def new
     @cidades = Cidade.all.collect {|c| [c.nome,c.id]}

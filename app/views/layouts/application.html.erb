@@ -29,16 +29,89 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
-    <header class="navbar navbar-fixed-top">
+
+    <header class="navbar">
       <nav class="navbar-inner">
-        <div class="container">
-          <a href="perfil" class="btn"><img src="<%= current_user.image %>"> Meu perfil</a>
-          <a href="dogs" class="btn">Meus cachorros</a>
-          <a href="logout" class="btn">Logout</a>
+        <div class="container container-logo-application">
+          <div class="row-fluid">
+            <div class="col-sm-2 col-padding-reduce">
+              <span><%= image_tag "icon_matchDog100.png" %></span>
+            </div>
+            <div class="col-sm-8 busca">
+              <%= form_tag("#", method: "post", multipart: true,  class: "form-horizontal") %>
+              <div class="form-group">
+                <div class="col-sm-2 col-padding-reduce">
+                  <span>Procuro </span>
+                </div>
+                <div class="col-sm-1 col-padding-reduce">
+                  <select id="sexo" name="faro[sexo]" class="form-control">
+                      <option value="F">Mulher</option>
+                      <option value="M">Homem</option>
+                  </select>
+                </div>
+                <div class="col-sm-2 col-padding-reduce">
+                  <span>, dono de </span>
+                </div>
+                <div class="col-sm-3 col-padding-reduce">
+                   <%= select("dog","raca_id",["Rotwailer", "Chiuaua", "pegar do bd"],{},{'class' => 'form-control'}) %>
+                </div>
+                <div class="col-sm-1 col-padding-reduce">
+                  <select id="sexoDog" name="faro[sexoDog]" class="form-control">
+                      <option value="F">Fêmea</option>
+                      <option value="M">Macho</option>
+                  </select>
+                </div>
+                
+                <div class="col-sm-1 col-padding-reduce">
+                  <span>para </span>
+                </div>
+                <div class="col-sm-3 col-padding-reduce">
+                  <%= check_box_tag 'cruzar', 1, true, {} %>
+                  <span>cruzar </span>
+                  <br>
+                  <%= check_box_tag 'passear', 1, true, {} %>
+                   <span>passear </span>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" id="farejar_bt" name="farejar" class="btn btn-danger btn-block" value="">
+                    <span class="glyphicon glyphicon-fire"></span> Farejar
+                    </button>
+                </div>
+              </div>
+              </form>
+            </div>
+            <div class="col-md-2 nav">
+              <div class="contadores">
+                <div id="conta_match">
+                  <a href="#" title="Matches">1 <span class="glyphicon glyphicon-fire"></span> </a>
+                </div>
+                <div id="conta_chat">
+                  <a href="#" title="Bate-papo">2 <span class="glyphicon glyphicon-comment"></span></a>
+                </div>
+                
+              </div>
+              <div id="profile-dono" class="profile">
+                <a href="perfil" title="Meu Perfil"><img src="<%= current_user.image %>"> 
+                  <span class="glyphicon glyphicon-user"></span>Perfil
+                </a>
+              </div>
+              <div id="profile-dog"  class="profile">
+                <a href="dogs" title="Meus Dogs"><img src="caminh/dog/foto"> 
+                  <span class="dog-icon-p"><%= image_tag "dog-icon.png" %></span>Dogs
+                </a>
+              </div>
+              <div class="profile logout">
+                <a href="logout">
+                  <span class="glyphicon glyphicon-off"></span>Sair
+                </a>
+              </div>
+              
+            </div>
         </div>
       </nav>
     </header>
-    <div id="main2" role="main">
+    
+    <div id="main" role="main">
       <div class="container">
         <div class="content">
            <div class="row">
