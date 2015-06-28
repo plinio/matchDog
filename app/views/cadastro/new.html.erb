@@ -43,22 +43,28 @@
     </div>
 </div>
 
-<div class="form-group">
-    <input type="submit" class="btn btn-success btn-block" value="Salvar">
-</div>
-</form>
+
 
 <% end %>
 <% content_for :side_right_content do %>
 <span class="title-session glyphicon glyphicon-camera"></span><span class="title-session">Seu álbum</span>
-<div id="drop_zone">Arraste suas fotos aqui</div>
+<div id="drop_zone"><p>Arraste as fotos aqui</p>
+    
+</div>
+<input type="file" id="files" name="files[]" multiple />
 <output id="list"></output>
+<a onclick="javascript:getJSONimages()">JSON</a>
 <script>
-  // Setup the dnd listeners.
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+ 
   var dropZone = document.getElementById('drop_zone');
   dropZone.addEventListener('dragover', handleDragOver, false);
   dropZone.addEventListener('drop', handleFileSelect, false);
-  document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
 </script>
+
+<div class="form-group">
+    <input type="submit" class="btn btn-success btn-block" value="Salvar">
+</div>
+</form>
 <% end %>
