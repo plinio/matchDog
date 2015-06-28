@@ -1,4 +1,5 @@
 class DogsController < ApplicationController
+  layout "initial"
   
   skip_before_filter :require_cadastro_completo
   
