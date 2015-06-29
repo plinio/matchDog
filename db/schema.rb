@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(version: 20150627170644) do
   end
 
   create_table "fotos_dogs", force: :cascade do |t|
-    t.integer  "dog_id",     null: false
-    t.integer  "foto_id",    null: false
+    t.integer  "dog_id"
+    t.integer  "foto_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -135,6 +135,18 @@ ActiveRecord::Schema.define(version: 20150627170644) do
     t.string   "nome",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "image"
+    t.string   "token"
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "email"
   end
 
 end
