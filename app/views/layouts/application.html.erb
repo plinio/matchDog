@@ -114,21 +114,22 @@
     <div id="main" role="main">
       <div class="container">
         <div class="content">
-           <div class="row">
-            <div class="span12">
+           
               <%= yield %>
-            </div>
+            
           </div>
-          <footer>
-            <div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
-</div>
-          </footer>
-        </div>
       </div> <!--! end of .container -->
     </div> <!--! end of #main -->
+    <footer class="footer">
+      <div class="container">
+        <div class="col-md-4">
+          <div  class="fb-like"   data-share="true"    data-width="450"   data-show-faces="true"></div>
+        </div>
+        <div class="col-md-5">
+          <p>MatchDog - All Rights Reserved</p>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </footer>
   </body>
 </html>
