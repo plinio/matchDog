@@ -24,7 +24,7 @@ class PerfilController < ApplicationController
         end
         @current_user.sexo = params[:sexo]
         @current_user.save
-        redirect_to "/perfil"
+        redirect_to root_path
     end
     
 end

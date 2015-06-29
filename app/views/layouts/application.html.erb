@@ -38,7 +38,7 @@
               <span><%= image_tag "icon_matchDog100.png" %></span>
             </div>
             <div class="col-sm-8 busca">
-              <%= form_tag("#", method: "post", multipart: true,  class: "form-horizontal") %>
+              <%= form_tag("/buscar", method: "post", multipart: true,  class: "form-horizontal") %>
               <div class="form-group">
                 <div class="col-sm-2 col-padding-reduce">
                   <span>Procuro </span>
@@ -53,7 +53,8 @@
                   <span>, dono de </span>
                 </div>
                 <div class="col-sm-3 col-padding-reduce">
-                   <%= select("dog","raca_id",["Rotwailer", "Chiuaua", "pegar do bd"],{},{'class' => 'form-control'}) %>
+                   <%= select("dog","raca_id",get_racas,{},{'class' => 'form-control'}) %>
+                   
                 </div>
                 <div class="col-sm-1 col-padding-reduce">
                   <select id="sexoDog" name="faro[sexoDog]" class="form-control">
