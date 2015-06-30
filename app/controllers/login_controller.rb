@@ -17,6 +17,7 @@ class LoginController < ApplicationController
     @dono = Dono.where(:email=>email).where(:password=>password).take
     unless @dono == nil
       session[:user_id] = @dono.id
+      session[:dog_id] = @dono.dogs.first.id
     end
     redirect_to root_url
   end

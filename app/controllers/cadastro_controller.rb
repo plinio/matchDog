@@ -41,8 +41,14 @@ class CadastroController < ApplicationController
     @dono.password = Digest::MD5.hexdigest(@dono.password)
     @dono.save
     session[:user_id] = @dono.id
-    redirect_to root_url
+    redirect_to "/cadastro/first_dog"
   end
+  
+  def first_dog
+    @cidades = Cidade.all.collect {|c| [c.nome,c.id]}
+    @racas = Raca.all.collect {|c| [c.nome,c.id]}
+  end
+  
   
   
   private

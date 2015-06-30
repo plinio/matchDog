@@ -4,9 +4,10 @@ class Dog < ActiveRecord::Base
     belongs_to :dono
     belongs_to :raca
     belongs_to :cidade
-    
     belongs_to :foto
-    has_many :fotos_dogs
+    
+    belongs_to :fotos
+    has_many :fotos_dog
     has_many :fotos, :through => :fotos_dogs
     
 end

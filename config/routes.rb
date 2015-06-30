@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   
-  get 'cadastro', to: 'cadastro#new'
-  post 'cadastro', to: 'cadastro#save'
-
+  get   '/cadastro', to: 'cadastro#new'
+  post  '/cadastro', to: 'cadastro#save'
+  get   '/cadastro/first_dog', to: 'cadastro#first_dog'
+  
   resources :dogs
+
 
   #rotas do login via facebook
   get 'auth/:provider/callback', to: 'sessions#create'

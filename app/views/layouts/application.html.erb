@@ -92,12 +92,12 @@
                 
               </div>
               <div id="profile-dono" class="profile">
-                <a href="perfil" title="Meu Perfil"><img src="<%= current_user.image %>"> 
+                <a href="perfil" title="Meu Perfil"><img src="/images/<%= current_user.foto.url %>"> 
                   <span class="glyphicon glyphicon-user"></span>Perfil
                 </a>
               </div>
               <div id="profile-dog"  class="profile">
-                <a href="dogs" title="Meus Dogs"><img src="caminh/dog/foto"> 
+                <a href="dogs" title="Meus Dogs"><img src="/images/<%= current_dog.foto.url if current_dog.foto %>">  
                   <span class="dog-icon-p"><%= image_tag "dog-icon.png" %></span>Dogs
                 </a>
               </div>

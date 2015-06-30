@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
       redirect_to "/login"
     end
     @current_user = Dono.find(session[:user_id]) if session[:user_id]
+    @current_dog = Dog.find(session[:dog_id]) if session[:dog_id]
   end
   
   private 

@@ -1,4 +1,4 @@
-
+<% content_for :side_left_content do %>
 <span class="title-session glyphiconsPro glyphicon-dog"></span><span class="title-session">Seu dog</span>
 <%= form_tag("/dogs", method: "post", multipart: true,  class: "form-horizontal") %>
 
@@ -66,6 +66,8 @@
 </div>
 
 
+<% end %>
+<% content_for :side_right_content do %>
 
 <span class="title-session glyphicon glyphicon-camera"></span><span class="title-session">Álbum do dog</span>
 <div id="drop_zone"><p>Arraste as fotos aqui</p>
@@ -84,3 +86,4 @@
 
 </script>
 
+<% end %>

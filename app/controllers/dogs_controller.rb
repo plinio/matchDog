@@ -3,6 +3,7 @@ class DogsController < ApplicationController
   
   skip_before_filter :require_cadastro_completo
   
+  
 
   
   def new
@@ -30,6 +31,9 @@ class DogsController < ApplicationController
     
     @dog.save
     flash[:notice] = "#{@dog.nome} foi cadastrado com sucesso."
+    session[:dog_id] = @dog.id
+    session[]
+    
     redirect_to "/dogs"
   end
 
@@ -53,4 +57,5 @@ class DogsController < ApplicationController
   def dog_params
     params.required(:dog).permit(:nome,:sexo,:raca_id,:cidade_id,:descricao_perfil,:tem_pedigree,:interessa_cruzar)
   end
+  
 end
