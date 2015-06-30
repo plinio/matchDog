@@ -32,7 +32,6 @@ class DogsController < ApplicationController
     @dog.save
     flash[:notice] = "#{@dog.nome} foi cadastrado com sucesso."
     session[:dog_id] = @dog.id
-    session[]
     
     redirect_to "/dogs"
   end
