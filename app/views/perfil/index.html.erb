@@ -16,10 +16,19 @@
         <option value="F" <%=  'selected="selected"' if current_user.sexo == "F" %>>Feminino</option>
     </select>
     
-    <label for="foto">Foto: </label>
+    <label for="foto">Foto do Perfil: </label>
     <% if current_user.foto %>
-    <img src="/images/<%= current_user.foto.url %>">
+        <img src="/images/<%= current_user.foto.url %>">
     <% end %>
+    
+    <label for="foto">Fotos Adicionais: </label>
+    <% if current_user.fotos %>
+        <% current_user.fotos.each do |fotodono| %>
+          <img src="/images/<%= fotodono.url %>">
+        <% end %>
+    <% end %>
+    
+    
     <input type="file" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
     
     <input type="submit" class="btn btn-success btn-block" value="Salvar">

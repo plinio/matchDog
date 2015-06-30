@@ -1,6 +1,8 @@
+
 <% content_for :side_left_content do %>
-<span class="title-session glyphicon glyphicon-edit"></span><span class="title-session">Seus dados</span>
 <%= form_tag("cadastro", method: "post", multipart: true, class: "form-horizontal") %>
+<span class="title-session glyphicon glyphicon-edit"></span><span class="title-session">Seus dados</span>
+
 
 <div class="form-group">
   <div class="col-md-12">
@@ -45,7 +47,6 @@
 <div class="form-group">
     <input type="submit" class="btn btn-success btn-block" value="Salvar">
 </div>
-</form>
 
 
 <% end %>
@@ -55,6 +56,8 @@
     
 </div>
 <input type="file" id="files" name="files[]" multiple />
+</form>
+
 <output id="list"></output>
 <a onclick="javascript:getJSONimages()">JSON</a>
 <script>

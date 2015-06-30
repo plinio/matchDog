@@ -10,3 +10,8 @@ class Dog < ActiveRecord::Base
     has_many :fotos, :through => :fotos_dogs
     
 end
+
+class FotosDog < ActiveRecord::Base
+  belongs_to :foto
+  belongs_to :dog
+end

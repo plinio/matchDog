@@ -21,3 +21,8 @@ class Dono < ActiveRecord::Base
     end
     
 end
+
+class FotosDono < ActiveRecord::Base
+  belongs_to :foto
+  belongs_to :dono
+end
