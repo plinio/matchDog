@@ -13,6 +13,21 @@ class DogsController < ApplicationController
   def create
     @dog =  Dog.new(dog_params)
     @dog.dono_id = @current_user.id
+    
+    #Importar fotos
+    params['files'].each{ |file| 
+      path = File.join(Rails.root + "public/images",file.original_filename)
+      File.open(path,"wb") do |f|
+        f.write(file.read) 
+      end
+    
+      foto = Foto.new
+      foto.url = file.original_filename
+      foto.descricao = "Foto Adicional"
+      foto.save
+      @dog.fotos.append(foto)
+    }
+    
     @dog.save
     flash[:notice] = "#{@dog.nome} foi cadastrado com sucesso."
     redirect_to "/dogs"
