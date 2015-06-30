@@ -6,8 +6,7 @@ class Dog < ActiveRecord::Base
     belongs_to :cidade
     belongs_to :foto
     
-    belongs_to :fotos
-    has_many :fotos_dog
+    has_many :fotos_dogs
     has_many :fotos, :through => :fotos_dogs
     
 end
