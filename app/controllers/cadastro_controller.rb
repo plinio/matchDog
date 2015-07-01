@@ -41,7 +41,7 @@ class CadastroController < ApplicationController
     
     @dono.password = Digest::MD5.hexdigest(@dono.password)
     @dono.save
-    session[:user_id] = @dono.id
+    session[:dono_id] = @dono.id
     redirect_to "/cadastro/first_dog"
   end
   
