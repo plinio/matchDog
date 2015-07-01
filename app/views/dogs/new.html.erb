@@ -224,22 +224,3 @@
 
 
 </script>
-
-<script src= "scripts/jquery-tmpl.js"></script>
-
-<script id="fotoBox" type="text/x-jQuery-tmpl">
-<div class='col-md-4'>
-    <div class="thumbnail clearfix">
-        <%= image_tag ${url} %>
-        <div>
-            <a href="#" class="btn btn-danger pull-right" style="opacity: 0.75;position:absolute; left: 30px; top:15px;" role="button">Excluir Foto</a>
-        </div>
-        
-        <div class="caption">
-        <input type="hidden" name='id' value='${id}'>
-        <textarea placeholder="Adicione uma descrição para essa foto" class='form-control'>${descricao}</textarea>
-    </div>
-    </div>
-    
-</div>
-</script>
