@@ -1,44 +1,116 @@
-<h1>Tá na home mermao</h1>
 <div class="owl-carousel">
   <div id="" class="alvo"> 
         <div class="row-fluid">
-            <div class="col-md-4">
+            <div class="col-md-12 desc-alvo">
+                0 Vai ter descrição de dog/alvo?? se não tiver apagar essa div
+            </div>
+            <div class="col-md-1 bt-left-alvo">
+                <button class="bt-voltar-alvo">voltar</button>
+            </div>
+            <div id="alvo-dog" class="col-md-5 alvo-nome">
+                <!-- só deve ter a classe glyphicon-certificate SE TIVER PEDIGREE-->
+                <span class="glyphicon glyphicon-certificate"></span>
+                <span class="alvo-nome">Nome Dog 0</span>
+                <a href="#abre_fotos">
+                    <div id="foto-alvo-dog" class="foto-alvo">
+                        <span class="glyphicon glyphicon-camera"></span>
+                        <img src="http://www.dreamydoodles.com/puppies/wp-content/uploads/2011/08/210987_f520.jpg"/>
+                    </div>
+                </a>
+            </div>
+            <div id="alvo-dono" class="col-md-5 alvo-nome">
+                <span class="">Nome Dono 0</span>
+                <a href="#abre_fotos">
+                    <div id="foto-alvo-dono" class="foto-alvo">
+                        <span class="glyphicon glyphicon-camera"></span>
+                        <img src="http://www.maedetrestambemtemvez.com.br/wp-content/uploads/2013/07/vovo-rock1.jpg"/>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-1 bt-right-alvo">
+                <button class="bt-uau-alvo">Uau!</button>
+                <button class="bt-nops-alvo">Nops!</button>
+            </div>
+        </div>
+  </div>
+  <div id="" class="alvo"> 
+        <div class="row-fluid">
+            <div class="col-md-12 desc-alvo">
+                1 Vai ter descrição de dog/alvo?? se não tiver apagar essa div
+            </div>
+            <div class="col-md-1 bt-left-alvo">
+                <button class="bt-voltar-alvo">voltar</button>
+            </div>
+            <div id="alvo-dog" class="col-md-5 alvo-nome">
+                <!-- só deve ter a classe glyphicon-certificate SE TIVER PEDIGREE-->
+                <span class="glyphicon glyphicon-certificate"></span>
                 <span class="alvo-nome">Nome Dog 1</span>
+                <a href="#abre_fotos">
+                    <div id="foto-alvo-dog" class="foto-alvo">
+                        <span class="glyphicon glyphicon-camera"></span>
+                        <img src="http://www.dreamydoodles.com/puppies/wp-content/uploads/2011/08/210987_f520.jpg"/>
+                    </div>
+                </a>
             </div>
-            <div class="col-md-4">
-                <span class="alvo-nome">Nome Dono 1</span>
+            <div id="alvo-dono" class="col-md-5 alvo-nome">
+                <span class="">Nome Dono 1</span>
+                <a href="#abre_fotos">
+                    <div id="foto-alvo-dono" class="foto-alvo">
+                        <span class="glyphicon glyphicon-camera"></span>
+                        <img src="http://www.maedetrestambemtemvez.com.br/wp-content/uploads/2013/07/vovo-rock1.jpg"/>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-1 bt-right-alvo">
+                <button class="bt-uau-alvo">Uau!</button>
+                <button class="bt-nops-alvo">Nops!</button>
             </div>
         </div>
   </div>
   <div id="" class="alvo"> 
         <div class="row-fluid">
-            <div class="col-md-4">
+            <div class="col-md-12 desc-alvo">
+                2 Vai ter descrição de dog/alvo?? se não tiver apagar essa div
+            </div>
+            <div class="col-md-1 bt-left-alvo">
+                <button class="bt-voltar-alvo">voltar</button>
+            </div>
+            <div id="alvo-dog" class="col-md-5 alvo-nome">
+                <!-- só deve ter a classe glyphicon-certificate SE TIVER PEDIGREE-->
+                <span class="glyphicon glyphicon-certificate"></span>
                 <span class="alvo-nome">Nome Dog 2</span>
+                <a href="#abre_fotos">
+                    <div id="foto-alvo-dog" class="foto-alvo">
+                        <span class="glyphicon glyphicon-camera"></span>
+                        <img src="http://www.dreamydoodles.com/puppies/wp-content/uploads/2011/08/210987_f520.jpg"/>
+                    </div>
+                </a>
             </div>
-            <div class="col-md-4">
-                <span class="alvo-nome">Nome Dono 2</span>
+            <div id="alvo-dono" class="col-md-5 alvo-nome">
+                <span class="">Nome Dono 2</span>
+                <a href="#abre_fotos">
+                    <div id="foto-alvo-dono" class="foto-alvo">
+                        <span class="glyphicon glyphicon-camera"></span>
+                        <img src="http://www.maedetrestambemtemvez.com.br/wp-content/uploads/2013/07/vovo-rock1.jpg"/>
+                    </div>
+                </a>
             </div>
-        </div>
-  </div>
-  <div id="" class="alvo"> 
-        <div class="row-fluid">
-            <div class="col-md-4">
-                <span class="alvo-nome">Nome Dog 3</span>
-            </div>
-            <div class="col-md-4">
-                <span class="alvo-nome">Nome Dono 3</span>
+            <div class="col-md-1 bt-right-alvo">
+                <button class="bt-uau-alvo">Uau!</button>
+                <button class="bt-nops-alvo">Nops!</button>
             </div>
         </div>
   </div>
 </div>
 <script>
 $(document).ready(function() {
-    $(".owl-carousel").owlCarousel({
+    var owl = $(".owl-carousel");
+    owl.owlCarousel({
         items : 3,
         singleItem : true,
-        navigation : true,
+        navigation : false,
         navigationText : ["voltar","uau!"],
-        rewindNav : true,
+        rewindNav : false,
         scrollPerPage : false,
         pagination : false,
         
@@ -54,5 +126,22 @@ $(document).ready(function() {
     afterLazyLoad : false
         
     });
+    /* ações de Uau e Nops */
+    $(".bt-uau-alvo").click(function(){
+    owl.trigger('owl.next');
+      })
+      $(".bt-voltar-alvo").click(function(){
+        owl.trigger('owl.prev');
+      })
+       $(".bt-nops-alvo").click(function(){
+    owl.trigger('owl.next');
+      })
+    
+    $('.foto-alvo').mouseover(function() {
+        $( this ).find( ".glyphicon-camera" ).show();
+      })
+      .mouseout(function() {
+        $( this ).find( ".glyphicon-camera" ).hide();
+  });
 });
 </script>

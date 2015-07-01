@@ -22,13 +22,8 @@
 
 .content {
   padding: 20px;
+  padding-top: 0;
   margin: 0 -20px; /* indenta o padding negativo para preservar o grid */
-}
-
-.alvo{
-  width: 900px;
-  height: 100%;
-  margin: 0 auto;
 }
 
 .btn-file {
