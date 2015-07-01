@@ -1,7 +1,8 @@
-<div class="row-fluid">
+<div class="row">
           <div class="col-md-5">
               
 <span class="title-session glyphiconsPro glyphicon-dog"></span><span class="title-session">Seu dog</span>
+<hr>
 <%= form_tag("/dogs", method: "post", multipart: true,  class: "form-horizontal") %>
 
 <div class="form-group">
@@ -63,16 +64,6 @@
 </div>
 
 <div class="form-group">
-    
-    <div class="col-md-2">
-        <label for="foto"><span class="glyphicon glyphicon-camera" style="display:inline;margin-right:5px;"></span>Foto: </label> 
-    </div>
-    <div class="col-md-10">
-        <input type="file" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
-    </div>
-</div>
-
-<div class="form-group">
     <div class="col-md-12">
         <input type="submit" name="Salvar" class="btn btn-success btn-block" value="Salvar">
     </div>
@@ -80,16 +71,132 @@
 
  </div>
           <div class="col-md-2"></div>
-          <div class="col-md-5">
+<div class="col-md-5">
+
+<span class="title-session glyphicon glyphicon-camera"></span><span class="title-session">Foto do Perfil</span>
+<hr>
+
+<output  id='fotoperfilinicial' style="display:block">
+    <div class="thumbnail">
+        <%= image_tag "dog_default_image.png" %> 
+     </div>
+</output>
+<output  id='fotoperfilnova' style="display:none">
+</output>
 
 
-<span class="title-session glyphicon glyphicon-camera"></span><span class="title-session">Álbum do dog</span>
+<span class="file-input btn btn-default btn-block btn-file">
+                Procurar Foto&hellip; <input type="file" data-initial-image="fotoperfilinicial" data-output-image="fotoperfilnova" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
+            </span>
+            
+ 
+     
+</div>
+
+</div>
+
+<div class='row'>
+    
+<div class="col=md-12">
+
+<br>
+<br>
+
+<span class="title-session glyphicon glyphicon-picture"></span><span class="title-session">Álbum do dog</span>
+<hr>
+<br>
+<br>
+<div id='album' class="row">
+    
+    
+    <div class='col-md-4'>
+        <div class="thumbnail clearfix">
+            <%= image_tag "dog_default_image.png" %>
+            <div>
+                    <a href="#" class="btn btn-danger pull-right" style="opacity: 0.75;position:absolute; left: 30px; top:15px;" role="button">Excluir Foto</a>
+            </div>
+            
+            <div class="caption">
+        <textarea placeholder="Adicione uma descrição para essa foto" class='form-control'></textarea>
+
+        </div>
+        </div>
+    </div>
+    
+    <div class='col-md-4 '>
+        <div class="thumbnail clearfix">
+            <%= image_tag "dog_default_image.png" %>
+            <div>
+                    <a href="#" class="btn btn-danger pull-right" style="opacity: 0.75;position:absolute; left: 30px; top:15px;" role="button">Excluir Foto</a>
+            </div>
+            
+            <div class="caption">
+        <textarea placeholder="Adicione uma descrição para essa foto" class='form-control'></textarea>
+
+        </div>
+        </div>
+        
+    </div>
+    
+    <div class='col-md-4 '>
+        <div class="thumbnail clearfix">
+            <%= image_tag "dog_default_image.png" %>
+            <div>
+                    <a href="#" class="btn btn-danger pull-right" style="opacity: 0.75;position:absolute; left: 30px; top:15px;" role="button">Excluir Foto</a>
+            </div>
+            
+            <div class="caption">
+        <textarea placeholder="Adicione uma descrição para essa foto" class='form-control'></textarea>
+
+        </div>
+        </div>
+        
+    </div>
+    
+    <div class='col-md-4'>
+        <div class="thumbnail clearfix">
+            <%= image_tag "dog_default_image.png" %>
+            <div>
+                    <a href="#" class="btn btn-danger pull-right" style="opacity: 0.75;position:absolute; left: 30px; top:15px;" role="button">Excluir Foto</a>
+            </div>
+            
+            <div class="caption">
+        <textarea placeholder="Adicione uma descrição para essa foto" class='form-control'></textarea>
+
+        </div>
+        </div>
+        
+    </div>
+    
+    <div class='col-md-4' id='novaFoto'>
+        <div class="thumbnail clearfix">
+            <%= image_tag "dog_default_image.png" %>
+            
+            
+            <div class="caption">
+                <input type="file" value="Escolher Foto" name="foto" id="foto" class="btn btn-primary" accept="image/x-png, image/gif, image/jpeg"/>
+        </div>
+        </div>
+        
+    </div>
+    
+    
+</div>
+
+
+
+
 <div id="drop_zone"><p>Arraste as fotos aqui</p>
     
 </div>
-<input type="file" id="files" name="files[]" class="form-control" multiple />
+<input type="button" id="adicionarFoto" class="form-control" />
+<input data-initial-image="fotosiniciais" data-output-image="fotosnovas" type="file" id="files" name="files[]" class="form-control" multiple />
 </form>
-<output id="list"></output>
+
+<output id="fotosiniciais"></output>
+
+<output id="fotosnovas"></output>
+
 <a onclick="javascript:getJSONimages()">JSON</a>
 
 </div>
@@ -100,10 +207,39 @@
 
 <script>
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
+  
+  document.getElementById('foto').addEventListener('change', handleFileSelect, false);
  
-  var dropZone = document.getElementById('drop_zone');
+
+ 
+ $('#adicionarFoto').click(function(evt) {
+	evt.preventDefault();
+	var task = $('form').toObject();
+	$('#taskRow').tmpl(task).appendTo($('#tblTasks tbody'));
+});
+
+  var dropZone = document.getElementById('drop_zone_foto_perfil');
   dropZone.addEventListener('dragover', handleDragOver, false);
   dropZone.addEventListener('drop', handleFileSelect, false);
 
+
 </script>
 
+<script src= "scripts/jquery-tmpl.js"></script>
+
+<script id="fotoBox" type="text/x-jQuery-tmpl">
+<div class='col-md-4'>
+    <div class="thumbnail clearfix">
+        <%= image_tag ${url} %>
+        <div>
+            <a href="#" class="btn btn-danger pull-right" style="opacity: 0.75;position:absolute; left: 30px; top:15px;" role="button">Excluir Foto</a>
+        </div>
+        
+        <div class="caption">
+        <input type="hidden" name='id' value='${id}'>
+        <textarea placeholder="Adicione uma descrição para essa foto" class='form-control'>${descricao}</textarea>
+    </div>
+    </div>
+    
+</div>
+</script>

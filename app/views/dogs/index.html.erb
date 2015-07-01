@@ -1,20 +1,53 @@
-<h1>Meus Dogs <a class="btn btn-info" href="/dogs/new">+ Dog</a></h1> 
-<p>Lista dos meus Dogs</p>
-<table class="table table-striped">
-        <tr>
-            <th>Nome</th>
-            <th>Sexo</th>
-            <th>Raça</th>
-            <th>Cidade</th>
-        </tr>
-    <% @dogs.each do |d|  %>
-        
-        <tr>
-            <td><%= d.nome %></td>
-            <td><%= d.sexo %></td>
-            <td><%= d.raca.nome %></td>
-            <td><%= d.cidade.nome %></td>
-        </tr>
+<h1>Meus Dogs <a class="btn btn-info pull-right" href="/dogs/new">Cadastrar novo Dog</a></h1> 
+
+
+<div class="row">
     
-    <% end if @dogs%>
-</table>
+    <% @dogs.each do |d|  %>
+    
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <% if !d.foto.nil? %>
+        <img src="/images/<%= d.foto.url %>">  
+      <% else %>    
+        <%= image_tag "dog_default_image.png" %> 
+      <% end %>
+      <div class="caption">
+        <h3><%= d.nome %></h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success">
+              <%= d.raca.nome %>
+              <% if d.sexo === 'F' %>
+               | Fêmea
+              <% elsif d.sexo === 'M' %>    
+               | Macho
+              <% end %>
+              <% if d.tem_pedigree %>
+                com Pedigree
+              <% end %>
+          </li>
+          <li class="list-group-item"><%= d.cidade.nome %> - <%= d.cidade.estado %></li>
+          <li class="list-group-item list-group-item-warning">
+              Interessa 
+                  <% if d.interessa_passear %>
+                      Passear
+                  <% end %>    
+                  <% if d.interessa_passear and  d.interessa_cruzar %>
+                      e
+                  <% end %>    
+                  <% if d.interessa_cruzar %>
+                      Cruzar
+                  <% end %>    
+        </ul>
+        <p>
+            <a href="#" class="btn btn-primary" role="button">Encontrar um par</a>
+            <a href="#" class="btn btn-warning" role="button">Editar</a>
+            <a href="#" class="btn btn-danger" role="button">Excluir</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  
+   <% end if @dogs%>
+  
+</div>

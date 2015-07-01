@@ -18,15 +18,20 @@
 //= require_tree .
 
   function handleFileSelect(evt) {
-  var files;
-  var output = [];
-  if(evt.type=='drop'){
-    evt.stopPropagation();
-    evt.preventDefault();
-    files = evt.dataTransfer.files
-  }else{
-   files  = evt.target.files; // FileList object
-  }
+    var files;
+    var output = [];
+    if(evt.type=='drop'){
+      evt.stopPropagation();
+      evt.preventDefault();
+      files = evt.dataTransfer.files
+    }else{
+     files  = evt.target.files; // FileList object
+    }
+    
+    document.getElementById(evt.target.dataset.outputImage).innerHTML = '';
+    document.getElementById(evt.target.dataset.outputImage).style.display = 'none';
+    document.getElementById(evt.target.dataset.initialImage).style.display = 'block';
+    
     // Loop through the FileList and render image files as thumbnails.
     for (var i = 0, f; f = files[i]; i++) {
 
@@ -41,17 +46,26 @@
       reader.onload = (function(theFile) {
         return function(e) {
           // Render thumbnail.
+          /*
           var span = document.createElement('span');
           span.innerHTML = ['<img class="thumb" src="', e.target.result,
                             '" title="', escape(theFile.name), '"/>'].join('');
-          document.getElementById('list').insertBefore(span, null);
+          document.getElementById(evt.target.dataset.outputImage).insertBefore(span, null);
+          */
+          var div = document.createElement('div');
+          div.className = 'thumbnail';
+          div.innerHTML = ['<img src="', e.target.result,'" />'].join('');
+          document.getElementById(evt.target.dataset.outputImage).insertBefore(div, null);
+          document.getElementById(evt.target.dataset.outputImage).style.display = 'block';
+          document.getElementById(evt.target.dataset.initialImage).style.display = 'none';
+          
         };
       })(f);
 
       // Read in the image file as a data URL.
       reader.readAsDataURL(f);
-       
     }
+      
   }
   
     function handleDragOver(evt) {

@@ -5,7 +5,7 @@
   
 
     <label for="nome">Nome:</label>
-    <input id="nome" type="text" class="form-control" value="<%= current_user.nome %>" disabled>
+    <input id="nome" type="text" class="form-control" value="<%= current_user.nome %>" >
     
     <label for="email">E-mail</label>
     <input id="email" type="email" value="<%= current_user.email %>" class="form-control" <%= "disabled" if current_user.provider == 'facebook' %> >
