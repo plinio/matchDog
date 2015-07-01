@@ -42,7 +42,7 @@
         <p>
             <a href="#" class="btn btn-primary" role="button">Encontrar um par</a>
             <a href="#" class="btn btn-warning" role="button">Editar</a>
-            <a href="#" class="btn btn-danger" role="button">Excluir</a>
+            <button data-toggle="modal" data-target="#deleteDogModal" data-id="<%= d.id %>" data-nome="<%= d.nome %>" class="btn btn-danger" role="button">Excluir</button>
         </p>
       </div>
     </div>
@@ -51,3 +51,38 @@
    <% end if @dogs%>
   
 </div>
+
+<div class="modal fade" id="deleteDogModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header panel-heading">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Você tem certeza disso ?</h4>
+        </div>
+        <div class="modal-body">
+          Você tem certeza que <b>deseja remover <span id="nome"></span>?</b>
+        </div>
+        <div class="modal-footer">
+            <form id="form_excluir_dog" class="button_to" method="post" action="/dogs/5">
+              <input type="hidden" name="_method" value="delete">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Não! Não quero remover.</button>
+              <input class="btn btn-primary" type="submit" value="Sim! Quero remover!">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              </form>
+          
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  
+  <script>
+    $('#deleteDogModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var dog_id = button.data('id')
+      var dog_nome = button.data('nome')
+      
+      var modal = $(this)
+      modal.find('#nome').text(dog_nome)
+      modal.find('#form_excluir_dog').attr("action", "/dogs/"+String(dog_id))
+    })
+  </script>

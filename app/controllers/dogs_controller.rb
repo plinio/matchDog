@@ -47,7 +47,7 @@ class DogsController < ApplicationController
     flash[:notice] = "#{@dog.nome} foi cadastrado com sucesso."
     session[:dog_id] = @dog.id
     
-    redirect_to "/dogs"
+    redirect_to dogs_url
   end
 
   def update
@@ -57,6 +57,19 @@ class DogsController < ApplicationController
   end
 
   def destroy
+    
+    begin
+      dog = Dog.find(params[:id])
+      if dog.dono.id === @current_user.id
+        dog.datahora_excluido = Time.now
+        dog.save
+        flash[:notice] = "O Dog "+dog.nome+"foi excluído!"
+      end
+    rescue
+      flash[:notice] = "O Dog não pode ser excluído!"  
+    end
+    
+    redirect_to dogs_url
   end
 
   def index

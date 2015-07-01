@@ -6,7 +6,7 @@ class Dono < ActiveRecord::Base
     has_many :fotos_donos
     has_many :fotos, :through => :fotos_donos
     
-    has_many :dogs
+    has_many :dogs, -> { where "datahora_excluido is null" }
     
     def self.omniauth(auth)
         where(provider: auth.provider, uid: auth.uid).first_or_create do |dono|
