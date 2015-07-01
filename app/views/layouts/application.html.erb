@@ -40,38 +40,38 @@
             <div class="col-sm-8 busca">
               <%= form_tag("/buscar", method: "post", multipart: true,  class: "form-horizontal") %>
               <div class="form-group">
-                <div class="col-sm-2 col-padding-reduce">
-                  <span>Procuro </span>
-                </div>
                 <div class="col-sm-1 col-padding-reduce">
+                  <span>Procuro </span>
                   <select id="sexo" name="faro[sexo]" class="form-control">
                       <option value="F">Mulher</option>
                       <option value="M">Homem</option>
                   </select>
                 </div>
-                <div class="col-sm-2 col-padding-reduce">
-                  <span>, dono de </span>
-                </div>
+
                 <div class="col-sm-3 col-padding-reduce">
+                  <span> dono(a) de </span>
                    <%= select("dog","raca_id",get_racas,{},{'class' => 'form-control'}) %>
-                   
                 </div>
                 <div class="col-sm-1 col-padding-reduce">
+                  <span>que seja</span>
                   <select id="sexoDog" name="faro[sexoDog]" class="form-control">
                       <option value="F">Fêmea</option>
                       <option value="M">Macho</option>
                   </select>
                 </div>
                 
-                <div class="col-sm-1 col-padding-reduce">
-                  <span>para </span>
-                </div>
                 <div class="col-sm-3 col-padding-reduce">
-                  <%= check_box_tag 'cruzar', 1, true, {} %>
+                  <span>para </span>
+                  <br>
+                  <span><%= check_box_tag 'cruzar', 1, true, {} %></span>
                   <span>cruzar </span>
                   <br>
                   <%= check_box_tag 'passear', 1, true, {} %>
                    <span>passear </span>
+                </div>
+                <div class="col-sm-2">
+                   <span>na cidade</span>
+                    <%= select("dog","cidade_id",@cidades,{},{'class' => 'form-control'}) if @cidades %>
                 </div>
                 <div class="col-sm-2">
                     <button type="submit" id="farejar_bt" name="farejar" class="btn btn-danger btn-block" value="">
