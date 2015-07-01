@@ -91,18 +91,36 @@
                 </div>
                 
               </div>
+              <% if !current_user.nil? %>
               <div id="profile-dono" class="profile">
-                <a href="perfil" title="Meu Perfil"><img src="/images/<%= current_user.foto.url %>"> 
+                <a href="/perfil" title="Meu Perfil">
+                  
+                  <% if !current_user.foto.nil? %>
+                    <img src="/images/<%= current_user.foto.url %>"> 
+                  <% else %>    
+                    <%= image_tag "dono_default_image.png" %> 
+                  <% end %>    
                   <span class="glyphicon glyphicon-user"></span>Perfil
                 </a>
               </div>
+              <% end %>
+              
+              <% if !current_dog.nil? %>
               <div id="profile-dog"  class="profile">
-                <a href="dogs" title="Meus Dogs"><img src="/images/<%= current_dog.foto.url if current_dog.foto %>">  
+                
+                <a href="/dogs" title="Meus Dogs">
+                  <% if !current_dog.foto.nil? %>
+                    <img src="/images/<%= current_dog.foto.url %>">  
+                  <% else %>    
+                    <%= image_tag "dog_default_image.png" %> 
+                  <% end %>    
                   <span class="dog-icon-p"><%= image_tag "dog-icon.png" %></span>Dogs
                 </a>
               </div>
+              <% end %>
+              
               <div class="profile logout">
-                <a href="logout">
+                <a href="/logout">
                   <span class="glyphicon glyphicon-off"></span>Sair
                 </a>
               </div>

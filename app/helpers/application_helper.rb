@@ -14,7 +14,7 @@ def get_racas
 end
 
 def get_cidades
-   Cidade.all.collect {|c| [c.nome,c.id]} 
+   Cidade.all.collect {|c| [c.nome + ' - ' + c.estado,c.id]} 
 end
 
 end

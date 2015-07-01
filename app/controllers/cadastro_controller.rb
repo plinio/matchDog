@@ -23,20 +23,21 @@ class CadastroController < ApplicationController
     foto.save
     @dono.foto = foto
     
-    #Importar Demais fotos
-    params['files'].each{ |file| 
-      path = File.join(Rails.root + "public/images",file.original_filename)
-      File.open(path,"wb") do |f|
-        f.write(file.read) 
-      end
-    
-      foto = Foto.new
-      foto.url = file.original_filename
-      foto.descricao = "Foto Adicional"
-      foto.save
-      @dono.fotos.append(foto)
-    }
-    
+    if params.has_key?("files")
+      #Importar Demais fotos
+      params['files'].each{ |file| 
+        path = File.join(Rails.root + "public/images",file.original_filename)
+        File.open(path,"wb") do |f|
+          f.write(file.read) 
+        end
+      
+        foto = Foto.new
+        foto.url = file.original_filename
+        foto.descricao = "Foto Adicional"
+        foto.save
+        @dono.fotos.append(foto)
+      }
+    end
     
     @dono.password = Digest::MD5.hexdigest(@dono.password)
     @dono.save
