@@ -1,13 +1,58 @@
 <h1>Tá na home mermao</h1>
 <div class="owl-carousel">
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
+  <div id="" class="alvo"> 
+        <div class="row-fluid">
+            <div class="col-md-4">
+                <span class="alvo-nome">Nome Dog 1</span>
+            </div>
+            <div class="col-md-4">
+                <span class="alvo-nome">Nome Dono 1</span>
+            </div>
+        </div>
+  </div>
+  <div id="" class="alvo"> 
+        <div class="row-fluid">
+            <div class="col-md-4">
+                <span class="alvo-nome">Nome Dog 2</span>
+            </div>
+            <div class="col-md-4">
+                <span class="alvo-nome">Nome Dono 2</span>
+            </div>
+        </div>
+  </div>
+  <div id="" class="alvo"> 
+        <div class="row-fluid">
+            <div class="col-md-4">
+                <span class="alvo-nome">Nome Dog 3</span>
+            </div>
+            <div class="col-md-4">
+                <span class="alvo-nome">Nome Dono 3</span>
+            </div>
+        </div>
+  </div>
 </div>
 <script>
-$(".owl-carousel").owlCarousel();
+$(document).ready(function() {
+    $(".owl-carousel").owlCarousel({
+        items : 3,
+        singleItem : true,
+        navigation : true,
+        navigationText : ["voltar","uau!"],
+        rewindNav : true,
+        scrollPerPage : false,
+        pagination : false,
+        
+            //Callbacks
+    beforeUpdate : false,
+    afterUpdate : false,
+    beforeInit: false, 
+    afterInit: false, 
+    beforeMove: false, 
+    afterMove: false,
+    afterAction: false,
+    startDragging : false,
+    afterLazyLoad : false
+        
+    });
+});
 </script>
