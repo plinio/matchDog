@@ -16,8 +16,8 @@ class LoginController < ApplicationController
     password = Digest::MD5.hexdigest(params[:password])
     @dono = Dono.where(:email=>email).where(:password=>password).take
     unless @dono == nil
-      session[:user_id] = @dono.id
-      session[:dog_id] = @dono.dogs.first.id
+      session[:dono_id] = @dono.id
+      session[:dog_id] = @dono.dogs.first.id if !@dono.dogs.empty?
     end
     redirect_to root_url
   end

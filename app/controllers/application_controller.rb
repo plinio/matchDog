@@ -9,19 +9,23 @@ class ApplicationController < ActionController::Base
   
   private
   def require_login
-    if session[:user_id] == nil
+    if session[:dono_id] == nil
       redirect_to "/login"
     end
-    @current_user = Dono.find(session[:user_id]) if session[:user_id]
-    @current_dog = Dog.find(session[:dog_id]) if session[:dog_id]
+      @current_user = Dono.find(session[:dono_id]) if session[:dono_id]
+    begin
+      @current_dog = Dog.find(session[:dog_id]) if session[:dog_id]
+    rescue ActiveRecord::RecordNotFound
+      @current_dog = nil
+    end
   end
   
   private 
   def require_cadastro_completo
     if (@current_user.sexo == "I" || @current_user.foto == nil || @current_user.foto == nil)
-      redirect_to "/perfil" 
+      redirect_to "/cadastro/edit" 
     else
-      redirect_to "/dogs" if (@current_user.dogs.count == 0)
+      redirect_to "/cadastro/first_dog" if (@current_user.dogs.count == 0)
     end
   end
   

@@ -15,19 +15,33 @@ class DogsController < ApplicationController
     @dog =  Dog.new(dog_params)
     @dog.dono_id = @current_user.id
     
-    #Importar fotos
-    params['files'].each{ |file| 
-      path = File.join(Rails.root + "public/images",file.original_filename)
-      File.open(path,"wb") do |f|
-        f.write(file.read) 
-      end
+    #Importar foto do Perfil
+    path = File.join(Rails.root + "public/images",params[:foto].original_filename)
+    File.open(path,"wb") do |f|
+      f.write(params[:foto].read) 
+    end
     
-      foto = Foto.new
-      foto.url = file.original_filename
-      foto.descricao = "Foto Adicional"
-      foto.save
-      @dog.fotos.append(foto)
-    }
+    foto = Foto.new
+    foto.url = params[:foto].original_filename
+    foto.descricao = "Foto do Perfil"
+    foto.save
+    @dog.foto = foto
+    
+    if params.has_key?("files")
+      #Importar Demais fotos
+      params['files'].each{ |file| 
+        path = File.join(Rails.root + "public/images",file.original_filename)
+        File.open(path,"wb") do |f|
+          f.write(file.read) 
+        end
+      
+        foto = Foto.new
+        foto.url = file.original_filename
+        foto.descricao = "Foto Adicional"
+        foto.save
+        @dog.fotos.append(foto)
+      }
+    end
     
     @dog.save
     flash[:notice] = "#{@dog.nome} foi cadastrado com sucesso."
