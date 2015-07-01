@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'omniauth-facebook', '~> 2.0.1'
 #gem 'omniauth-identity', '~> 1.1.1'
+gem 'owlcarousel-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

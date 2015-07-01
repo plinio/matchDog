@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
+//= require owl.carousel
 //= require_tree .
 /*
 function handleFileSelect(evt) {
