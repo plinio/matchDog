@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   
+  get 'home/index'
+  
   get   '/cadastro', to: 'cadastro#new'
   post  '/cadastro', to: 'cadastro#save'
   get   '/cadastro/first_dog', to: 'cadastro#first_dog'
+  get   '/cadastro/edit', to: 'cadastro#edit'
+  post  '/cadastro/edit', to: 'cadastro#save'
   
   resources :dogs
 
@@ -12,10 +16,9 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy'
   
   
-  get 'home/index'
+  
 
   get 'perfil', to: 'perfil#index'
-
   post 'perfil', to: 'perfil#salvar'
 
   # The priority is based upon order of creation: first created -> highest priority.
