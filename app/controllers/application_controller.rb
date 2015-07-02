@@ -12,7 +12,9 @@ class ApplicationController < ActionController::Base
     if session[:dono_id] == nil
       redirect_to "/login"
     end
-      @current_user = Dono.find(session[:dono_id]) if session[:dono_id]
+    
+    @current_user = Dono.find(session[:dono_id]) if session[:dono_id]
+    
     begin
       @current_dog = Dog.find(session[:dog_id]) if session[:dog_id]
     rescue ActiveRecord::RecordNotFound
