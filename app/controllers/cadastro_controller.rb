@@ -1,7 +1,7 @@
 class CadastroController < ApplicationController
   layout :resolve_layout
   
-  skip_before_filter :require_login
+  skip_before_filter :require_login, :only => [:new,:save]
   
   skip_before_filter :require_cadastro_completo
   
@@ -54,8 +54,7 @@ class CadastroController < ApplicationController
     @racas = Raca.all.collect {|c| [c.nome,c.id]}
   end
   
-  skip_before_filter :require_cadastro_completo
-    
+
   def edit
     @dono = Dono.find(session[:dono_id])
   end
