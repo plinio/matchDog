@@ -13,7 +13,7 @@
 <fieldset>
 <legend>Entrar</legend>
 <div class="form-group">
-  <div class="col-md-9">
+  <div class="col-md-10">
       <input id="input_email" name="email" type="email" placeholder="e-mail" class="form-control input-md">
   </div>
 </div>
@@ -23,29 +23,32 @@
     <input id="input_password" name="password" type="password" placeholder="senha" class="form-control input-md">
   </div>
   <div class="col-md-4">
-    <button id="singlebutton" name="singlebutton" class="btn btn-success">Login</button>
+    <button id="singlebutton" name="singlebutton" class="btn btn-success form-control">Login</button>
   </div>
 </div>
+<hr>
+<div class="form-group">
+  <div class="col-md-6">
+    Você ainda não têm cadastro?
+  </div>
+  <div class="col-md-4">
+    <a href="/cadastro" id="singlebutton" name="cadastro" class="btn btn-warning form-control">Cadastre-se</a>
+  </div>
+</div>
+</fieldset>
 
+<fieldset>
+<legend>Ou, mais fácil</legend>
 <div class="form-group">
   <div class="col-md-10">
-    <a href="/auth/facebook" id="singlebutton" name="singlebutton" class="btn btn-primary">Entrar com Facebook</a>
+    <center>
+    <a href="/auth/facebook" id="singlebutton" name="singlebutton" class="btn btn-primary btn-lg">
+      <i class="fa fa-facebook-official fa-fw"></i> Entrar com Facebook</a>
+      </center>
   </div>
 </div>
 
 </fieldset>
 </form>
-<br>
-<fieldset>
-    <legend>Ainda não tem cadastro?</legend>
-    <div class="form-group">
-      <div class="col-md-12">
-        <a href="/cadastro" id="singlebutton" name="cadastro" class="btn btn-primary">
-            Cadastre-se
-        </a>
-        </div>
-    </div>
-</fieldset>
-<h1><%= @var %>
-</h1>
+
 <% end %>
