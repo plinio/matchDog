@@ -16,19 +16,21 @@ class DogsController < ApplicationController
     @dog.dono_id = @current_user.id
     
     #Importar foto do Perfil
-    path = File.join(Rails.root + "public/images",params[:foto].original_filename)
-    File.open(path,"wb") do |f|
-      f.write(params[:foto].read) 
+    if params.has_key?("foto")
+      path = File.join(Rails.root + "public/images",params[:foto].original_filename)
+      File.open(path,"wb") do |f|
+        f.write(params[:foto].read) 
+      end
+    
+      foto = Foto.new
+      foto.url = params[:foto].original_filename
+      foto.descricao = "Foto do Perfil"
+      foto.save
+      @dog.foto = foto
     end
     
-    foto = Foto.new
-    foto.url = params[:foto].original_filename
-    foto.descricao = "Foto do Perfil"
-    foto.save
-    @dog.foto = foto
-    
+    #Importar Demais fotos
     if params.has_key?("files")
-      #Importar Demais fotos
       params['files'].each{ |file| 
         path = File.join(Rails.root + "public/images",file.original_filename)
         File.open(path,"wb") do |f|
@@ -51,9 +53,48 @@ class DogsController < ApplicationController
   end
 
   def update
+    @dog = Dog.find(params[:id])
+    @dog.update(dog_params)
+
+    #Importar foto do Perfil
+    if params.has_key?("foto")
+      path = File.join(Rails.root + "public/images",params[:foto].original_filename)
+      File.open(path,"wb") do |f|
+        f.write(params[:foto].read) 
+      end
+      
+      foto = Foto.new
+      foto.url = params[:foto].original_filename
+      foto.descricao = "Foto do Perfil"
+      foto.save
+      @dog.foto = foto
+    end
+    
+    #Importar Demais fotos
+    if params.has_key?("files")
+      params['files'].each{ |file| 
+        path = File.join(Rails.root + "public/images",file.original_filename)
+        File.open(path,"wb") do |f|
+          f.write(file.read) 
+        end
+      
+        foto = Foto.new
+        foto.url = file.original_filename
+        foto.descricao = "Foto Adicional"
+        foto.save
+        @dog.fotos.append(foto)
+      }
+    end
+    
+    @dog.save
+    flash[:notice] = "#{@dog.nome} foi Editado com sucesso."
+    session[:dog_id] = @dog.id
+    
+    redirect_to dogs_url
   end
 
   def edit
+    @dog = Dog.find(params[:id])
   end
 
   def destroy
@@ -77,6 +118,15 @@ class DogsController < ApplicationController
   end
 
   def show
+      dog = Dog.find(params[:id])
+      if dog.dono.id === @current_user.id
+        session[:dog_id] = dog.id
+        redirect_to root_path
+      else
+        flash[:notice] = "O Dog não pode ser selecionado!"  
+        redirect_to dogs_url  
+      end
+      
   end
   
   private

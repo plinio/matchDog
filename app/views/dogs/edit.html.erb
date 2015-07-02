@@ -1,2 +1,115 @@
-<h1>Dogs#edit</h1>
-<p>Find me in app/views/dogs/edit.html.erb</p>
+<div class="row">
+    
+    <%= form_tag("/dogs/"+String(@dog.id), method: :put, multipart: true,  class: "form-horizontal") %>
+    
+          <div class="col-md-5">
+              
+<span class="title-session glyphiconsPro glyphicon-dog">
+     <span class="dog-icon-g"><%= image_tag "dog-icon.png" %></span>
+</span><span class="title-session">Seu dog</span>
+<hr>
+
+
+<div class="form-group">
+  <div class="col-md-6">
+     <input id="nome"  type="text" name="dog[nome]" class="form-control" placeholder="Nome" value="<%= @dog.nome %>">
+  </div>
+  <div class="col-md-6">
+     <%= select("dog","raca_id",get_racas,{:selected => @dog.raca_id},{'class' => 'form-control'}) %>
+  </div>
+</div>
+<div class="form-group">
+    <div class="col-md-5">
+    <select id="sexo" name="dog[sexo]" class="form-control">
+        <option value="M" <%=  'selected="selected"' if @dog.sexo == "M" %>>Masculino</option>
+        <option value="F" <%=  'selected="selected"' if @dog.sexo == "F" %>>Feminino</option>
+    </select>
+    </div>
+    
+    <div class="col-md-3">
+        <label for="pedigree">
+            <span style="display: inline;margin-right:5px;" class="glyphicon glyphicon-certificate"></span>Pedigree?</label>
+    </div>
+    <div class="col-md-4">
+        <select id="pedigree" name="dog[tem_pedigree]" class="form-control">
+            <option value="1" <%=  'selected="selected"' if @dog.tem_pedigree %>>Sim</option>
+            <option value="0" <%=  'selected="selected"' if !@dog.tem_pedigree %>>Não</option>
+        </select>
+    </div>
+</div>
+<div class="form-group">
+<div class="col-md-2">
+        <label for="cidade_id">Cidade:</label>
+    </div>
+    <div class="col-md-10">
+        <%= select("dog","cidade_id",get_cidades,{:selected => @dog.cidade_id},{'class' => 'form-control'}) %>
+    </div>
+</div>
+<div class="form-group">
+    
+    <div class="col-md-3">
+        <label for="cruzar">Quer Cruzar?</label>
+    </div>
+    <div class="col-md-3">
+        <select id="cruzar" name="dog[interessa_cruzar]" class="form-control">
+            <option value="1" <%=  'selected="selected"' if @dog.interessa_cruzar %>>Sim</option>
+            <option value="0" <%=  'selected="selected"' if !@dog.interessa_cruzar %>>Não</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label for="passear">Quer Passear?</label>
+    </div>
+    <div class="col-md-3">
+        <select id="passear" name="dog[interessa_passear]" class="form-control">
+            <option value="1" <%=  'selected="selected"' if @dog.interessa_passear %>>Sim</option>
+            <option value="0" <%=  'selected="selected"' if !@dog.interessa_passear %>>Não</option>
+        </select>
+    </div>
+    
+</div>
+
+<div class="form-group">
+    <div class="col-md-12">
+        <input type="submit" name="Salvar" class="btn btn-success btn-block" value="Salvar">
+    </div>
+</div>
+
+ </div>
+          <div class="col-md-2"></div>
+<div class="col-md-5">
+
+<span class="title-session glyphicon glyphicon-camera"></span><span class="title-session">Foto do Perfil</span>
+<hr>
+
+<output  id='fotoperfilinicial' style="display:block">
+    <div class="thumbnail">
+        <% if !@dog.foto.nil? %>
+            <img src="/images/<%= @dog.foto.url %>">  
+        <% else %>    
+            <%= image_tag "dog_default_image.png" %> 
+        <% end %>  
+     </div>
+</output>
+<output  id='fotoperfilnova' style="display:none">
+</output>
+
+
+<span class="file-input btn btn-default btn-block btn-file">
+                Procurar Foto&hellip; <input type="file" data-initial-image="fotoperfilinicial" data-output-image="fotoperfilnova" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
+            </span>
+            
+ 
+     
+</div>
+
+</form>
+
+</div>
+
+
+<script>
+  
+  document.getElementById('foto').addEventListener('change', handleFileSelect, false);
+ 
+
+</script>

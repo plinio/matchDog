@@ -2,10 +2,10 @@
 
 
 <div class="row">
-    
+    <div id="equalheight">
     <% @dogs.each do |d|  %>
     
-  <div class="col-sm-6 col-md-4">
+  <div class="col-sm-6 col-md-4 same-height">
     <div class="thumbnail">
       <% if !d.foto.nil? %>
         <img src="/images/<%= d.foto.url %>">  
@@ -40,8 +40,8 @@
                   <% end %>    
         </ul>
         <p>
-            <a href="#" class="btn btn-primary" role="button">Encontrar um par</a>
-            <a href="#" class="btn btn-warning" role="button">Editar</a>
+            <a href="/dogs/<%= d.id %>" class="btn btn-primary" role="button">Encontrar um par</a>
+            <a href="/dogs/<%= d.id %>/edit" class="btn btn-warning" role="button">Editar</a>
             <button data-toggle="modal" data-target="#deleteDogModal" data-id="<%= d.id %>" data-nome="<%= d.nome %>" class="btn btn-danger" role="button">Excluir</button>
         </p>
       </div>
@@ -49,7 +49,7 @@
   </div>
   
    <% end if @dogs%>
-  
+  </div>
 </div>
 
 <div class="modal fade" id="deleteDogModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -85,4 +85,9 @@
       modal.find('#nome').text(dog_nome)
       modal.find('#form_excluir_dog').attr("action", "/dogs/"+String(dog_id))
     })
+    
+	jQuery(function($) {
+		$('.same-height').responsiveEqualHeightGrid();	
+	});
+
   </script>
