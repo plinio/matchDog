@@ -1,6 +1,8 @@
 class CadastroController < ApplicationController
   layout :resolve_layout
   
+  skip_before_filter :require_login
+  
   skip_before_filter :require_cadastro_completo
   
   def new

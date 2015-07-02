@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(version: 20150627170644) do
   end
 
   create_table "fotos_dogs", force: :cascade do |t|
-    t.integer  "dog_id"
-    t.integer  "foto_id"
+    t.integer  "dog_id",     null: false
+    t.integer  "foto_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
