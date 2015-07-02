@@ -1,7 +1,9 @@
 <% content_for :side_left_content do %>
-<span class="title-session glyphiconsPro glyphicon-dog"></span><span class="title-session">Seu dog</span>
 <%= form_tag("/dogs", method: "post", multipart: true,  class: "form-horizontal") %>
-
+<span class="title-session glyphiconsPro glyphicon-dog">
+     <span class="dog-icon-g"><%= image_tag "dog-icon.png" %></span>
+</span><span class="title-session">Seu dog</span>
+<hr>
 <div class="form-group">
   <div class="col-md-6">
      <input id="nome"  type="text" name="dog[nome]" class="form-control" placeholder="Nome">
@@ -60,15 +62,6 @@
     </div>
 </div>
 
-<div class="form-group">
-    
-    <div class="col-md-2">
-        <label for="foto"><span class="glyphicon glyphicon-camera" style="display:inline;margin-right:5px;"></span>Foto: </label> 
-    </div>
-    <div class="col-md-10">
-        <input type="file" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
-    </div>
-</div>
 
 <div class="form-group">
     <div class="col-md-12">
@@ -80,22 +73,26 @@
 <% end %>
 <% content_for :side_right_content do %>
 
-<span class="title-session glyphicon glyphicon-camera"></span><span class="title-session">Álbum do dog</span>
-<div id="drop_zone"><p>Arraste as fotos aqui</p>
-    
-</div>
-<input type="file" id="files" name="files[]" class="form-control" multiple />
-</form>
-<output id="list"></output>
-<a onclick="javascript:getJSONimages()">JSON</a>
+<span class="title-session glyphicon glyphicon-camera"></span><span class="title-session">Foto do Perfil</span>
+<hr>
+
+<output  id='fotoperfilinicial' style="display:block">
+    <div class="thumbnail">
+        <%= image_tag "dog_default_image.png" %> 
+     </div>
+</output>
+<output  id='fotoperfilnova' style="display:none">
+</output>
+
+<span class="file-input btn btn-default btn-block btn-file">
+                Procurar Foto&hellip; 
+                <input type="file" data-initial-image="fotoperfilinicial" data-output-image="fotoperfilnova" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
+</span>
+
 
 <script>
-  document.getElementById('files').addEventListener('change', handleFileSelect, false);
- 
-  var dropZone = document.getElementById('drop_zone');
-  dropZone.addEventListener('dragover', handleDragOver, false);
-  dropZone.addEventListener('drop', handleFileSelect, false);
-
+  document.getElementById('foto').addEventListener('change', handleFileSelect, false);
+  
 </script>
 
 <% end %>

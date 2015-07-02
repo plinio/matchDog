@@ -6,49 +6,24 @@
 
 <div class="form-group">
   <div class="col-md-12">
-      <input type="text" name="dono[nome]" placeholder="Seu nome" class="form-control" value="<%= dono.nome %>">
+      <input type="text" name="dono[nome]" placeholder="Seu nome" class="form-control" value="<%= @dono.nome %>">
   </div>
 </div>
 <div class="form-group">
   <div class="col-md-7">
-    <input type="text" name="dono[email]" placeholder="E-mail" class="form-control" value="<%= dono.email %>">
+    <input type="text" name="dono[email]" placeholder="E-mail" class="form-control" value="<%= @dono.email %>">
   </div>
   <div class="col-sm-1">
     <label for="sexo">Sexo: </label>
   </div>
   <div class="col-md-4">
     <select id="sexo" name="dono[sexo]" class="form-control">
-        <option value="M" <%=  'selected="selected"' if current_user.sexo == "M" %>>Masculino</option>
-        <option value="F" <%=  'selected="selected"' if current_user.sexo == "F" %>>Feminino</option>
+        <option value="M" <%=  'selected="selected"' if @dono.sexo == "M" %>>Masculino</option>
+        <option value="F" <%=  'selected="selected"' if @dono.sexo == "F" %>>Feminino</option>
     </select>
   </div>
 </div>
 
-<div class="form-group">
-    <div class="col-md-6">
-        <input type="password" name="dono[password]" placeholder="Senha" class="form-control">
-    </div>
-    <div class="col-md-6">
-        <input type="password" name="dono[password-r]" placeholder="Repita a senha" class="form-control">
-    </div>
-</div>
-
-<div class="form-group">
-    <div class="col-sm-1 col-padding-reduce">
-      <span class="glyphicon glyphicon-camera"></span>
-    </div>
-    <div class="col-sm-1">
-        <label for="foto">Foto: </label> 
-    </div>
-    <div class="col-md-10">
-        <input type="file" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
-        <output id="foto_out">
-           <% if current_user.foto %>
-        <img src="/images/<%= current_user.foto.url %>">
-    <% end %>
-        </output>
-    </div>
-</div>
 <div class="form-group">
     <input type="submit" class="btn btn-success btn-block" value="Salvar">
 </div>
@@ -56,22 +31,31 @@
 
 <% end %>
 <% content_for :side_right_content do %>
-<span class="title-session glyphicon glyphicon-camera"></span><span class="title-session">Seu álbum</span>
-<div id="drop_zone"><p>Arraste as fotos aqui</p>
-    
-</div>
-<input type="file" id="files" name="files[]" multiple />
-</form>
 
-<output id="list"></output>
-<a onclick="javascript:getJSONimages()">JSON</a>
+<span class="title-session glyphicon glyphicon-camera"></span><span class="title-session">Foto do Perfil</span>
+<hr>
+
+<output  id='fotoperfilinicial' style="display:block">
+    <div class="thumbnail">
+         <% if !@dono.foto.nil? %>
+            <img src="/images/<%= @dono.foto.url %>">  
+        <% else %>    
+            <%= image_tag "dono_default_image.png" %> 
+        <% end %> 
+     </div>
+</output>
+<output  id='fotoperfilnova' style="display:none">
+</output>
+
+<span class="file-input btn btn-default btn-block btn-file">
+                Procurar Foto&hellip; 
+                <input type="file" data-initial-image="fotoperfilinicial" data-output-image="fotoperfilnova" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
+</span>
+
+
 <script>
-  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+  document.getElementById('foto').addEventListener('change', handleFileSelect, false);
   
-  var dropZone = document.getElementById('drop_zone');
-  dropZone.addEventListener('dragover', handleDragOver, false);
-  dropZone.addEventListener('drop', handleFileSelect, false);
-
 </script>
 
 

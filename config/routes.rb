@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   
   get   '/cadastro', to: 'cadastro#new'
   post  '/cadastro', to: 'cadastro#save'
-  get   '/cadastro/first_dog', to: 'cadastro#first_dog'
   get   '/cadastro/edit', to: 'cadastro#edit'
-  post  '/cadastro/edit', to: 'cadastro#save'
+  post  '/cadastro/edit', to: 'cadastro#update'
+  get   '/cadastro/first_dog', to: 'cadastro#first_dog'
+  
   
   resources :dogs
 
@@ -14,12 +15,7 @@ Rails.application.routes.draw do
   #rotas do login via facebook
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
-  
-  
-  
 
-  get 'perfil', to: 'perfil#index'
-  post 'perfil', to: 'perfil#salvar'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

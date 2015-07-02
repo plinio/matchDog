@@ -63,7 +63,11 @@ class DogsController < ApplicationController
         f.write(params[:foto].read) 
       end
       
-      foto = Foto.new
+      if @current_user.foto == nil 
+        foto = Foto.new
+      else
+        foto = @dog.foto
+      end
       foto.url = params[:foto].original_filename
       foto.descricao = "Foto do Perfil"
       foto.save
@@ -131,7 +135,7 @@ class DogsController < ApplicationController
   
   private
   def dog_params
-    params.required(:dog).permit(:nome,:sexo,:raca_id,:cidade_id,:descricao_perfil,:tem_pedigree,:interessa_cruzar)
+    params.required(:dog).permit(:nome,:sexo,:raca_id,:cidade_id,:descricao_perfil,:tem_pedigree,:interessa_passear,:interessa_cruzar)
   end
   
 end

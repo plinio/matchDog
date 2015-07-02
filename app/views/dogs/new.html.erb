@@ -1,7 +1,9 @@
 <div class="row">
           <div class="col-md-5">
               
-<span class="title-session glyphiconsPro glyphicon-dog"></span><span class="title-session">Seu dog</span>
+<span class="title-session glyphiconsPro glyphicon-dog">
+     <span class="dog-icon-g"><%= image_tag "dog-icon.png" %></span>
+</span><span class="title-session">Seu dog</span>
 <hr>
 <%= form_tag("/dogs", method: "post", multipart: true,  class: "form-horizontal") %>
 
@@ -84,10 +86,10 @@
 <output  id='fotoperfilnova' style="display:none">
 </output>
 
-
 <span class="file-input btn btn-default btn-block btn-file">
-                Procurar Foto&hellip; <input type="file" data-initial-image="fotoperfilinicial" data-output-image="fotoperfilnova" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
-            </span>
+                Procurar Foto&hellip; 
+                <input type="file" data-initial-image="fotoperfilinicial" data-output-image="fotoperfilnova" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
+</span>
             
  
      
