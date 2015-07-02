@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
     dono = Dono.omniauth(env['omniauth.auth'])
     session[:dono_id] = dono.id
-    session[:dog_id] = @dono.dogs.first.id if !@dono.dogs.empty?
+    session[:dog_id] = dono.dogs.first.id if !dono.dogs.empty?
     redirect_to root_url
   end
 
