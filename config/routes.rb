@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post  '/cadastro', to: 'cadastro#save'
   get   '/cadastro/edit', to: 'cadastro#edit'
   post  '/cadastro/edit', to: 'cadastro#update'
+  get   '/cadastro/complete', to: 'cadastro#complete'
   get   '/cadastro/first_dog', to: 'cadastro#first_dog'
   
   

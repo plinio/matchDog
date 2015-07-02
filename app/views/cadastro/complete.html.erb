@@ -1,10 +1,6 @@
-<div class="row">
-  
 
+<% content_for :side_left_content do %>
 <%= form_tag("/cadastro/edit", method: "post", multipart: true, class: "form-horizontal") %>
-
-          <div class="col-md-5">
-
 <span class="title-session glyphicon glyphicon-edit"></span><span class="title-session">Seus dados</span>
 <hr>
 <div class="form-group">
@@ -32,9 +28,8 @@
 </div>
 
 
-</div>
-          <div class="col-md-2"></div>
-<div class="col-md-5">
+<% end %>
+<% content_for :side_right_content do %>
 
 <span class="title-session glyphicon glyphicon-camera"></span><span class="title-session">Foto do Perfil</span>
 <hr>
@@ -56,11 +51,6 @@
                 <input type="file" data-initial-image="fotoperfilinicial" data-output-image="fotoperfilnova" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
 </span>
 
-</div>
-
-</form>
-
-</div>
 
 <script>
   document.getElementById('foto').addEventListener('change', handleFileSelect, false);
@@ -68,4 +58,4 @@
 </script>
 
 
-
+<% end %>

@@ -7,11 +7,13 @@
     
   <div class="col-sm-6 col-md-4 same-height">
     <div class="thumbnail">
+      <a href="/dogs/<%= d.id %>">
       <% if !d.foto.nil? %>
         <img src="/images/<%= d.foto.url %>">  
       <% else %>    
         <%= image_tag "dog_default_image.png" %> 
       <% end %>
+      </a>
       <div class="caption">
         <h3><%= d.nome %></h3>
         <ul class="list-group">

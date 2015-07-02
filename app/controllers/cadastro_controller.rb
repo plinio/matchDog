@@ -1,7 +1,6 @@
 class CadastroController < ApplicationController
-  layout 'initial'
+  layout :resolve_layout
   
-  skip_before_filter :require_login
   skip_before_filter :require_cadastro_completo
   
   def new
@@ -59,6 +58,10 @@ class CadastroController < ApplicationController
     @dono = Dono.find(session[:dono_id])
   end
   
+  def complete
+    @dono = Dono.find(session[:dono_id])
+  end
+  
   def update
     @dono = Dono.find(session[:dono_id])
     @dono.update(dono_params)
@@ -69,7 +72,7 @@ class CadastroController < ApplicationController
           f.write(params[:foto].read) 
         end
         
-        if @current_user.foto == nil 
+        if @dono.foto == nil 
             foto = Foto.new
         else
             foto = @dono.foto
@@ -95,9 +98,9 @@ class CadastroController < ApplicationController
   def resolve_layout
     case action_name
     when "edit"
-      "application"
+      'application'
     else
-      "initial"
+      'initial'
     end
   end
 end
