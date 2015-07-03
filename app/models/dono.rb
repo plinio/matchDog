@@ -17,6 +17,7 @@ class Dono < ActiveRecord::Base
             dono.email    = auth.info.email
 
             #salva a imagem do face no diretorio do servidor
+            require 'open-uri'
             partial_path = 'face_image_'+dono.uid+'.png'
             path = File.join(Rails.root + "public/images",partial_path)
             File.open(path, 'wb') do |fi|
@@ -29,7 +30,6 @@ class Dono < ActiveRecord::Base
             foto.descricao = "Foto do Perfil"
             foto.save
             dono.foto = foto
-
 
             dono.save
         end
