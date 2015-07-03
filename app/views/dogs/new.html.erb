@@ -110,8 +110,31 @@
 <br>
 <div id='album' class="row">
     
+    <div class='col-md-4 same-height' id='novaFoto'>
+        <div class="thumbnail clearfix">
+            
+            <div id="drop_zone">
+                <center>
+                <icon class="fa fa-image fa-3x fa-fw"></icon>
+                <br>
+                Arraste novas fotos para cá
+            </center>
+            </div>
+            
+            
+            <div class="caption">
+                <span class="file-input btn btn-default btn-block btn-file">
+                Procurar Fotos&hellip; 
+
+                <input data-template-box="fotoBox" data-output-box="album" type="file" id="files" name="files[]" class="form-control" accept="image/x-png, image/gif, image/jpeg" multiple />
+                </span>
+                
+        </div>
+        </div>
+        
+    </div>
     
-    <div class='col-md-4'>
+    <div class='col-md-4 same-height'>
         <div class="thumbnail clearfix">
             <%= image_tag "dog_default_image.png" %>
             <div>
@@ -125,7 +148,7 @@
         </div>
     </div>
     
-    <div class='col-md-4 '>
+    <div class='col-md-4 same-height'>
         <div class="thumbnail clearfix">
             <%= image_tag "dog_default_image.png" %>
             <div>
@@ -139,76 +162,41 @@
         </div>
         
     </div>
-    
-    <div class='col-md-4 '>
-        <div class="thumbnail clearfix">
-            <%= image_tag "dog_default_image.png" %>
-            <div>
-                    <a href="#" class="btn btn-danger pull-right" style="opacity: 0.75;position:absolute; left: 30px; top:15px;" role="button">Excluir Foto</a>
-            </div>
-            
-            <div class="caption">
-        <textarea placeholder="Adicione uma descrição para essa foto" class='form-control'></textarea>
 
-        </div>
-        </div>
-        
-    </div>
     
-    <div class='col-md-4'>
-        <div class="thumbnail clearfix">
-            <%= image_tag "dog_default_image.png" %>
-            <div>
-                    <a href="#" class="btn btn-danger pull-right" style="opacity: 0.75;position:absolute; left: 30px; top:15px;" role="button">Excluir Foto</a>
-            </div>
-            
-            <div class="caption">
-        <textarea placeholder="Adicione uma descrição para essa foto" class='form-control'></textarea>
+    
+</div>
 
-        </div>
-        </div>
-        
-    </div>
-    
-    <div class='col-md-4' id='novaFoto'>
-        <div class="thumbnail clearfix">
-            <%= image_tag "dog_default_image.png" %>
-            
-            
-            <div class="caption">
-                <input type="file" value="Escolher Foto" name="foto" id="foto" class="btn btn-primary" accept="image/x-png, image/gif, image/jpeg"/>
-        </div>
-        </div>
-        
-    </div>
-    
     
 </div>
 
 
 
-
-<div id="drop_zone"><p>Arraste as fotos aqui</p>
-    
-</div>
-<input type="button" id="adicionarFoto" class="form-control" />
-<input data-initial-image="fotosiniciais" data-output-image="fotosnovas" type="file" id="files" name="files[]" class="form-control" multiple />
-</form>
-
-<output id="fotosiniciais"></output>
-
-<output id="fotosnovas"></output>
-
-<a onclick="javascript:getJSONimages()">JSON</a>
-
 </div>
         </div>
 
 
+
+<script id="fotoBox" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js">
+     <div class='col-md-4 same-height'>
+        <div class="thumbnail clearfix">
+            <img src='${url}'/>
+            <div>
+                    <a href='#' class='btn btn-danger pull-right' style='opacity: 0.75;position:absolute; left: 30px; top:15px;' role='button'>Excluir Foto</a>
+            </div>
+            
+            <div class='caption'>
+        <textarea placeholder='Adicione uma descrição para essa foto' class='form-control'>${descricao}</textarea>
+
+        </div>
+        </div>
+        
+    </div>
+</script>
 
 
 <script>
-  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+  document.getElementById('files').addEventListener('change', handleMultipleFileSelect, false);
   
   document.getElementById('foto').addEventListener('change', handleFileSelect, false);
  
@@ -220,9 +208,10 @@
 	$('#taskRow').tmpl(task).appendTo($('#tblTasks tbody'));
 });
 
-  var dropZone = document.getElementById('drop_zone_foto_perfil');
-  dropZone.addEventListener('dragover', handleDragOver, false);
-  dropZone.addEventListener('drop', handleFileSelect, false);
+
+	jQuery(function($) {
+		$('.same-height').responsiveEqualHeightGrid();	
+	});
 
 
 </script>

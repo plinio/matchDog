@@ -18,6 +18,66 @@
 //= require fancybox
 //= require_tree .
 
+
+ function handleMultipleFileSelect(evt) {
+    var files;
+    var output = [];
+    if(evt.type=='drop'){
+      evt.stopPropagation();
+      evt.preventDefault();
+      files = evt.dataTransfer.files
+    }else{
+     files  = evt.target.files; // FileList object
+    }
+    
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+     
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var foto =  {url: e.target.result,  descricao: ''};
+          
+   
+          var template = "\
+    <div class='col-md-4 same-height'>\
+        <div class='thumbnail clearfix'>\
+            <img src='${url}'/>\
+            <div>\
+                    <a href='#' class='btn btn-danger pull-right' style='opacity: 0.75;position:absolute; left: 30px; top:15px;' role='button'>Excluir Foto</a>\
+            </div>\
+            <div class='caption'>\
+              <textarea placeholder='Adicione uma descrição para essa foto' class='form-control'>${descricao}</textarea>\
+            </div>\
+        </div>\
+    </div>";
+    
+          $.template( "fotoTemplate", template );
+
+$.tmpl( "fotoTemplate", foto )
+      .appendTo( "#"+evt.target.dataset.outputBox );
+      
+   
+          
+          
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+      
+  }
+  
+
   function handleFileSelect(evt) {
     var files;
     var output = [];
