@@ -19,18 +19,18 @@ class Dono < ActiveRecord::Base
             
 
             #salva a imagem do face no diretorio do servidor
-            #partial_path = 'face_image_'+auth.uid+'.png'
-            #path = File.join(Rails.root + "public/images",partial_path)
-            #File.open(path, 'wb') do |fi|
-            #    fi.write open(auth.info.image).read 
-            #end
+            partial_path = 'face_image_'+dono.uid+'.png'
+            path = File.join(Rails.root + "public/images",partial_path)
+            File.open(path, 'wb') do |fi|
+                fi.write open(auth.info.image).read 
+            end
             
             #salva a foto e adiciona como foto do perfil
-            #foto = Foto.new
-            #foto.url = partial_path
-            #foto.descricao = "Foto do Perfil"
-            #foto.save
-            #dono.foto = foto
+            foto = Foto.new
+            foto.url = partial_path
+            foto.descricao = "Foto do Perfil"
+            foto.save
+            dono.foto = foto
 
 
             dono.save
