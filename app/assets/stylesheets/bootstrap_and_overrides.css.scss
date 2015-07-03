@@ -128,7 +128,7 @@ output{
     height: 250px;
 }
 .foto-alvo{
-    height: 250px;
+    height: 300px;
 }
 
 #alvo-dog a, #alvo-dono a{
@@ -137,8 +137,30 @@ output{
 }
 a img:hover{
     opacity: 0.7;
+    cursor: pointer;
 }
-
+.foto-alvo img:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+.bt{
+    width: 100px;
+    position: relative;
+    z-index: 200;
+}
+.bt-voltar-alvo{
+    margin-top: 130px;
+}
+.bt-uau-alvo{
+  width: 120px;
+  margin-top: 90px;
+  margin-left: -21px;
+}
+.bt-nops-alvo{
+  width: 120px;
+  margin-top: 30px;
+  margin-left: -22px;
+}
 #foto-alvo-dog .glyphicon-camera, #foto-alvo-dono .glyphicon-camera{
   font-size: 85px;
   opacity: 0.7;
@@ -148,4 +170,8 @@ a img:hover{
   left: 37%;
   display: none;
   color: rgb(254, 203, 0);
+}
+
+.owl-carousel{
+    height: 400px !important;
 }

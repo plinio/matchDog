@@ -45,3 +45,43 @@
     cursor: inherit;
     display: block;
 }
+
+.container-initial{
+  margin-top: 20px;
+}
+
+.inclina2 img
+{
+    behavior:url(-ms-transform.htc);
+    /* Firefox */
+    -moz-transform:rotate(5deg);
+    /* Safari and Chrome */
+    -webkit-transform:rotate(5deg);
+    /* Opera */
+    -o-transform:rotate(5deg);
+    /* IE9 */
+    -ms-transform:rotate(5deg);
+    /* IE6,IE7 */
+    filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476);
+    /* IE8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476)"; 
+
+}
+
+.inclina1 img
+{
+    behavior:url(-ms-transform.htc);
+    /* Firefox */
+    -moz-transform:rotate(-5deg);
+    /* Safari and Chrome */
+    -webkit-transform:rotate(-5deg);
+    /* Opera */
+    -o-transform:rotate(-5deg);
+    /* IE9 */
+    -ms-transform:rotate(-5deg);
+    /* IE6,IE7 */
+    filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476);
+    /* IE8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476)"; 
+
+}
