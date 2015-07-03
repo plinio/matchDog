@@ -15,8 +15,6 @@ class Dono < ActiveRecord::Base
             dono.nome     = auth.info.name
             dono.sexo     = auth.extra.raw_info.gender === 'male' ? 'M' :  auth.extra.raw_info.gender === 'female' ? 'F' : 'I'
             dono.email    = auth.info.email
-            dono.image    = auth.info.image
-            
 
             #salva a imagem do face no diretorio do servidor
             partial_path = 'face_image_'+dono.uid+'.png'

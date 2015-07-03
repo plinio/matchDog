@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150627170644) do
+ActiveRecord::Schema.define(version: 20150703175618) do
 
   create_table "cidades", force: :cascade do |t|
     t.string   "nome",                 null: false
@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 20150627170644) do
     t.datetime "updated_at",           null: false
     t.string   "provider"
     t.string   "uid"
-    t.string   "image"
     t.string   "token"
     t.string   "expires_at"
     t.string   "password"
@@ -87,8 +86,8 @@ ActiveRecord::Schema.define(version: 20150627170644) do
   end
 
   create_table "fotos_dogs", force: :cascade do |t|
-    t.integer  "dog_id",     null: false
-    t.integer  "foto_id",    null: false
+    t.integer  "dog_id"
+    t.integer  "foto_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
