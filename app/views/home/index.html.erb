@@ -11,7 +11,7 @@
                 <!-- só deve ter a classe glyphicon-certificate SE TIVER PEDIGREE-->
                 <span class="glyphicon glyphicon-certificate"></span>
                 <span class="alvo-nome">Nome Dog 0</span>
-                <a href="#abre_fotos">
+                <a href="#abre_fotos" class="fancybox">
                     <div id="foto-alvo-dog" class="foto-alvo inclina1">
                         <span class="glyphicon glyphicon-camera"></span>
                         <img src="http://www.dreamydoodles.com/puppies/wp-content/uploads/2011/08/210987_f520.jpg"/>
@@ -20,7 +20,7 @@
             </div>
             <div id="alvo-dono" class="col-md-5 alvo-nome">
                 <span class="">Nome Dono 0</span>
-                <a href="#abre_fotos">
+                <a href="#abre_fotos" class="fancybox">
                     <div id="foto-alvo-dono" class="foto-alvo inclina2">
                         <span class="glyphicon glyphicon-camera"></span>
                         <img src="http://www.maedetrestambemtemvez.com.br/wp-content/uploads/2013/07/vovo-rock1.jpg"/>
@@ -45,7 +45,7 @@
                 <!-- só deve ter a classe glyphicon-certificate SE TIVER PEDIGREE-->
                 <span class="glyphicon glyphicon-certificate"></span>
                 <span class="alvo-nome">Nome Dog 1</span>
-                <a href="#abre_fotos">
+                <a href="#abre_fotos" class="fancybox">
                     <div id="foto-alvo-dog" class="foto-alvo">
                         <span class="glyphicon glyphicon-camera"></span>
                         <img src="https://retrieverman.files.wordpress.com/2012/04/bulldog-show-dog.jpeg?w=500"/>
@@ -54,7 +54,7 @@
             </div>
             <div id="alvo-dono" class="col-md-5 alvo-nome">
                 <span class="">Nome Dono 1</span>
-                <a href="#abre_fotos">
+                <a href="#abre_fotos" class="fancybox">
                     <div id="foto-alvo-dono" class="foto-alvo">
                         <span class="glyphicon glyphicon-camera"></span>
                         <img src="http://cdn.sheknows.com/articles/2013/10/Mike/Sponsored/Woman-with-bulldog.jpg"/>
@@ -79,7 +79,7 @@
                 <!-- só deve ter a classe glyphicon-certificate SE TIVER PEDIGREE-->
                 <span class="glyphicon glyphicon-certificate"></span>
                 <span class="alvo-nome">Nome Dog 2</span>
-                <a href="#abre_fotos">
+                <a href="#abre_fotos" class="fancybox">
                     <div id="foto-alvo-dog" class="foto-alvo">
                         <span class="glyphicon glyphicon-camera"></span>
                         <img src="http://photos.oes.org/albums/userpics/10707/normal_psychonut3.JPG"/>
@@ -88,7 +88,7 @@
             </div>
             <div id="alvo-dono" class="col-md-5 alvo-nome">
                 <span class="">Nome Dono 2</span>
-                <a href="#abre_fotos">
+                <a href="#abre_fotos" class="fancybox">
                     <div id="foto-alvo-dono" class="foto-alvo">
                         <span class="glyphicon glyphicon-camera"></span>
                         <img src="http://media4.popsugar-assets.com/files/2014/01/07/764/n/1922153/4bf2ea50a159fcd9_182630292_10.jpg.xxxlarge_2x/i/woman-proof-kinky-curls-look-cute-crazy-stuffed.jpg"/>
@@ -101,6 +101,47 @@
             </div>
         </div>
   </div>
+  
+  <div style="display:none;">
+      <div id="abre_fotos">
+          <h2>enche isso de fotos</h2>
+          <div id="album" class="row">
+        
+                <div class="col-md-4">
+                <div class="thumbnail clearfix">
+                    <img src="/assets/dog_default_image-ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83.png" alt="Dog default image ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83">
+                    
+                    <div class="caption">
+                        descricao da foto
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="col-md-4">
+                <div class="thumbnail clearfix">
+                    <img src="/assets/dog_default_image-ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83.png" alt="Dog default image ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83">
+                    
+                    <div class="caption">
+                        descricao da foto
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="thumbnail clearfix">
+                    <img src="/assets/dog_default_image-ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83.png" alt="Dog default image ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83">
+                    
+                    <div class="caption">
+                        descricao da foto
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+      </div>
+    </div>
 </div>
 <script>
 $(document).ready(function() {
@@ -148,6 +189,7 @@ $(document).ready(function() {
       })
       .mouseout(function() {
         $( this ).find( ".glyphicon-camera" ).hide();
-  });
+      });
+      $("a.fancybox").fancybox();
 });
 </script>

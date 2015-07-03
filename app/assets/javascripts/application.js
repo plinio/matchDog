@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require turbolinks
 //= require owl.carousel
+//= require fancybox
 //= require_tree .
 
   function handleFileSelect(evt) {
