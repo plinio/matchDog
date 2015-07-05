@@ -44,7 +44,7 @@
       reader.onload = (function(theFile) {
         return function(e) {
           // Render thumbnail.
-          var foto =  {url: e.target.result,  descricao: ''};
+          var foto =  {url: e.target.result,  descricao: '', name: theFile.name};
           
    
           var template = "\
@@ -55,7 +55,7 @@
                     <a href='#' class='btn btn-danger pull-right' style='opacity: 0.75;position:absolute; left: 30px; top:15px;' role='button'>Excluir Foto</a>\
             </div>\
             <div class='caption'>\
-              <textarea placeholder='Adicione uma descrição para essa foto' class='form-control'>${descricao}</textarea>\
+              <textarea placeholder='Adicione uma descrição para essa foto' class='form-control' name='descricao_${name}'>${descricao}</textarea>\
             </div>\
         </div>\
     </div>";

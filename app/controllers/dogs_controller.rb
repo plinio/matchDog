@@ -39,7 +39,7 @@ class DogsController < ApplicationController
       
         foto = Foto.new
         foto.url = file.original_filename
-        foto.descricao = "Foto Adicional"
+        foto.descricao = params['descricao_'+file.original_filename]
         foto.save
         @dog.fotos.append(foto)
       }
