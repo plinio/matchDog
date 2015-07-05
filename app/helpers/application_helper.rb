@@ -17,4 +17,9 @@ def get_cidades
    Cidade.all.collect {|c| [c.nome + ' - ' + c.estado,c.id]} 
 end
 
+def contador_matches
+    m = Match.new;
+    m.get_match_count(@current_user.dogs)
+end
+
 end

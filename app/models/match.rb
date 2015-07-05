@@ -6,4 +6,15 @@ class Match < ActiveRecord::Base
     
     has_many :curtidas
     has_many :latidas
+    
+    
+    def get_match_count(cachorros)
+        aux = []
+        cachorros.each do |d|
+           aux.push(d.id)
+        end
+        cachorros = aux.join(",")
+        Match.where("(dog1_id IN (#{cachorros}) AND datahora_dog1_viu IS NULL) OR (dog2_id IN (#{cachorros}) AND datahora_dog2_viu IS NULL)").count
+    end
+    
 end
