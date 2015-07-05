@@ -1,8 +1,8 @@
 class Match < ActiveRecord::Base
-    #attr_accessible :dog1, :dog2, :datahora_dog1_viu, :datahora_dog2_viu, :datahora_dog1_desistiu, :datahora_dog2_desistiu
+    #attr_accessor :dog1, :dog2, :datahora_dog1_viu, :datahora_dog2_viu, :datahora_dog1_desistiu, :datahora_dog2_desistiu
     
-    belongs_to :dog1
-    belongs_to :dog2
+    belongs_to :dog1, :class_name => "Dog"
+    belongs_to :dog2, :class_name => "Dog"
     
     has_many :curtidas
     has_many :latidas
