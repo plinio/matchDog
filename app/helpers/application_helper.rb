@@ -22,4 +22,9 @@ def contador_matches
     m.get_match_count(@current_user.dogs)
 end
 
+def contador_latidas
+    m = Latida.new;
+    m.get_latidas_count(@current_user.dogs)
+end
+
 end
