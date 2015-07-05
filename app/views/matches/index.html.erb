@@ -1,8 +1,8 @@
 <div class="row-fluid">
-    <div class="col-md-6">
+    <div id="side-matches" class="col-md-6">
         <span class="title-session glyphicon glyphicon-fire"></span><span class="title-session">Meus Matches ;)</span>
         <hr>
-        <div class="one-match">
+        <div id="match-0" class="one-match">
             <span class="title-date glyphicon glyphicon-fire"></span><span class="title-date"> Match em 23/06/2015</span>
             <div class="row-fluid">
                 <div class="col-sm-3 foto-me-and-dog">  
@@ -35,9 +35,69 @@
                     </a>
                     Nome dono
                 </div>
+                <div class="col-sm-3">
+                   <button id="singlebutton" name="singlebutton" class="btn btn-success form-control"><span class="glyphicon glyphicon-comment"></span> Latir</button>
+                   <hr style="margin-top: 7px;  margin-bottom: 7px;">
+                   <button id="singlebutton" name="singlebutton" class="btn btn-danger form-control"><span class="glyphicon glyphicon-remove-circle"></span> ñ rola +</button>
+                </div>
             </div>
         </div>
+        
+        
+        <!--outro match-->
+        <hr>
+        <div id="match-1" class="one-match">
+            <span class="title-date glyphicon glyphicon-fire"></span><span class="title-date"> Match em 20/06/2015</span>
+            <div class="row-fluid">
+                <div class="col-sm-3 foto-me-and-dog">  
+                    <% if !current_user.foto.nil? %>
+                    <img class="mini-me" src="/images/<%= current_user.foto.url %>"> 
+                    <% else %>    
+                    <%= image_tag "dono_default_image.png", class: "mini-me" %> 
+                    <% end %>  
+                    <% if !current_dog.foto.nil? %>
+                    <!-- NA VERDADE AQUI TEM QUE PEGAR A FOTO DO DOG DO MATCH, NÃO O DOG CURRENT -->
+                    <img class="mini-dog" src="/images/<%= current_dog.foto.url %>">  
+                    <% else %>    
+                    <%= image_tag "dog_default_image.png", class: "mini-dog" %> 
+                    <% end %>   
+                </div>
+                <div class="col-sm-1 versus">
+                    <span class="title-session">X</span>
+                </div>
+                <div class="col-sm-2 foto-alvo-mini match-dog">
+                    <a href="#abre_fotos" class="fancybox">
+                        <span class="glyphicon glyphicon-camera"></span>
+                        <%= image_tag "dog_default_image.png" %>
+                    </a>
+                    Nome dog
+                </div>
+                <div class="col-sm-2 foto-alvo-mini match-dono">
+                    <a href="#abre_fotos" class="fancybox">
+                        <span class="glyphicon glyphicon-camera"></span>
+                        <%= image_tag "dono_default_image.png" %>
+                    </a>
+                    Nome dono
+                </div>
+                <div class="col-sm-3">
+                   <button id="singlebutton" name="singlebutton" class="btn btn-success form-control"><span class="glyphicon glyphicon-comment"></span> Latir</button>
+                   <hr style="margin-top: 7px;  margin-bottom: 7px;">
+                   <button id="singlebutton" name="singlebutton" class="btn btn-danger form-control"><span class="glyphicon glyphicon-remove-circle"></span> ñ rola +</button>
+                </div>
+            </div>
+        </div>
+        
+        
+        
     </div>
+    
+    
+    <div id="side-latidas" class="col-md-6">
+        latidas aqui
+    </div>
+    
+    
+    <!--carregar via ajax-->
     <div style="display:none;">
       <div id="abre_fotos">
           <h2>enche isso de fotos</h2>
