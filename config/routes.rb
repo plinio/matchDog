@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   
   
   resources :dogs
-
+  
+  resources :matches
 
   #rotas do login via facebook
   get 'auth/:provider/callback', to: 'sessions#create'
