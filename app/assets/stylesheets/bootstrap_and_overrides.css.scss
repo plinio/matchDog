@@ -47,6 +47,10 @@ a:hover{
     font-size: 30px !important;
     color:#333;
 }
+.title-date{
+    font-size: 14px;
+    color:#aaa;
+}
 
 .glyphicon.title-session{
     margin-right: 5px;
@@ -177,4 +181,52 @@ a img:hover{
 }
 textarea {
     resize: none;
+}
+
+.foto-me-and-dog img{
+    width: 50px;
+    height: 50px;
+    border-color: rgb(250, 202, 0);
+    border-style: solid;
+    border-width: 2px;
+}
+.foto-me-and-dog .mini-me{
+ 
+}
+
+.foto-me-and-dog .mini-dog{
+    position: relative;
+    top: -35px;
+    left: 35px;
+    width: 60px;
+    height: 60px;
+}
+.foto-alvo-mini{
+    width: 100px;
+    text-align: center;
+    font-size: 12px;
+    padding: 0;
+}
+.foto-alvo-mini img{
+    width: 90px;
+    height: 90px;
+}
+.versus{
+    padding-left: 0;
+    margin-top: 24px;
+}
+
+.foto-alvo-mini a:hover img{
+    opacity: 1.0;
+}
+
+.foto-alvo-mini .glyphicon-camera{
+  font-size: 40px;
+  opacity: 0.7;
+  position: absolute;
+  z-index: 100;
+  top: 25%;
+  left: 31%;
+  display: none;
+  color: rgb(254, 203, 0);
 }

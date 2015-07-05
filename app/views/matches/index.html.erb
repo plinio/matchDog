@@ -1,10 +1,94 @@
 <div class="row-fluid">
-    <div class="col-md-12 desc-alvo">
-        MATCHES!
+    <div class="col-md-6">
+        <span class="title-session glyphicon glyphicon-fire"></span><span class="title-session">Meus Matches ;)</span>
+        <hr>
+        <div class="one-match">
+            <span class="title-date glyphicon glyphicon-fire"></span><span class="title-date"> Match em 23/06/2015</span>
+            <div class="row-fluid">
+                <div class="col-sm-3 foto-me-and-dog">  
+                    <% if !current_user.foto.nil? %>
+                    <img class="mini-me" src="/images/<%= current_user.foto.url %>"> 
+                    <% else %>    
+                    <%= image_tag "dono_default_image.png", class: "mini-me" %> 
+                    <% end %>  
+                    <% if !current_dog.foto.nil? %>
+                    <!-- NA VERDADE AQUI TEM QUE PEGAR A FOTO DO DOG DO MATCH, NÃO O DOG CURRENT -->
+                    <img class="mini-dog" src="/images/<%= current_dog.foto.url %>">  
+                    <% else %>    
+                    <%= image_tag "dog_default_image.png", class: "mini-dog" %> 
+                    <% end %>   
+                </div>
+                <div class="col-sm-1 versus">
+                    <span class="title-session">X</span>
+                </div>
+                <div class="col-sm-2 foto-alvo-mini match-dog">
+                    <a href="#abre_fotos" class="fancybox">
+                        <span class="glyphicon glyphicon-camera"></span>
+                        <%= image_tag "dog_default_image.png" %>
+                    </a>
+                    Nome dog
+                </div>
+                <div class="col-sm-2 foto-alvo-mini match-dono">
+                    <a href="#abre_fotos" class="fancybox">
+                        <span class="glyphicon glyphicon-camera"></span>
+                        <%= image_tag "dono_default_image.png" %>
+                    </a>
+                    Nome dono
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="display:none;">
+      <div id="abre_fotos">
+          <h2>enche isso de fotos</h2>
+          <div id="album" class="row">
+        
+                <div class="col-md-4">
+                <div class="thumbnail clearfix">
+                    <img src="/assets/dog_default_image-ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83.png" alt="Dog default image ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83">
+                    
+                    <div class="caption">
+                        descricao da foto
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="col-md-4">
+                <div class="thumbnail clearfix">
+                    <img src="/assets/dog_default_image-ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83.png" alt="Dog default image ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83">
+                    
+                    <div class="caption">
+                        descricao da foto
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="thumbnail clearfix">
+                    <img src="/assets/dog_default_image-ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83.png" alt="Dog default image ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83">
+                    
+                    <div class="caption">
+                        descricao da foto
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+      </div>
     </div>
 </div>
 <script>
 $(document).ready(function() {
    
+       $('.foto-alvo-mini').mouseover(function() {
+        $( this ).find( ".glyphicon-camera" ).show();
+      })
+      .mouseout(function() {
+        $( this ).find( ".glyphicon-camera" ).hide();
+      });
+      
+      $("a.fancybox").fancybox();
 });
 </script>
