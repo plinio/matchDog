@@ -14,24 +14,6 @@
     <%= yield(:head) %>
   </head>
   <body>
-    <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1458025767830877',
-      xfbml      : true,
-      version    : 'v2.3'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-
     <header class="navbar">
       <nav class="navbar-inner">
         <div class="container container-logo-application">
@@ -143,7 +125,7 @@
     </div> <!--! end of #main -->
     <footer class="footer" style="position:relative;">
       <div class="container">
-        <div class="col-md-4">
+        <div id="fb-root" class="col-md-4">
           <div  class="fb-like"   data-share="true"    data-width="450"   data-show-faces="true"></div>
         </div>
         <div class="col-md-5">
@@ -154,3 +136,21 @@
     </footer>
   </body>
 </html>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1458025767830877',
+      xfbml      : true,
+      version    : 'v2.3'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
