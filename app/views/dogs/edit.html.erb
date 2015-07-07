@@ -1,7 +1,5 @@
+<%= form_tag("/dogs/"+String(@dog.id), method: :put, multipart: true,  class: "form-horizontal") %>
 <div class="row">
-    
-    <%= form_tag("/dogs/"+String(@dog.id), method: :put, multipart: true,  class: "form-horizontal") %>
-    
           <div class="col-md-5">
               
 <span class="title-session glyphiconsPro glyphicon-dog">
@@ -102,14 +100,149 @@
      
 </div>
 
+</div>
+
 </form>
 
+
+<div class='row'>
+    
+<div class="col=md-12">
+    <br>
+    <br>
+
+    <span class="title-session glyphicon glyphicon-picture"></span><span class="title-session">Álbum do dog</span>
+    <hr>
+    <br>
+    <br>
+    <div class='row'>
+        <div class='col-md-12' id='novaFoto'>
+            
+            <div class="thumbnail clearfix">
+                
+            <%= form_tag '/fotos', method: :post, class: "dropzone form", id: "media-dropzone" do %>
+              <div class="fallback">
+                <%= file_field_tag "media", multiple: true%>
+              </div>
+            <% end %>
+            
+            </div>
+            
+        </div>
+    </div>
+        
+    <div id='album' class="row"></div>
+
 </div>
+</div> 
+
+
+
+<div class="modal fade" id="deleteFotoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header panel-heading">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Você tem certeza disso ?</h4>
+        </div>
+        <div class="modal-body">
+          Você tem certeza que <b>deseja remover essa foto?</b>
+        </div>
+        <div class="modal-footer">
+            <form id="form_excluir_foto" class="button_to" method="post" action="">
+              <input type="hidden" name="_method" value="delete">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Não! Não quero remover.</button>
+              <input class="btn btn-primary" type="submit" value="Sim! Quero remover!">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              </form>
+          
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 
 
 <script>
   
-  document.getElementById('foto').addEventListener('change', handleFileSelect, false);
- 
+     $('#deleteFotoModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var id = button.data('id')
+        
+        var modal = $(this)
+        modal.find('#form_excluir_foto').attr("action", "/fotos/"+String(id))
+        
+        modal.find('#form_excluir_foto').submit(function(){
+            $.post(
+                $(this).attr('action'), 
+                $(this).serialize(), 
+                function(json) {
+                    modal.find('.close').click();
+                    button.parents('.fotoBox').remove();
+                     $('.same-height').responsiveEqualHeightGrid();
+                }, 'json');
+            return false;
+        })
+      
+    });
+    
+    function adicionarFotoNoAlbum(foto) {
+            $.tmpl("templates/foto", foto).appendTo("#album");
+    }
 
+	
+    $(function() {
+        
+        document.getElementById('foto').addEventListener('change', handleFileSelect, false);
+        
+        
+        <% @dog.fotos.each do |f|  %>
+            adicionarFotoNoAlbum(
+                {
+                    url: '/images/<%= f.url %>',  
+                    descricao: '<%= f.descricao %>', 
+                    id: '<%= f.id %>'
+                    
+                }
+            );
+        <% end if @dog.fotos %>
+        
+        $('.same-height').responsiveEqualHeightGrid();
+    
+        var mediaDropzone = new Dropzone("#media-dropzone", {
+            dictDefaultMessage:"<center>"
+              +"<br>"
+              +"<br>"
+              +"<icon class='fa fa-image fa-4x fa-fw'></icon>"
+              +"<br>"
+              +"Arraste novas fotos para cá"
+              +"<br>"
+              +"<br>"
+              +"</center>"});
+                
+        mediaDropzone.on('sending', function(data, xhr, formData){
+            formData.append('classe', 'dog');
+            formData.append('id', <%= @dog.id %>);
+        });
+        
+        mediaDropzone.on("success", function(file, responseText) {
+            var foto =  {
+                url: '/images/'+responseText.url,  
+                descricao: responseText.descricao, 
+                id: responseText.id
+            };
+            adicionarFotoNoAlbum(foto);
+            var _this = this;
+                setTimeout(function(){
+                  _this.removeAllFiles();
+                },1000);
+        
+            $('.same-height').responsiveEqualHeightGrid();	
+      
+        });
+      
+    });
+   
+    
 </script>

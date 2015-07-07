@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get   '/cadastro/complete', to: 'cadastro#complete'
   get   '/cadastro/first_dog', to: 'cadastro#first_dog'
   
-  
+  resources :fotos, only: [:create, :update, :destroy]
+
   resources :dogs
   
   resources :matches

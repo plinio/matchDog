@@ -16,66 +16,13 @@
 //= require turbolinks
 //= require owl.carousel
 //= require fancybox
+//= require dropzone
+//= require bootstrap-editable
+//= require bootstrap-editable-rails
+//= require jquery-tmpl
 //= require_tree .
 
 
- function handleMultipleFileSelect(evt) {
-    var files;
-    var output = [];
-    if(evt.type=='drop'){
-      evt.stopPropagation();
-      evt.preventDefault();
-      files = evt.dataTransfer.files
-    }else{
-     files  = evt.target.files; // FileList object
-    }
-    
-    // Loop through the FileList and render image files as thumbnails.
-    for (var i = 0, f; f = files[i]; i++) {
-
-      // Only process image files.
-      if (!f.type.match('image.*')) {
-        continue;
-      }
-     
-      var reader = new FileReader();
-
-      // Closure to capture the file information.
-      reader.onload = (function(theFile) {
-        return function(e) {
-          // Render thumbnail.
-          var foto =  {url: e.target.result,  descricao: '', name: theFile.name};
-          
-   
-          var template = "\
-    <div class='col-md-4 same-height'>\
-        <div class='thumbnail clearfix'>\
-            <img src='${url}'/>\
-            <div>\
-                    <a href='#' class='btn btn-danger pull-right' style='opacity: 0.75;position:absolute; left: 30px; top:15px;' role='button'>Excluir Foto</a>\
-            </div>\
-            <div class='caption'>\
-              <textarea placeholder='Adicione uma descrição para essa foto' class='form-control' name='descricao_${name}'>${descricao}</textarea>\
-            </div>\
-        </div>\
-    </div>";
-    
-          $.template( "fotoTemplate", template );
-
-$.tmpl( "fotoTemplate", foto )
-      .appendTo( "#"+evt.target.dataset.outputBox );
-      
-   
-          
-          
-        };
-      })(f);
-
-      // Read in the image file as a data URL.
-      reader.readAsDataURL(f);
-    }
-      
-  }
   
 
   function handleFileSelect(evt) {
@@ -129,22 +76,3 @@ $.tmpl( "fotoTemplate", foto )
       
   }
   
-    function handleDragOver(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
-  }
-
-function getJSONimages(){
-var dataObj = [];
-
-$( "#list img" ).each(function(i,o) {
-  dataObj.push({
-          nome: o.title,
-          url: o.src
-          });
-});
-
-$( "#list" ).append("<pre>"+JSON.stringify( dataObj )+"</pre>" );
-
-}

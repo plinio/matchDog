@@ -65,7 +65,7 @@
           Você tem certeza que <b>deseja remover <span id="nome"></span>?</b>
         </div>
         <div class="modal-footer">
-            <form id="form_excluir_dog" class="button_to" method="post" action="/dogs/5">
+            <form id="form_excluir_dog" class="button_to" method="post" action="">
               <input type="hidden" name="_method" value="delete">
               <button type="button" class="btn btn-default" data-dismiss="modal">Não! Não quero remover.</button>
               <input class="btn btn-primary" type="submit" value="Sim! Quero remover!">
@@ -88,8 +88,8 @@
       modal.find('#form_excluir_dog').attr("action", "/dogs/"+String(dog_id))
     })
     
-	jQuery(function($) {
-		$('.same-height').responsiveEqualHeightGrid();	
-	});
+    $( document ).ready(function() {
+      	$('.same-height').responsiveEqualHeightGrid();	
+    });
 
   </script>

@@ -36,6 +36,10 @@ gem 'omniauth-facebook', '~> 2.0.1'
 #gem 'omniauth-identity', '~> 1.1.1'
 gem 'owlcarousel-rails'
 gem 'fancybox2-rails'
+gem 'dropzonejs-rails', '~> 0.5.3'
+gem "font-awesome-rails"
+gem 'bootstrap-editable-rails'
+gem 'jquery-tmpl-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

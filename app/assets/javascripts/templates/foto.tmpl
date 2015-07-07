@@ -1,0 +1,21 @@
+<div class='col-md-4 same-height fotoBox'>
+    <div class='thumbnail clearfix'>
+        <img src='${url}'/>
+        <div>
+            <button data-toggle='modal' data-target='#deleteFotoModal' data-id='${id}' role='button' class='btn btn-danger pull-right' style='opacity: 0.75;position:absolute; left: 30px; top:15px;' role='button'>Excluir Foto</button>
+        </div>
+        <div class='caption'>
+        <a href='#' id='descricao_${id}' data-type='textarea' data-resource='foto' data-name='descricao' data-url='/fotos/${id}' data-pk='${id}'>${descricao}</a>
+        <script>
+            $(function(){ 
+                $('#descricao_${id}').editable({ 
+                    title: 'Alterar descrição da foto', 
+                    emptytext: 'Foto sem descrição',
+                    rows: 4,
+                }); 
+            }); 
+        </script>
+        </a>
+        </div>
+    </div>
+</div>
