@@ -1,3 +1,30 @@
+<script type="text/javascript">
+$(document).ready(function() {
+
+          $('.fancybox').click(function(e){
+            e.preventDefault();
+
+            var url = $(this).data('fancybox-href');
+            console.log(url);
+
+            $.fancybox({
+              type: 'inline',
+              beforeLoad: function (){
+                abre_fotos(url);
+              }
+            });
+          });
+        });
+        function abre_fotos(url){
+
+          $.getJSON(url, function (data){
+            console.log(data);
+            //$('#abre_fotos').append('<div>' + data.product.title + '</div>');
+
+          });    
+        }
+</script>
+
 <div class="row-fluid">
     <div id="side-matches" class="col-md-6">
         <span class="title-session glyphicon glyphicon-fire"></span><span class="title-session">Meus Matches ;)</span>
@@ -23,7 +50,7 @@
                     <span class="title-session">X</span>
                 </div>
                 <div class="col-sm-2 foto-alvo-mini match-dog">
-                    <a href="#abre_fotos" class="fancybox">
+                    <a href="#abre_fotos" class="fancybox" data-fancybox-href="/album/dog/<%= m.dog1.id %>">
                         <span class="glyphicon glyphicon-camera"></span>
                         <%= image_tag "dog_default_image.png" %>
                     </a>
