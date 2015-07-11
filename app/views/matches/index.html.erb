@@ -1,28 +1,5 @@
 <script type="text/javascript">
-$(document).ready(function() {
 
-          $('.fancybox').click(function(e){
-            e.preventDefault();
-
-            var url = $(this).data('fancybox-href');
-            console.log(url);
-
-            $.fancybox({
-              type: 'inline',
-              beforeLoad: function (){
-                abre_fotos(url);
-              }
-            });
-          });
-        });
-        function abre_fotos(url){
-
-          $.getJSON(url, function (data){
-            console.log(data);
-            //$('#abre_fotos').append('<div>' + data.product.title + '</div>');
-
-          });    
-        }
 </script>
 
 <div class="row-fluid">
@@ -50,14 +27,14 @@ $(document).ready(function() {
                     <span class="title-session">X</span>
                 </div>
                 <div class="col-sm-2 foto-alvo-mini match-dog">
-                    <a href="#abre_fotos" class="fancybox" data-fancybox-href="/album/dog/<%= m.dog1.id %>">
+                    <a href="/album/dog/<%= m.dog2.id %>" class="fancybox fancybox.ajax">
                         <span class="glyphicon glyphicon-camera"></span>
                         <%= image_tag "dog_default_image.png" %>
                     </a>
                     <%= m.dog2.nome %>
                 </div>
                 <div class="col-sm-2 foto-alvo-mini match-dono">
-                    <a href="#abre_fotos" class="fancybox">
+                    <a href="/album/dono/<%= m.dog2.id %>" class="fancybox fancybox.ajax">
                         <span class="glyphicon glyphicon-camera"></span>
                         <% if !m.dog2.dono.foto.nil? %>
                     <img class="mini-me" src="/images/<%= m.dog2.dono.foto.url %>"> 
@@ -89,44 +66,7 @@ $(document).ready(function() {
     
     <!--carregar via ajax-->
     <div style="display:none;">
-      <div id="abre_fotos">
-          <h2>enche isso de fotos</h2>
-          <div id="album" class="row">
-        
-                <div class="col-md-4">
-                <div class="thumbnail clearfix">
-                    <img src="/assets/dog_default_image-ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83.png" alt="Dog default image ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83">
-                    
-                    <div class="caption">
-                        descricao da foto
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="col-md-4">
-                <div class="thumbnail clearfix">
-                    <img src="/assets/dog_default_image-ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83.png" alt="Dog default image ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83">
-                    
-                    <div class="caption">
-                        descricao da foto
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="thumbnail clearfix">
-                    <img src="/assets/dog_default_image-ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83.png" alt="Dog default image ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83">
-                    
-                    <div class="caption">
-                        descricao da foto
-                    </div>
-                </div>
-            </div>
-            
-            
-        </div>
-      </div>
+      
     </div>
 </div>
 <script>

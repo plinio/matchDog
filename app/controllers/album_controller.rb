@@ -1,15 +1,11 @@
 class AlbumController < ApplicationController
-    
+    layout false
+
     def dog
     @dog = Dog.find(params[:dog_id])
     
     @fotos = @dog.fotos
 
-    if request.xhr?
-        render :json => {
-                            :file_content => @fotos
-                        }
-     end
     end
     
     def dono
@@ -17,11 +13,6 @@ class AlbumController < ApplicationController
     
     @fotos = @dono.fotos
 
-    if request.xhr?
-        render :json => {
-                            :file_content => @fotos
-                        }
-    end
     end
     
 end

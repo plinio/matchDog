@@ -1,0 +1,20 @@
+<div id="abre_fotos">
+    <% if !@fotos.empty? %>
+    <h2>Fotos do <%= @dog.nome %></h2>
+    <div id="album" class="row">
+        <% @fotos.each do |foto| %>
+        <div class="col-md-4">
+            <div class="thumbnail clearfix">
+                <img src="/images/<%= foto.url %>" alt="Dog default image ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83">
+                <div class="caption">
+                    <%= foto.descricao %>
+                </div>
+            </div>
+        </div>
+        <% end %>
+            
+    </div>
+    <% else %>
+<h2>:( Amiguinho não tem foto ainda</h2>
+<% end %>    
+</div>
