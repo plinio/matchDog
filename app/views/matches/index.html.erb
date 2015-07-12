@@ -69,9 +69,10 @@
             <a href="#" title="ocultar" class="ocultar"><span class="glyphicon glyphicon-eye-close"></span></a>
             <div id="ponta-box"></div>
             <div id="latidas">
+                <!--
                 <div id="one-latida" class="latida-left col-md-10">
                     <div id="avatar-latida-left">
-                        <img class="mini-me" src="/images/ellen.jpg"><!--aqui entra a foto do dono do outro dog -->
+                        <img class="mini-me" src="/images/ellen.jpg">
                     </div>
                     <div id="conteudo-latida">
                         isto é uma latida da outra pessoa
@@ -95,16 +96,20 @@
                     <div class="seta-direita"></div>
      
                 </div>
+                -->
             </div>
             
         </div><!--fim box latidas-->
         <div id="form-latida" class="col-md-12">
+            <%= form_tag("/latidas/enviar", remote: true) do |f| %>
                 <div class="col-sm-9">
-                    <textarea name="msg" placeholder="au au!" class="form-control" rows="2" cols="50"></textarea>
+                    <input type="hidden" id="hiddenMatchId" name="match_id" value="">
+                    <textarea name="mensagem" placeholder="au au!" class="form-control" rows="2" cols="50"></textarea>
                 </div>
                 <div class="col-sm-3">
-                    <button id="singlebutton" name="singlebutton" class="btn btn-success form-control"><span class="glyphicon glyphicon-comment"></span> Latir</button>
+                    <button id="singlebutton" type="submit" onClick="" name="singlebutton" class="btn btn-success form-control"><span class="glyphicon glyphicon-comment"></span> Latir</button>
                 </div>
+            <% end %>
         </div>
     </div>
     
@@ -140,6 +145,7 @@ $(document).ready(function() {
         
         var match = $(this).parents('[id^="match-"]').attr('id').split('-')[1];
         //var match = 1;
+        $('#hiddenMatchId').val(match);
         var usuarioLogado = <%= current_user.id %>
         $.ajax ({
             url: "/latidas/domatch/" + match,
