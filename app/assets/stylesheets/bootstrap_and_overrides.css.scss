@@ -336,7 +336,7 @@ textarea {
 }
 .latida-left{
     background-color: #FFFFE6;
-    margin-left: 10px;
+    margin-left: 50px;
     -webkit-border-radius: 7px;
     -webkit-border-bottom-left-radius: 0;
     -moz-border-radius: 7px;
@@ -346,11 +346,26 @@ textarea {
 }
 .latida-right{
     background-color: #CCFF99;
-    margin-left: 25px;
+    margin-left: 35px;
     -webkit-border-radius: 7px;
     -webkit-border-bottom-right-radius: 0;
     -moz-border-radius: 7px;
     -moz-border-radius-bottomright: 0;
     border-radius: 7px;
     border-bottom-right-radius: 0;
+}
+
+#avatar-latida-left img, #avatar-latida-right img{
+    width: 40px;
+    height: 40px;
+}
+#avatar-latida-left{
+    position: absolute;
+    left: -55px;
+    bottom: 0;
+}
+#avatar-latida-right{
+  position: absolute;
+  right: -55px;
+  bottom: 0;
 }

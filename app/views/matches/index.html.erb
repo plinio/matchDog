@@ -69,16 +69,31 @@
             <a href="#" title="ocultar" class="ocultar"><span class="glyphicon glyphicon-eye-close"></span></a>
             <div id="ponta-box"></div>
             <div id="latidas">
-                <div id="one-latida" class="latida-left col-md-11"> 
-                    isto é uma latida da outra pessoa
+                <div id="one-latida" class="latida-left col-md-10">
+                    <div id="avatar-latida-left">
+                        <img class="mini-me" src="/images/ellen.jpg"><!--aqui entra a foto do dono do outro dog -->
+                    </div>
+                    <div id="conteudo-latida">
+                        isto é uma latida da outra pessoa
+                    </div>
                     <span class="data-envio">enviada em 12/07/15 15:02</span>
                     <div class="seta-esquerda"></div>
                 </div>
-                <div id="one-latida" class="latida-right col-md-11"> 
-                    isto é uma latida MINHA <br>
-                    teste<br>
+                <div id="one-latida" class="latida-right col-md-10">
+                    <div id="avatar-latida-right"> 
+                        <% if !current_user.foto.nil? %>
+                        <img class="mini-me" src="/images/<%= current_user.foto.url %>"> 
+                        <% else %>    
+                        <%= image_tag "dono_default_image.png", class: "mini-me" %> 
+                        <% end %> 
+                    </div>
+                    <div id="conteudo-latida"> 
+                        isto é uma latida MINHA <br>
+                        teste<br>
+                    </div>
                     <span class="data-envio">enviada em 12/07/15 15:00</span>
                     <div class="seta-direita"></div>
+     
                 </div>
             </div>
             <div class="form-group">
@@ -119,9 +134,15 @@ $(document).ready(function() {
         $(this).addClass('inativo');
         $('#box-latidas').fadeIn();
         //$('#latidas').empty();
+        
+        
+        
+        /* ATENÇÃO AQUI TIAGO, DEIXEI UMA FORMA DE PEGAR O ID DO MATCH PARA FAZER O CARREGAMENTO */
         $('#latidas').append("carregar latidas match: "+ //apagar isto depois que ajax for feito
             $(this).parents('[id^="match-"]').attr('id').split('-')[1] //VEJA AQUI COMO PEGAR O ID DO MATCH!!!!!!!!!!!!!
         );
+        
+        
         
         //inativo todos para depois ativar somente o this
         $('.one-match').addClass('inativo');
