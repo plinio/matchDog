@@ -20,7 +20,7 @@ class FotosController < ApplicationController
       if params[:classe] == 'dono'
         dono = Dono.find(params[:id])
         dono.fotos.append(foto)
-        nodo.save
+        dono.save
       end
     
     if foto.save!
@@ -32,6 +32,7 @@ class FotosController < ApplicationController
 
 def destroy
   Foto.find(params[:id]).destroy
+  
   respond_to do |format|
       format.html { redirect_to :back, notice: 'Foto foi removida.' }
       format.json { head :no_content } # 204 No Content

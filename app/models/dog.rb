@@ -12,6 +12,6 @@ class Dog < ActiveRecord::Base
 end
 
 class FotosDog < ActiveRecord::Base
-  belongs_to :foto
+  belongs_to :foto, dependent: :destroy
   belongs_to :dog
 end
