@@ -1,38 +1,83 @@
 <div class="owl-carousel">
-  <div id="alvo-0" class="alvo"> 
+    
+    
+    <% if @alvos %>
+    
+        <% @alvos.each do |d|  %>
+    
+            <div id="alvo-<%= d.id %>" class="alvo">
+                <div class="row-fluid">
+                    <div class="col-md-12 desc-alvo">
+                        <%= d.descricao_perfil %>
+                    </div>
+                    <div class="col-md-1 bt-left-alvo">
+                        <a><%= image_tag "bt-voltar.png", :class => "bt-voltar-alvo bt" %></a>
+                    </div>
+                    <div id="alvo-dog" class="col-md-5 alvo-nome">
+                        <!-- só deve ter a classe glyphicon-certificate SE TIVER PEDIGREE-->
+                        <% if d.tem_pedigree %>
+                            <span class="glyphicon glyphicon-certificate"></span>
+                        <% end %>
+                        <span class="alvo-nome"><%= d.nome %></span>
+                         <a href="/album/dog/<%= d.id %>" class="fancybox fancybox.ajax">
+                            <div id="foto-alvo-dog" class="foto-alvo inclina1">
+                                <span class="glyphicon glyphicon-camera"></span>
+                                <% if !d.foto.nil? %>
+                                    <img src="/images/<%= d.foto.url %>">  
+                                <% else %>    
+                                    <%= image_tag "dog_default_image.png" %> 
+                                <% end %>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="alvo-dono" class="col-md-5 alvo-nome">
+                        <span class=""><%= d.dono.nome %></span>
+                        <a href="/album/dono/<%= d.dono.id %>" class="fancybox fancybox.ajax">
+                            <div id="foto-alvo-dono" class="foto-alvo inclina2">
+                                <span class="glyphicon glyphicon-camera"></span>
+                                <% if !d.dono.foto.nil? %>
+                                    <img src="/images/<%= d.dono.foto.url %>">  
+                                <% else %>    
+                                    <%= image_tag "dog_default_image.png" %> 
+                                <% end %>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-1 bt-right-alvo">
+                        <a><%= image_tag "bt-uau.png", :class => "bt-uau-alvo bt" %></a>
+                        <a><%= image_tag "bt-nops.png", :class => "bt-nops-alvo bt" %></a>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    
+    <% else %>
+    
+    <div id="sem-alvo" class="alvo">
         <div class="row-fluid">
             <div class="col-md-12 desc-alvo">
-                0 Vai ter descrição de dog/alvo?? se não tiver apagar essa div
+                Nenhum Alvo encontrado ao farejar com os parâmetros informados
             </div>
             <div class="col-md-1 bt-left-alvo">
-                <a><%= image_tag "bt-voltar.png", :class => "bt-voltar-alvo bt" %></a>
+                
             </div>
             <div id="alvo-dog" class="col-md-5 alvo-nome">
-                <!-- só deve ter a classe glyphicon-certificate SE TIVER PEDIGREE-->
-                <span class="glyphicon glyphicon-certificate"></span>
-                <span class="alvo-nome">Nome Dog 0</span>
-                <a href="#abre_fotos" class="fancybox">
-                    <div id="foto-alvo-dog" class="foto-alvo inclina1">
-                        <span class="glyphicon glyphicon-camera"></span>
-                        <img src="http://www.dreamydoodles.com/puppies/wp-content/uploads/2011/08/210987_f520.jpg"/>
-                    </div>
-                </a>
+                
             </div>
             <div id="alvo-dono" class="col-md-5 alvo-nome">
-                <span class="">Nome Dono 0</span>
-                <a href="#abre_fotos" class="fancybox">
-                    <div id="foto-alvo-dono" class="foto-alvo inclina2">
-                        <span class="glyphicon glyphicon-camera"></span>
-                        <img src="http://www.maedetrestambemtemvez.com.br/wp-content/uploads/2013/07/vovo-rock1.jpg"/>
-                    </div>
-                </a>
+                
             </div>
             <div class="col-md-1 bt-right-alvo">
-                <a><%= image_tag "bt-uau.png", :class => "bt-uau-alvo bt" %></a>
-                <a><%= image_tag "bt-nops.png", :class => "bt-nops-alvo bt" %></a>
+                
             </div>
         </div>
   </div>
+    
+    <% end %>
+    
+    
+  
+  
   <div id="alvo-1" class="alvo"> 
         <div class="row-fluid">
             <div class="col-md-12 desc-alvo">
@@ -67,81 +112,8 @@
             </div>
         </div>
   </div>
-  <div id="alvo-2" class="alvo"> 
-        <div class="row-fluid">
-            <div class="col-md-12 desc-alvo">
-                2 Vai ter descrição de dog/alvo?? se não tiver apagar essa div
-            </div>
-            <div class="col-md-1 bt-left-alvo">
-                <a><%= image_tag "bt-voltar.png", :class => "bt-voltar-alvo bt" %></a>
-            </div>
-            <div id="alvo-dog" class="col-md-5 alvo-nome">
-                <!-- só deve ter a classe glyphicon-certificate SE TIVER PEDIGREE-->
-                <span class="glyphicon glyphicon-certificate"></span>
-                <span class="alvo-nome">Nome Dog 2</span>
-                <a href="#abre_fotos" class="fancybox">
-                    <div id="foto-alvo-dog" class="foto-alvo inclina1" >
-                        <span class="glyphicon glyphicon-camera"></span>
-                        <img src="http://photos.oes.org/albums/userpics/10707/normal_psychonut3.JPG"/>
-                    </div>
-                </a>
-            </div>
-            <div id="alvo-dono" class="col-md-5 alvo-nome">
-                <span class="">Nome Dono 2</span>
-                <a href="#abre_fotos" class="fancybox">
-                    <div id="foto-alvo-dono" class="foto-alvo inclina2">
-                        <span class="glyphicon glyphicon-camera"></span>
-                        <img src="http://media4.popsugar-assets.com/files/2014/01/07/764/n/1922153/4bf2ea50a159fcd9_182630292_10.jpg.xxxlarge_2x/i/woman-proof-kinky-curls-look-cute-crazy-stuffed.jpg"/>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-1 bt-right-alvo">
-                <a><%= image_tag "bt-uau.png", :class => "bt-uau-alvo bt" %></a>
-                <a><%= image_tag "bt-nops.png", :class => "bt-nops-alvo bt" %></a>
-            </div>
-        </div>
-  </div>
+
   
-  <div style="display:none;">
-      <div id="abre_fotos">
-          <h2>enche isso de fotos</h2>
-          <div id="album" class="row">
-        
-                <div class="col-md-4">
-                <div class="thumbnail clearfix">
-                    <img src="/assets/dog_default_image-ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83.png" alt="Dog default image ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83">
-                    
-                    <div class="caption">
-                        descricao da foto
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="col-md-4">
-                <div class="thumbnail clearfix">
-                    <img src="/assets/dog_default_image-ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83.png" alt="Dog default image ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83">
-                    
-                    <div class="caption">
-                        descricao da foto
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="thumbnail clearfix">
-                    <img src="/assets/dog_default_image-ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83.png" alt="Dog default image ed23632a356f2cc694fe7a3385355b021858eb7a315c68186e1cb0b664155b83">
-                    
-                    <div class="caption">
-                        descricao da foto
-                    </div>
-                </div>
-            </div>
-            
-            
-        </div>
-      </div>
-    </div>
 </div>
 <script>
 $(document).ready(function() {
@@ -167,6 +139,7 @@ $(document).ready(function() {
     afterLazyLoad : false
         
     });
+    
     /* ações de Uau e Nops */
     $(".bt-uau-alvo").click(function(){
         alert("Curtiu alvo ID: "+
