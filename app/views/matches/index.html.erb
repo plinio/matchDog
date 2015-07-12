@@ -5,9 +5,11 @@
 <div class="row-fluid">
     <div id="side-matches" class="col-md-6">
         <span class="title-session glyphicon glyphicon-fire"></span><span class="title-session">Meus Matches ;)</span>
-        <hr>
+        <hr> 
+        <div id="matches">
+          
         <% @matches.each  do |m| %>
-            
+         
         <div id="match-<%= m.id %>" class="one-match">
             <span class="title-date glyphicon glyphicon-fire"></span><span class="title-date"> Match em <%= m.created_at %></span>
             <div class="row-fluid">
@@ -50,11 +52,11 @@
                    <button id="singlebutton" name="singlebutton" class="btn btn-danger form-control"><span class="glyphicon glyphicon-remove-circle"></span> ñ rola +</button>
                 </div>
             </div>
+            <div class="col-sm-12"><hr></div>
         </div>
         
-        <hr>
         <% end %>
-        
+        </div><!--matches-->
         
     </div>
     
@@ -87,9 +89,11 @@ $(document).ready(function() {
       $('.ocultar').click(function() {
         $('#box-latidas').fadeOut();
         $('.one-match').removeClass('inativo');
+        $('.bt-latir').removeClass('inativo');
       });
       
       $('.bt-latir').click(function() {
+        $(this).addClass('inativo');
         $('#box-latidas').fadeIn();
         $('#latidas').empty();
         $('#latidas').append("carregar latidas match: "+ //apagar isto depois que ajax for feito
@@ -99,6 +103,14 @@ $(document).ready(function() {
         //inativo todos para depois ativar somente o this
         $('.one-match').addClass('inativo');
         $(this).parents('.one-match').removeClass('inativo');
+        
+        //movendo o match clicado para o topo da lista CASO NAO SEJA O PRIMEIRO
+        if($('#matches').children().first()[0] === $(this).parents('.one-match')[0]){
+           //já está no topo, não precisa mover a div
+        }else{
+            $('#matches').children().first().animateAppendTo('#matches', 500);
+            $(this).parents('.one-match').animatePrependTo('#matches', 500);
+        }
       });
 });
 </script>
