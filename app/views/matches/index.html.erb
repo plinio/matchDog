@@ -111,8 +111,8 @@ $(document).ready(function() {
         if($('#matches').children().first()[0] === $(this).parents('.one-match')[0]){
            //já está no topo, não precisa mover a div
         }else{
-            $('#matches').children().first().animateAppendTo('#matches', 500);
-            $(this).parents('.one-match').animatePrependTo('#matches', 500);
+            $('#matches').children().first().animateAppendTo('#matches', 1000);//tirando o atual
+            $(this).parents('.one-match').animatePrependTo('#matches', 500);//colocando o novo no topo
         }
       });
 });
