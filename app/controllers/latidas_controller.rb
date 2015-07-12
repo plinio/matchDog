@@ -3,7 +3,10 @@ class LatidasController < ApplicationController
     
     def domatch
         @match = Match.find(params[:match_id])
-        @latidas = Latida.where(match_id: params[:match_id]).order("created_at")
+        @latidas = Latida.where(match_id: params[:match_id]).order("enviada_em").limit(4)
+        @foto_dono1 = @match.dog1.dono.foto
+        @foto_dono2 = @match.dog2.dono.foto
+        render json: {'match'=>@match , 'latidas'=>@latidas, 'foto_dono1'=> @foto_dono1, 'foto_dono2' => @foto_dono2}
     end
     
     def enviar
