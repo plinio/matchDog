@@ -63,7 +63,7 @@ class DogsController < ApplicationController
         f.write(params[:foto].read) 
       end
       
-      if @current_user.foto == nil 
+      if @dog.foto == nil 
         foto = Foto.new
       else
         foto = @dog.foto
