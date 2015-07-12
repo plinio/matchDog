@@ -234,3 +234,20 @@ textarea {
 .one-match{
     height: 130px;
 }
+
+#box-latidas{
+    background-color: #FACA00;
+    height: 404px;
+    display: none;
+}
+#box-latidas .ocultar{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.inativo{
+    opacity: 0.4;
+    filter: alpha(opacity = 40);
+    pointer-events: none;
+}
