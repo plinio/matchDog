@@ -2,9 +2,7 @@ class DogsController < ApplicationController
   layout "application"
   
   skip_before_filter :require_cadastro_completo
-  
-  
-
+  skip_before_filter :require_dog_selected
   
   def new
     @cidades = Cidade.all.collect {|c| [c.nome,c.id]}
@@ -49,7 +47,7 @@ class DogsController < ApplicationController
     flash[:notice] = "#{@dog.nome} foi cadastrado com sucesso."
     session[:dog_id] = @dog.id
     
-    redirect_to dogs_url
+    redirect_to root_url
   end
 
   def update
