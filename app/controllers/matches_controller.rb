@@ -5,6 +5,7 @@ class MatchesController < ApplicationController
       m.datahora_dog1_viu = Time.now
       m.save
     end
+    
   end
 
 
