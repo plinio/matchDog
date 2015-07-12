@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   
   before_filter :require_cadastro_completo
   
+  before_filter :require_dog_selected
+
   private
   def require_login
     if session[:dono_id] == nil
@@ -31,6 +33,16 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  private 
+  def require_dog_selected
+    if session[:dog_id] == nil
+      redirect_to "/dogs"
+    end
+    
+    @current_user = Dono.find(session[:dono_id]) if session[:dono_id]
+    @current_dog = Dog.find(session[:dog_id]) if session[:dog_id]
+    
+  end
   
   
 end

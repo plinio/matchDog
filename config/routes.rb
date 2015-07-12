@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   resources :dogs
   
   resources :matches
+  
+  get 'matches/naorolamais/:match_id', to: 'matches#naorolamais'
 
   #rotas do login via facebook
   get 'auth/:provider/callback', to: 'sessions#create'

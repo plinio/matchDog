@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   
   skip_before_filter :require_login
   skip_before_filter :require_cadastro_completo
+  skip_before_filter :require_dog_selected
   
   def create
     dono = Dono.omniauth(env['omniauth.auth'])

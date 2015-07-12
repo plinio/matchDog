@@ -2,8 +2,8 @@ class CadastroController < ApplicationController
   layout :resolve_layout
   
   skip_before_filter :require_login, :only => [:new,:save]
-  
   skip_before_filter :require_cadastro_completo
+  skip_before_filter :require_dog_selected
   
   def new
     
