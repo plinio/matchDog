@@ -8,7 +8,7 @@
         <hr>
         <% @matches.each  do |m| %>
             
-        <div id="match-<%= m.dog1.id %>" class="one-match">
+        <div id="match-<%= m.id %>" class="one-match">
             <span class="title-date glyphicon glyphicon-fire"></span><span class="title-date"> Match em <%= m.created_at %></span>
             <div class="row-fluid">
                 <div class="col-sm-3 foto-me-and-dog">  
@@ -45,10 +45,10 @@
                     <%= m.dog2.dono.nome %>
                 </div>
                 <div class="col-sm-3">
+                <!--
                    <a href="/latidas/domatch/<%= m.id %>" class="fancybox fancybox.ajax btn btn-success form-control"><span class="glyphicon glyphicon-comment"></span>Latir</a>
-                   <!--
-                   <button id="singlebutton" name="singlebutton" href="/latidas/domatch/<%= m.id %>"  class="btn btn-success form-control"><span class="glyphicon glyphicon-comment"></span>Latir</button>
-                   -->
+                -->  
+                   <button id="singlebutton" name="singlebutton" class="btn btn-success form-control bt-latir"><span class="glyphicon glyphicon-comment"></span> Latir</button>
                    <hr style="margin-top: 7px;  margin-bottom: 7px;">
                    <button id="singlebutton" name="singlebutton" class="btn btn-danger form-control"><span class="glyphicon glyphicon-remove-circle"></span> ñ rola +</button>
                 </div>
@@ -63,7 +63,12 @@
     
     
     <div id="side-latidas" class="col-md-6">
-        latidas aqui
+        <div id="box-latidas" class="col-md-12">
+            <a href="#" title="ocultar" class="ocultar"><span class="glyphicon glyphicon-eye-close"></span></a>
+            <div id="latidas">
+                
+            </div>
+        </div><!--fim box latidas-->
     </div>
     
     
@@ -80,6 +85,23 @@ $(document).ready(function() {
       })
       .mouseout(function() {
         $( this ).find( ".glyphicon-camera" ).hide();
+      });
+      
+      $('.ocultar').click(function() {
+        $('#box-latidas').fadeOut();
+        $('.one-match').removeClass('inativo');
+      });
+      
+      $('.bt-latir').click(function() {
+        $('#box-latidas').fadeIn();
+        $('#latidas').empty();
+        $('#latidas').append("carregar latidas match: "+ //apagar isto depois que ajax for feito
+            $(this).parents('[id^="match-"]').attr('id').split('-')[1]
+        );
+        
+        //inativo todos para depois ativar somente o this
+        $('.one-match').addClass('inativo');
+        $(this).parents('.one-match').removeClass('inativo');
       });
 });
 </script>
