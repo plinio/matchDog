@@ -14,7 +14,7 @@ class Match < ActiveRecord::Base
            aux.push(d.id)
         end
         cachorros = aux.join(",")
-        Match.where("(dog1_id IN (#{cachorros}) AND datahora_dog1_viu IS NULL) OR (dog2_id IN (#{cachorros}) AND datahora_dog2_viu IS NULL)").count
+        Match.where("(dog1_id IN (#{cachorros}) AND datahora_dog1_viu IS NULL) OR (dog2_id IN (#{cachorros}) AND datahora_dog2_viu IS NULL)").where.not("(datahora_dog1_desistiu IS NOT NULL OR datahora_dog2_desistiu IS NOT NULL)").count
     end
     
 end
