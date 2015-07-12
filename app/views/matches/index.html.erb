@@ -96,16 +96,16 @@
      
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-11 col-padding-reduce">
+            
+        </div><!--fim box latidas-->
+        <div id="form-latida" class="col-md-12">
+                <div class="col-sm-9">
                     <textarea name="msg" placeholder="au au!" class="form-control" rows="2" cols="50"></textarea>
                 </div>
-                <div class="col-sm-1 col-padding-reduce">
+                <div class="col-sm-3">
                     <button id="singlebutton" name="singlebutton" class="btn btn-success form-control"><span class="glyphicon glyphicon-comment"></span> Latir</button>
                 </div>
-            </div>
-        </div><!--fim box latidas-->
-
+        </div>
     </div>
     
     
@@ -126,6 +126,8 @@ $(document).ready(function() {
       
       $('.ocultar').click(function() {
         $('#box-latidas').fadeOut();
+        $('#form-latida').fadeOut();
+        
         $('.one-match').removeClass('inativo');
         $('.bt-latir').removeClass('inativo');
       });
@@ -133,14 +135,28 @@ $(document).ready(function() {
       $('.bt-latir').click(function() {
         $(this).addClass('inativo');
         $('#box-latidas').fadeIn();
-        //$('#latidas').empty();
+        $('#form-latida').fadeIn();
+        $('#latidas').empty();
         
+        var match = $(this).parents('[id^="match-"]').attr('id').split('-')[1];
+        //var match = 1;
+        var usuarioLogado = <%= current_user.id %>
+        $.ajax ({
+            url: "/latidas/domatch/" + match,
+            dataType : "json",
+            success : function(data){
+                var usuario1 = data.match.dog1_id;
+                var usuario2 = data.match.dog2_id;
+                $('#latidas').empty();
+                data.latidas.forEach(function(latida){
+                    var classs = (usuarioLogado == latida.de_dog_id) ? 'right' : 'left';
+                    var fotoDoEnviado = (usuario1 == latida.de_dog_id) ? data.foto_dono1 : data.foto_dono2;
+                  $('#latidas').append('<div id="one-latida" class="latida-'+ classs +' col-md-10">'+'<div id="avatar-latida-'+classs+'">'+'<img class="mini-me" src="/images/'+fotoDoEnviado.url+'"></div>'+'<div id="conteudo-latida">'+latida.mensagem+'</div>'+'<span class="data-envio">enviada em ' +latida.enviada_em+ '</span>'+'<div class="seta-'+classs+'"></div>'+'</div');
+                      
+                });
+            }
+        });
         
-        
-        /* ATENÇÃO AQUI TIAGO, DEIXEI UMA FORMA DE PEGAR O ID DO MATCH PARA FAZER O CARREGAMENTO */
-        $('#latidas').append("carregar latidas match: "+ //apagar isto depois que ajax for feito
-            $(this).parents('[id^="match-"]').attr('id').split('-')[1] //VEJA AQUI COMO PEGAR O ID DO MATCH!!!!!!!!!!!!!
-        );
         
         
         
