@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   
-  get 'home/index'
+  post 'farejar', to: 'home#farejar'
   
-  get   '/cadastro', to: 'cadastro#new'
-  post  '/cadastro', to: 'cadastro#save'
-  get   '/cadastro/edit', to: 'cadastro#edit'
-  post  '/cadastro/edit', to: 'cadastro#update'
-  get   '/cadastro/complete', to: 'cadastro#complete'
-  get   '/cadastro/first_dog', to: 'cadastro#first_dog'
+  get   'cadastro', to: 'cadastro#new'
+  post  'cadastro', to: 'cadastro#save'
+  get   'cadastro/edit', to: 'cadastro#edit'
+  post  'cadastro/edit', to: 'cadastro#update'
+  get   'cadastro/complete', to: 'cadastro#complete'
+  get   'cadastro/first_dog', to: 'cadastro#first_dog'
   
   get 'album/dog/:dog_id', to: 'album#dog'
   get 'album/dono/:dono_id', to: 'album#dono'

@@ -21,40 +21,41 @@
               <span><%= image_tag "icon_matchDog100.png" %></span>
             </div>
             <div class="col-sm-8 busca">
-              <%= form_tag("/buscar", method: "post", multipart: true,  class: "form-horizontal") %>
+              <% if @current_dog %>
+              <%= form_tag("/farejar", method: "post", multipart: true,  class: "form-horizontal") %>
               <div class="form-group">
                 <div class="col-sm-1 col-padding-reduce">
                   <span>Procuro </span>
-                  <select id="sexo" name="faro[sexo]" class="form-control">
-                      <option value="F">Mulher</option>
-                      <option value="M">Homem</option>
+                  <select id="sexo" name="faro[sexo_dono]" class="form-control">
+                      <option value="M" <%=  'selected="selected"' if ultimo_faro.sexo_dono == "M" %>>Homem</option>
+                      <option value="F" <%=  'selected="selected"' if ultimo_faro.sexo_dono == "F" %>>Mulher</option>
                   </select>
                 </div>
 
                 <div class="col-sm-3 col-padding-reduce">
                   <span> dono(a) de </span>
-                   <%= select("dog","raca_id",get_racas,{},{'class' => 'form-control'}) %>
+                   <%= select("faro","raca_id",get_racas,{:selected=> ultimo_faro.raca_id},{'class' => 'form-control'}) %>
                 </div>
                 <div class="col-sm-1 col-padding-reduce">
                   <span>que seja</span>
-                  <select id="sexoDog" name="faro[sexoDog]" class="form-control">
-                      <option value="F">Fêmea</option>
-                      <option value="M">Macho</option>
+                  <select id="sexoDog" name="faro[sexo_dog]" class="form-control">
+                      <option value="M" <%=  'selected="selected"' if ultimo_faro.sexo_dog == "M" %>>Macho</option>
+                      <option value="F" <%=  'selected="selected"' if ultimo_faro.sexo_dog == "F" %>>Fêmea</option>
                   </select>
                 </div>
                 
                 <div class="col-sm-3 col-padding-reduce">
                   <span>para </span>
                   <br>
-                  <span><%= check_box_tag 'cruzar', 1, true, {} %></span>
+                  <span><%= check_box_tag 'faro[interessa_cruzar]', 1, ultimo_faro.interessa_cruzar, {} %></span>
                   <span>cruzar </span>
                   <br>
-                  <%= check_box_tag 'passear', 1, true, {} %>
+                  <%= check_box_tag 'faro[interessa_passear]', 1, ultimo_faro.interessa_passear, {} %>
                    <span>passear </span>
                 </div>
                 <div class="col-sm-2">
                    <span>na cidade</span>
-                    <%= select("dog","cidade_id",@cidades,{},{'class' => 'form-control'}) if @cidades %>
+                    <%= select("faro","cidade_id",get_cidades,{:selected=> ultimo_faro.cidade_id},{'class' => 'form-control'}) %>
                 </div>
                 <div class="col-sm-2">
                     <button type="submit" id="farejar_bt" name="farejar" class="btn btn-danger btn-block" value="">
@@ -63,6 +64,7 @@
                 </div>
               </div>
               </form>
+              <% end %>
             </div>
             <div class="col-md-2 nav">
               <div class="contadores">

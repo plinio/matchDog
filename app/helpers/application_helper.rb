@@ -27,4 +27,20 @@ def contador_latidas
     m.get_latidas_count(@current_user.dogs)
 end
 
+def ultimo_faro
+   @ultimo_faro = Faro.where("dog_id = #{@current_dog.id}").order("created_at DESC").first || create_initial_faro_to_current_dog()
+end
+
+private
+  def create_initial_faro_to_current_dog()
+    faro = Faro.new
+    faro.sexo_dono          ||= @current_dog.dono.sexo == 'M' ? 'F' : 'M'
+    faro.sexo_dog           ||= @current_dog.sexo == 'M' ? 'F' : 'M'
+    faro.raca               ||= Raca.find(@current_dog.raca_id)
+    faro.cidade             ||= Cidade.find(@current_dog.cidade_id)
+    faro.interessa_passear  ||= @current_dog.interessa_passear
+    faro.interessa_cruzar   ||= @current_dog.interessa_cruzar
+    return faro
+  end
+
 end
