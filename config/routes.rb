@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   get 'album/dog/:dog_id', to: 'album#dog'
   get 'album/dono/:dono_id', to: 'album#dono'
   
+  
+  get 'latidas/domatch/:match_id', to: 'latidas#domatch'
+  get 'latidas/euvi/:match_id', to: 'latidas#euvi'
+  post 'latidas/enviar', to: 'latidas#enviar'
+  
   resources :fotos, only: [:create, :update, :destroy]
 
   resources :dogs

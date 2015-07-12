@@ -13,6 +13,7 @@ class AlbumController < ApplicationController
     
     @fotos = @dono.fotos
 
+    
     end
     
 end
