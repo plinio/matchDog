@@ -19,12 +19,12 @@ end
 
 def contador_matches
     m = Match.new;
-    m.get_match_count(@current_user.dogs)
+    m.get_match_count(@current_dog.id)
 end
 
 def contador_latidas
     m = Latida.new;
-    m.get_latidas_count(@current_user.dogs)
+    m.get_latidas_count(@current_dog.id)
 end
 
 def current_faro

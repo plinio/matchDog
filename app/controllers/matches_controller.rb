@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   def index
-    @matches = Match.where("dog1_id = #{@current_dog.id}").where.not("(datahora_dog1_desistiu IS NOT NULL OR datahora_dog2_desistiu IS NOT NULL)").order("created_at DESC")
+    @matches = Match.where("dog1_id = #{@current_dog.id} OR dog2_id = #{@current_dog.id}").where.not("(datahora_dog1_desistiu IS NOT NULL OR datahora_dog2_desistiu IS NOT NULL)").order("created_at DESC")
     @matches.each do |m|
       m.datahora_dog1_viu = Time.now
       m.save

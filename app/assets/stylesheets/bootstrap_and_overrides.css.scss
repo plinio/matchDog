@@ -17,7 +17,7 @@ body { margin: 0; }
 }
 
 .container-logo-application{
-    height: 100px;
+    height: 140px;
     text-align: left;
 }
 .container-logo-application img{
@@ -75,7 +75,7 @@ a:hover{
 }
 
 #conta_match , #conta_chat{
-  width: 26px;
+  width: 110px;
   float: left;
   margin-right: 13px;
 }
@@ -88,19 +88,26 @@ a:hover{
 
 .profile img{
     width: 50px;
+    height: 50px;
+}
+.profile-avatares{
+  float: right;
+  padding-top: 30px;
 }
 .contadores{
-    width: 90px;
     height: 30px;
+    padding-top: 10px;
 }
 .dog-icon-p img{
     width: 15px;
+    height: 16px;
 }
 .dog-icon-g img{
     width: 36px;
 }
 .logout{
-    width: 30px;
+    width: 50px;
+    float: left;
 }
 
 output{
@@ -271,8 +278,7 @@ overflow-x: hidden;
 #ponta-box{
     position: absolute;
     top: 103px;
-    left: -30px;
-    
+    left: -15px;
     content: "";
     display: inline-block;
     vertical-align: middle;

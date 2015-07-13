@@ -5,13 +5,9 @@ class Latida < ActiveRecord::Base
     belongs_to :de_dog, :class_name => "Dog"
     belongs_to :para_dog, :class_name => "Dog"
     
-    def get_latidas_count(cachorros)
+    def get_latidas_count(cachorro)
         aux = []
-        cachorros.each do |d|
-           aux.push(d.id)
-        end
-        cachorros = aux.join(",")
-        Latida.where("(para_dog_id IN (#{cachorros}) AND lida_em IS NULL)").count
+        Latida.where("(para_dog_id = #{cachorro} AND lida_em IS NULL)").count
     end
     
 end

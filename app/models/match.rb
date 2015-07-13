@@ -8,13 +8,8 @@ class Match < ActiveRecord::Base
     has_many :latidas
     
     
-    def get_match_count(cachorros)
-        aux = []
-        cachorros.each do |d|
-           aux.push(d.id)
-        end
-        cachorros = aux.join(",")
-        Match.where("(dog1_id IN (#{cachorros}) AND datahora_dog1_viu IS NULL) OR (dog2_id IN (#{cachorros}) AND datahora_dog2_viu IS NULL)").where.not("(datahora_dog1_desistiu IS NOT NULL OR datahora_dog2_desistiu IS NOT NULL)").count
+    def get_match_count(cachorro)
+        Match.where("(dog1_id = #{cachorro} AND datahora_dog1_viu IS NULL) OR (dog2_id = #{cachorro} AND datahora_dog2_viu IS NULL)").where.not("(datahora_dog1_desistiu IS NOT NULL OR datahora_dog2_desistiu IS NOT NULL)").count
     end
     
 end
