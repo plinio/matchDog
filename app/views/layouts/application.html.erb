@@ -17,6 +17,30 @@
       <nav class="navbar-inner">
         <div class="container container-logo-application">
           <div class="row-fluid">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-4">
+            <% if current_dog %>
+              <div class="contadores">
+                <div id="conta_match">
+                  <a href="/matches/" title="Matches"> <span class="glyphicon glyphicon-fire"></span><%= contador_matches %> Matches </a>
+                </div>
+                <div id="conta_chat">
+                  
+                  <a href="/matches/" title="Bate-papo"> <span class="glyphicon glyphicon-comment"></span><%= contador_latidas %> Latidas</a>
+                  
+                </div>
+               
+              <% end %> 
+              <div class="profile logout">
+                <a href="/logout">
+                  <span class="glyphicon glyphicon-off"></span>Sair
+                </a>
+              </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="row-fluid">
             <div class="col-sm-2 col-padding-reduce">
               <span><%= image_tag "icon_matchDog100.png" %></span>
             </div>
@@ -53,11 +77,11 @@
                   <%= check_box_tag 'faro[interessa_passear]', 1, ultimo_faro.interessa_passear, {} %>
                    <span>passear </span>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3 col-padding-reduce">
                    <span>na cidade</span>
                     <%= select("faro","cidade_id",get_cidades,{:selected=> ultimo_faro.cidade_id},{'class' => 'form-control'}) %>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2 col-padding-reduce">
                     <button type="submit" id="farejar_bt" name="farejar" class="btn btn-danger btn-block" value="">
                     <span class="glyphicon glyphicon-fire"></span> Farejar
                     </button>
@@ -66,22 +90,10 @@
               </form>
               <% end %>
             </div>
-            <div class="col-md-2 nav">
-              <% if current_dog %>
-              <div class="contadores">
-                <div id="conta_match">
-                  <a href="/matches/" title="Matches"><%= contador_matches %> <span class="glyphicon glyphicon-fire"></span> </a>
-                </div>
-                <div id="conta_chat">
-                  
-                  <a href="/matches/" title="Bate-papo"><%= contador_latidas %> <span class="glyphicon glyphicon-comment"></span></a>
-                  
-                </div>
-              <% end %>  
-              </div>
+            <div class="col-md-2 nav profile-avatares">
               <% if !current_user.nil? %>
               <div id="profile-dono" class="profile">
-                <a href="/cadastro/edit" title="Meu Perfil">
+                <a href="/cadastro/edit" title="<%= current_user.nome %>">
                   
                   <% if !current_user.foto.nil? %>
                     <img src="/images/<%= current_user.foto.url %>"> 
@@ -96,7 +108,7 @@
               <% if !current_dog.nil? %>
               <div id="profile-dog"  class="profile">
                 
-                <a href="/dogs" title="Meus Dogs">
+                <a href="/dogs" title="<%= current_dog.nome %>">
                   <% if !current_dog.foto.nil? %>
                     <img src="/images/<%= current_dog.foto.url %>">  
                   <% else %>    
@@ -106,12 +118,6 @@
                 </a>
               </div>
               <% end %>
-              
-              <div class="profile logout">
-                <a href="/logout">
-                  <span class="glyphicon glyphicon-off"></span>Sair
-                </a>
-              </div>
               
             </div>
         </div>
