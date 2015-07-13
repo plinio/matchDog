@@ -72,7 +72,9 @@
                   <a href="/matches/" title="Matches"><%= contador_matches %> <span class="glyphicon glyphicon-fire"></span> </a>
                 </div>
                 <div id="conta_chat">
-                  <a href="#" title="Bate-papo"><%= contador_latidas %> <span class="glyphicon glyphicon-comment"></span></a>
+                  <% if current_dog %>
+                  <a href="/matches/" title="Bate-papo"><%= contador_latidas %> <span class="glyphicon glyphicon-comment"></span></a>
+                  <% end %>
                 </div>
                 
               </div>
