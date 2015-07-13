@@ -172,7 +172,6 @@ $(document).ready(function() {
       });
       
       function getAjax(match){
-          console.log("rodei");
           var usuarioLogado = <%= current_user.id %>
           $.ajax ({
             url: "/latidas/domatch/" + match,
