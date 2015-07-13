@@ -67,16 +67,17 @@
               <% end %>
             </div>
             <div class="col-md-2 nav">
+              <% if current_dog %>
               <div class="contadores">
                 <div id="conta_match">
                   <a href="/matches/" title="Matches"><%= contador_matches %> <span class="glyphicon glyphicon-fire"></span> </a>
                 </div>
                 <div id="conta_chat">
-                  <% if current_dog %>
+                  
                   <a href="/matches/" title="Bate-papo"><%= contador_latidas %> <span class="glyphicon glyphicon-comment"></span></a>
-                  <% end %>
+                  
                 </div>
-                
+              <% end %>  
               </div>
               <% if !current_user.nil? %>
               <div id="profile-dono" class="profile">
