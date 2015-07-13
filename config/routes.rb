@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   post 'farejar', to: 'home#farejar'
+  post 'curtir', to: 'home#curtir'
   
   get   'cadastro', to: 'cadastro#new'
   post  'cadastro', to: 'cadastro#save'

@@ -142,26 +142,45 @@ $(document).ready(function() {
     
     /* ações de Uau e Nops */
     $(".bt-uau-alvo").click(function(){
-        alert("Curtiu alvo ID: "+
-            $(this).parents('[id^="alvo-"]').attr('id').split('-')[1]
-            );
-        owl.trigger('owl.next');
-      })
-      $(".bt-voltar-alvo").click(function(){
+        var alvo_id = $(this).parents('[id^="alvo-"]').attr('id').split('-')[1]
+        $.ajax({
+            url: "curtir",
+            type: "POST",
+            data: {id: alvo_id, curtiu: true},
+            success: function (data) {
+                //owl.trigger('owl.next');
+                $('div[id="alvo-'+alvo_id+'"]').remove();
+            }
+        });
+        
+    });
+    $(".bt-nops-alvo").click(function(){
+        var alvo_id = $(this).parents('[id^="alvo-"]').attr('id').split('-')[1]
+        $.ajax({
+            url: "curtir",
+            type: "POST",
+            data: {id: alvo_id, curtiu: false},
+            success: function (data) { 
+                if($('div[class*=lastnops]').length==0){
+                    owl.trigger('owl.next');
+                }
+                else{
+                    $('div[class*=lastnops]').remove();
+                }
+                $('div[id="alvo-'+alvo_id+'"]').addClass('lastnops');
+            }
+        });
+    });
+    $(".bt-voltar-alvo").click(function(){
         owl.trigger('owl.prev');
-      })
-       $(".bt-nops-alvo").click(function(){
-        alert("NÃO curtiu alvo ID: "+
-            $(this).parents('[id^="alvo-"]').attr('id').split('-')[1]
-            );
-        owl.trigger('owl.next');
-      })
+    });
     
     $('.foto-alvo').mouseover(function() {
         $( this ).find( ".glyphicon-camera" ).show();
-      })
-      .mouseout(function() {
+    });
+    
+    $('.foto-alvo').mouseout(function() {
         $( this ).find( ".glyphicon-camera" ).hide();
-      });
+    });
 });
 </script>
