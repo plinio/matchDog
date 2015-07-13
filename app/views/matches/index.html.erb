@@ -65,9 +65,10 @@
     
     
     <div id="side-latidas" class="col-md-6">
+        <div id="ponta-box" style="display:none"></div>
         <div id="box-latidas" class="col-md-12">
             <a href="#" title="ocultar" class="ocultar"><span class="glyphicon glyphicon-eye-close"></span></a>
-            <div id="ponta-box"></div>
+            
             <div id="latidas">
                 <!--
                 <div id="one-latida" class="latida-left col-md-10">
@@ -137,6 +138,7 @@ $(document).ready(function() {
       $('.ocultar').click(function() {
         $('#box-latidas').fadeOut();
         $('#form-latida').fadeOut();
+        $('#ponta-box').fadeOut();
         clearInterval(reload);
         $('.one-match').removeClass('inativo');
         $('.bt-latir').removeClass('inativo');
@@ -146,6 +148,7 @@ $(document).ready(function() {
         $(this).addClass('inativo');
         $('#box-latidas').fadeIn();
         $('#form-latida').fadeIn();
+        $('#ponta-box').fadeIn();
         $('#latidas').empty();
         
         var match = $(this).parents('[id^="match-"]').attr('id').split('-')[1];
