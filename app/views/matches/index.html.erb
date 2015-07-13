@@ -101,13 +101,13 @@
             
         </div><!--fim box latidas-->
         <div id="form-latida" class="col-md-12">
-            <%= form_tag("/latidas/enviar", remote: true) do |f| %>
+            <%= form_tag("/latidas/enviar", remote: true, id: "sendMessage") do |f| %>
                 <div class="col-sm-9">
                     <input type="hidden" id="hiddenMatchId" name="match_id" value="">
-                    <textarea name="mensagem" placeholder="au au!" class="form-control" rows="2" cols="50"></textarea>
+                    <textarea name="mensagem" id="mensagemText" placeholder="au au!" class="form-control" rows="2" cols="50"></textarea>
                 </div>
                 <div class="col-sm-3">
-                    <button id="singlebutton" type="submit" onClick="" name="singlebutton" class="btn btn-success form-control"><span class="glyphicon glyphicon-comment"></span> Latir</button>
+                    <button type="submit" name="singlebutton" class="btn btn-success form-control"><span class="glyphicon glyphicon-comment"></span> Latir</button>
                 </div>
             <% end %>
         </div>
@@ -121,6 +121,11 @@
 </div>
 <script>
 $(document).ready(function() {
+      var reload;
+      $("#sendMessage").bind("ajax:complete", function(event,xhr,status){
+          $('#mensagemText').val('');
+          getAjax($('#hiddenMatchId').val());
+        });
    
        $('.foto-alvo-mini').mouseover(function() {
         $( this ).find( ".glyphicon-camera" ).show();
@@ -132,7 +137,7 @@ $(document).ready(function() {
       $('.ocultar').click(function() {
         $('#box-latidas').fadeOut();
         $('#form-latida').fadeOut();
-        
+        clearInterval(reload);
         $('.one-match').removeClass('inativo');
         $('.bt-latir').removeClass('inativo');
       });
@@ -146,24 +151,11 @@ $(document).ready(function() {
         var match = $(this).parents('[id^="match-"]').attr('id').split('-')[1];
         //var match = 1;
         $('#hiddenMatchId').val(match);
-        var usuarioLogado = <%= current_user.id %>
-        $.ajax ({
-            url: "/latidas/domatch/" + match,
-            dataType : "json",
-            success : function(data){
-                var usuario1 = data.match.dog1_id;
-                var usuario2 = data.match.dog2_id;
-                $('#latidas').empty();
-                data.latidas.forEach(function(latida){
-                    var classs = (usuarioLogado == latida.de_dog_id) ? 'right' : 'left';
-                    var fotoDoEnviado = (usuario1 == latida.de_dog_id) ? data.foto_dono1 : data.foto_dono2;
-                  $('#latidas').append('<div id="one-latida" class="latida-'+ classs +' col-md-10">'+'<div id="avatar-latida-'+classs+'">'+'<img class="mini-me" src="/images/'+fotoDoEnviado.url+'"></div>'+'<div id="conteudo-latida">'+latida.mensagem+'</div>'+'<span class="data-envio">enviada em ' +latida.enviada_em+ '</span>'+'<div class="seta-'+classs+'"></div>'+'</div');
-                      
-                });
-            }
-        });
         
-        
+        getAjax(match);
+        reload = setInterval(function(){
+             getAjax(match)   
+        },3000);
         
         
         //inativo todos para depois ativar somente o this
@@ -178,5 +170,26 @@ $(document).ready(function() {
             $(this).parents('.one-match').animatePrependTo('#matches', 500);//colocando o novo no topo
         }
       });
+      
+      function getAjax(match){
+          console.log("rodei");
+          var usuarioLogado = <%= current_user.id %>
+          $.ajax ({
+            url: "/latidas/domatch/" + match,
+            dataType : "json",
+            success : function(data){
+                var usuario1 = data.match.dog1_id;
+                var usuario2 = data.match.dog2_id;
+                $('#latidas').empty();
+                data.latidas.forEach(function(latida){
+                    var classs = (usuarioLogado == latida.de_dog_id) ? 'right' : 'left';
+                    var fotoDoEnviado = (usuario1 == latida.de_dog_id) ? data.foto_dono1 : data.foto_dono2;
+                  $('#latidas').append('<div id="one-latida" class="latida-'+ classs +' col-md-10">'+'<div id="avatar-latida-'+classs+'">'+'<img class="mini-me" src="/images/'+fotoDoEnviado.url+'"></div>'+'<div id="conteudo-latida">'+latida.mensagem+'</div>'+'<span class="data-envio">enviada em ' +latida.enviada_em+ '</span>'+'<div class="seta-'+classs+'"></div>'+'</div');
+                      
+                });
+            }
+        });
+      }
+      
 });
 </script>
