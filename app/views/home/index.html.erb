@@ -126,6 +126,7 @@ $(document).ready(function() {
         rewindNav : false,
         scrollPerPage : false,
         pagination : false,
+        mouseDrag : false,
         
             //Callbacks
     beforeUpdate : false,
@@ -148,8 +149,7 @@ $(document).ready(function() {
             type: "POST",
             data: {id: alvo_id, curtiu: true},
             success: function (data) {
-                //owl.trigger('owl.next');
-                $('div[id="alvo-'+alvo_id+'"]').remove();
+                owl.trigger('owl.next');
             }
         });
         
@@ -161,13 +161,7 @@ $(document).ready(function() {
             type: "POST",
             data: {id: alvo_id, curtiu: false},
             success: function (data) { 
-                if($('div[class*=lastnops]').length==0){
-                    owl.trigger('owl.next');
-                }
-                else{
-                    $('div[class*=lastnops]').remove();
-                }
-                $('div[id="alvo-'+alvo_id+'"]').addClass('lastnops');
+                owl.trigger('owl.next');
             }
         });
     });

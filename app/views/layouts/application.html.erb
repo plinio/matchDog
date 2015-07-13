@@ -27,35 +27,35 @@
                 <div class="col-sm-1 col-padding-reduce">
                   <span>Procuro </span>
                   <select id="sexo" name="faro[sexo_dono]" class="form-control">
-                      <option value="M" <%=  'selected="selected"' if ultimo_faro.sexo_dono == "M" %>>Homem</option>
-                      <option value="F" <%=  'selected="selected"' if ultimo_faro.sexo_dono == "F" %>>Mulher</option>
+                      <option value="M" <%=  'selected="selected"' if @current_faro.sexo_dono == "M" %>>Homem</option>
+                      <option value="F" <%=  'selected="selected"' if @current_faro.sexo_dono == "F" %>>Mulher</option>
                   </select>
                 </div>
 
                 <div class="col-sm-3 col-padding-reduce">
                   <span> dono(a) de </span>
-                   <%= select("faro","raca_id",get_racas,{:selected=> ultimo_faro.raca_id},{'class' => 'form-control'}) %>
+                   <%= select("faro","raca_id",get_racas,{:selected=> @current_faro.raca_id},{'class' => 'form-control'}) %>
                 </div>
                 <div class="col-sm-1 col-padding-reduce">
                   <span>que seja</span>
                   <select id="sexoDog" name="faro[sexo_dog]" class="form-control">
-                      <option value="M" <%=  'selected="selected"' if ultimo_faro.sexo_dog == "M" %>>Macho</option>
-                      <option value="F" <%=  'selected="selected"' if ultimo_faro.sexo_dog == "F" %>>Fêmea</option>
+                      <option value="M" <%=  'selected="selected"' if @current_faro.sexo_dog == "M" %>>Macho</option>
+                      <option value="F" <%=  'selected="selected"' if @current_faro.sexo_dog == "F" %>>Fêmea</option>
                   </select>
                 </div>
                 
                 <div class="col-sm-3 col-padding-reduce">
                   <span>para </span>
                   <br>
-                  <span><%= check_box_tag 'faro[interessa_cruzar]', 1, ultimo_faro.interessa_cruzar, {} %></span>
+                  <span><%= check_box_tag 'faro[interessa_cruzar]', 1, @current_faro.interessa_cruzar, {} %></span>
                   <span>cruzar </span>
                   <br>
-                  <%= check_box_tag 'faro[interessa_passear]', 1, ultimo_faro.interessa_passear, {} %>
+                  <%= check_box_tag 'faro[interessa_passear]', 1, @current_faro.interessa_passear, {} %>
                    <span>passear </span>
                 </div>
                 <div class="col-sm-2">
                    <span>na cidade</span>
-                    <%= select("faro","cidade_id",get_cidades,{:selected=> ultimo_faro.cidade_id},{'class' => 'form-control'}) %>
+                    <%= select("faro","cidade_id",get_cidades,{:selected=> @current_faro.cidade_id},{'class' => 'form-control'}) %>
                 </div>
                 <div class="col-sm-2">
                     <button type="submit" id="farejar_bt" name="farejar" class="btn btn-danger btn-block" value="">
