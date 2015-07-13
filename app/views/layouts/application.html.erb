@@ -19,25 +19,19 @@
           <div class="row-fluid">
             <div class="col-sm-8"></div>
             <div class="col-sm-4">
-            <% if current_dog %>
               <div class="contadores">
                 <div id="conta_match">
-                  <a href="/matches/" title="Matches"> <span class="glyphicon glyphicon-fire"></span> <%= contador_matches %> Matches </a>
+                  <a href="/matches/" title="Matches"> <span class="glyphicon glyphicon-fire"></span> <%= contador_matches if current_dog %> Matches </a>
                 </div>
                 <div id="conta_chat">
-                  
-                  <a href="/matches/" title="Bate-papo"> <span class="glyphicon glyphicon-comment"></span> <%= contador_latidas %> Latidas</a>
-                  
+                  <a href="/matches/" title="Bate-papo"> <span class="glyphicon glyphicon-comment"></span> <%= contador_latidas if current_dog %> Latidas</a>
                 </div>
-               
-              <% end %> 
-              <div class="profile logout">
-                <a href="/logout">
-                  <span class="glyphicon glyphicon-off"></span> Sair
-                </a>
+                <div class="profile logout">
+                  <a href="/logout">
+                    <span class="glyphicon glyphicon-off"></span> Sair
+                  </a>
+                </div>
               </div>
-              </div>
-              
             </div>
           </div>
           <div class="row-fluid">
@@ -117,8 +111,14 @@
                   <span class="dog-icon-p"><%= image_tag "dog-icon.png" %></span>Dogs
                 </a>
               </div>
-              <% end %>
               
+              <% else %>
+              <div id="profile-dog"  class="profile">
+                <a href="/dogs" title="Escolha um Dog!">
+                <span class="dog-icon-p"><%= image_tag "dog-icon.png" %></span>Escolha um Dog!
+                </a>
+              </div>
+              <% end %>
             </div>
         </div>
       </nav>
