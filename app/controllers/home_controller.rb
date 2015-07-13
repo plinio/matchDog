@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   def index
     #apenas caes que ainda não foram curtidos
     @alvos = Dog.joins("LEFT OUTER JOIN curtidas ON (curtidas.dog_alvo_id = dogs.id AND curtidas.dog_id = #{@current_dog.id})")
-    
+    @alvos = @alvos.where("dono_id <> #{@current_dog.dono_id}")
     @alvos = @alvos.where(sexo: @current_faro.sexo_dog) unless @current_faro.sexo_dog.nil?
     @alvos = @alvos.where(raca_id: @current_faro.raca_id) unless @current_faro.raca_id.nil?
     @alvos = @alvos.where(cidade_id: @current_faro.cidade_id) unless @current_faro.cidade_id.nil?
@@ -12,10 +12,10 @@ class HomeController < ApplicationController
   end
   
   def farejar
-    @faro = Faro.new(faro_params)
-    @faro.dog_id = @current_dog.id
-    @faro.save
-    
+    faro = Faro.new(faro_params)
+    faro.dog_id = @current_dog.id
+    faro.save
+    @current_faro = faro
     
     redirect_to root_url
   end

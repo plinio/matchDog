@@ -9,6 +9,10 @@ def current_dog
     @current_dog
 end
 
+def current_faro
+   @current_faro
+end
+
 def get_racas
     Raca.all.collect {|c| [c.nome,c.id]} 
 end
@@ -26,10 +30,5 @@ def contador_latidas
     m = Latida.new;
     m.get_latidas_count(@current_dog.id)
 end
-
-def current_faro
-   @current_faro = Faro.where("dog_id = #{@current_dog.id}").order("created_at DESC").first || create_initial_faro_to_current_dog()
-end
-
 
 end

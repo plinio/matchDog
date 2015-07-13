@@ -1,17 +1,20 @@
 <div class="owl-carousel">
     
     
-    <% if @alvos %>
+    <% if @alvos.length > 0 %>
     
         <% @alvos.each do |d|  %>
     
             <div id="alvo-<%= d.id %>" class="alvo">
                 <div class="row-fluid">
+                    <% if !d.descricao_perfil.nil? %>
                     <div class="col-md-12 desc-alvo">
                         <%= d.descricao_perfil %>
+                        | Cidade: <%= d.cidade.nome %> | Raça: <%= d.raca.nome %> | sexo: <%= d.sexo %>
                     </div>
+                    <% end %>
                     <div class="col-md-1 bt-left-alvo">
-                        <a><%= image_tag "bt-voltar.png", :class => "bt-voltar-alvo bt" %></a>
+                        <!-- <a><%= image_tag "bt-voltar.png", :class => "bt-voltar-alvo bt" %></a> -->
                     </div>
                     <div id="alvo-dog" class="col-md-5 alvo-nome">
                         <!-- só deve ter a classe glyphicon-certificate SE TIVER PEDIGREE-->
@@ -74,52 +77,13 @@
   </div>
     
     <% end %>
-    
-    
-  
-  
-  <div id="alvo-1" class="alvo"> 
-        <div class="row-fluid">
-            <div class="col-md-12 desc-alvo">
-                1 Vai ter descrição de dog/alvo?? se não tiver apagar essa div
-            </div>
-            <div class="col-md-1 bt-left-alvo">
-                <a><%= image_tag "bt-voltar.png", :class => "bt-voltar-alvo bt" %></a>
-            </div>
-            <div id="alvo-dog" class="col-md-5 alvo-nome">
-                <!-- só deve ter a classe glyphicon-certificate SE TIVER PEDIGREE-->
-                <span class="glyphicon glyphicon-certificate"></span>
-                <span class="alvo-nome">Nome Dog 1</span>
-                <a href="#abre_fotos" class="fancybox">
-                    <div id="foto-alvo-dog" class="foto-alvo inclina1">
-                        <span class="glyphicon glyphicon-camera"></span>
-                        <img src="https://retrieverman.files.wordpress.com/2012/04/bulldog-show-dog.jpeg?w=500"/>
-                    </div>
-                </a>
-            </div>
-            <div id="alvo-dono" class="col-md-5 alvo-nome">
-                <span class="">Nome Dono 1</span>
-                <a href="#abre_fotos" class="fancybox">
-                    <div id="foto-alvo-dono" class="foto-alvo inclina2">
-                        <span class="glyphicon glyphicon-camera"></span>
-                        <img src="http://cdn.sheknows.com/articles/2013/10/Mike/Sponsored/Woman-with-bulldog.jpg"/>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-1 bt-right-alvo">
-                <a><%= image_tag "bt-uau.png", :class => "bt-uau-alvo bt" %></a>
-                <a><%= image_tag "bt-nops.png", :class => "bt-nops-alvo bt" %></a>
-            </div>
-        </div>
-  </div>
-
-  
+ 
 </div>
 <script>
 $(document).ready(function() {
     var owl = $(".owl-carousel");
     owl.owlCarousel({
-        items : 3,
+        items : <%= @alvos.length %>,
         singleItem : true,
         navigation : false,
         navigationText : ["voltar","uau!"],
@@ -152,7 +116,6 @@ $(document).ready(function() {
                 owl.trigger('owl.next');
             }
         });
-        
     });
     $(".bt-nops-alvo").click(function(){
         var alvo_id = $(this).parents('[id^="alvo-"]').attr('id').split('-')[1]
@@ -165,6 +128,7 @@ $(document).ready(function() {
             }
         });
     });
+    
     $(".bt-voltar-alvo").click(function(){
         owl.trigger('owl.prev');
     });

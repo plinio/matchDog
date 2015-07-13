@@ -13,15 +13,15 @@ class ApplicationController < ActionController::Base
   def require_login
     if session[:dono_id] == nil
       redirect_to "/login"
+    else
+      @current_user = Dono.find(session[:dono_id]) if session[:dono_id]
+      if session[:dog_id]
+        @current_dog = Dog.find(session[:dog_id]) 
+        @current_faro = Faro.where("dog_id = #{@current_dog.id}").order("created_at DESC").first || create_initial_faro_to_current_dog()
+      end
     end
     
-    @current_user = Dono.find(session[:dono_id]) if session[:dono_id]
     
-    begin
-      @current_dog = Dog.find(session[:dog_id]) if session[:dog_id]
-    rescue ActiveRecord::RecordNotFound
-      @current_dog = nil
-    end
   end
   
   private 
@@ -37,13 +37,11 @@ class ApplicationController < ActionController::Base
   def require_dog_selected
     if session[:dog_id] == nil
       redirect_to "/dogs"
+    else
+      @current_user = Dono.find(session[:dono_id]) if session[:dono_id]
+      @current_dog = Dog.find(session[:dog_id]) if session[:dog_id]
+      @current_faro = Faro.where("dog_id = #{@current_dog.id}").order("created_at DESC").first || create_initial_faro_to_current_dog()
     end
-    
-    @current_user = Dono.find(session[:dono_id]) if session[:dono_id]
-    @current_dog = Dog.find(session[:dog_id]) if session[:dog_id]
-    @current_faro = Faro.where("dog_id = #{@current_dog.id}").order("created_at DESC").first || create_initial_faro_to_current_dog()
-     
-    
   end
   
   private

@@ -22,18 +22,18 @@
             <% if current_dog %>
               <div class="contadores">
                 <div id="conta_match">
-                  <a href="/matches/" title="Matches"> <span class="glyphicon glyphicon-fire"></span><%= contador_matches %> Matches </a>
+                  <a href="/matches/" title="Matches"> <span class="glyphicon glyphicon-fire"></span> <%= contador_matches %> Matches </a>
                 </div>
                 <div id="conta_chat">
                   
-                  <a href="/matches/" title="Bate-papo"> <span class="glyphicon glyphicon-comment"></span><%= contador_latidas %> Latidas</a>
+                  <a href="/matches/" title="Bate-papo"> <span class="glyphicon glyphicon-comment"></span> <%= contador_latidas %> Latidas</a>
                   
                 </div>
                
               <% end %> 
               <div class="profile logout">
                 <a href="/logout">
-                  <span class="glyphicon glyphicon-off"></span>Sair
+                  <span class="glyphicon glyphicon-off"></span> Sair
                 </a>
               </div>
               </div>
@@ -51,35 +51,35 @@
                 <div class="col-sm-1 col-padding-reduce">
                   <span>Procuro </span>
                   <select id="sexo" name="faro[sexo_dono]" class="form-control">
-                      <option value="M" <%=  'selected="selected"' if @current_faro.sexo_dono == "M" %>>Homem</option>
-                      <option value="F" <%=  'selected="selected"' if @current_faro.sexo_dono == "F" %>>Mulher</option>
+                      <option value="M" <%=  'selected="selected"' if current_faro.sexo_dono == "M" %>>Homem</option>
+                      <option value="F" <%=  'selected="selected"' if current_faro.sexo_dono == "F" %>>Mulher</option>
                   </select>
                 </div>
 
                 <div class="col-sm-3 col-padding-reduce">
                   <span> dono(a) de </span>
-                   <%= select("faro","raca_id",get_racas,{:selected=> @current_faro.raca_id},{'class' => 'form-control'}) %>
+                   <%= select("faro","raca_id",get_racas,{:selected=> current_faro.raca_id},{'class' => 'form-control'}) %>
                 </div>
                 <div class="col-sm-1 col-padding-reduce">
                   <span>que seja</span>
                   <select id="sexoDog" name="faro[sexo_dog]" class="form-control">
-                      <option value="M" <%=  'selected="selected"' if @current_faro.sexo_dog == "M" %>>Macho</option>
-                      <option value="F" <%=  'selected="selected"' if @current_faro.sexo_dog == "F" %>>Fêmea</option>
+                      <option value="M" <%=  'selected="selected"' if current_faro.sexo_dog == "M" %>>Macho</option>
+                      <option value="F" <%=  'selected="selected"' if current_faro.sexo_dog == "F" %>>Fêmea</option>
                   </select>
                 </div>
                 
                 <div class="col-sm-3 col-padding-reduce">
                   <span>para </span>
                   <br>
-                  <span><%= check_box_tag 'faro[interessa_cruzar]', 1, @current_faro.interessa_cruzar, {} %></span>
+                  <span><%= check_box_tag 'faro[interessa_cruzar]', 1, current_faro.interessa_cruzar, {} %></span>
                   <span>cruzar </span>
                   <br>
-                  <%= check_box_tag 'faro[interessa_passear]', 1, @current_faro.interessa_passear, {} %>
+                  <%= check_box_tag 'faro[interessa_passear]', 1, current_faro.interessa_passear, {} %>
                    <span>passear </span>
                 </div>
                 <div class="col-sm-3 col-padding-reduce">
                    <span>na cidade</span>
-                    <%= select("faro","cidade_id",get_cidades,{:selected=> @current_faro.cidade_id},{'class' => 'form-control'}) %>
+                    <%= select("faro","cidade_id",get_cidades,{:selected=> current_faro.cidade_id},{'class' => 'form-control'}) %>
                 </div>
                 <div class="col-sm-2 col-padding-reduce">
                     <button type="submit" id="farejar_bt" name="farejar" class="btn btn-danger btn-block" value="">
@@ -135,9 +135,7 @@
     </div> <!--! end of #main -->
     <footer class="footer" style="position:relative;">
       <div class="container">
-        <div id="fb-root" class="col-md-4">
-          <div  class="fb-like"   data-share="true"    data-width="450"   data-show-faces="true"></div>
-        </div>
+        <div class="col-md-4"></div>
         <div class="col-md-5">
           <p>MatchDog - All Rights Reserved</p>
         </div>
@@ -147,23 +145,6 @@
   </body>
 </html>
 
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1458025767830877',
-      xfbml      : true,
-      version    : 'v2.3'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 <script>
 $(document).ready(function() {
       $('a.fancybox').fancybox({ parent: "body"});
