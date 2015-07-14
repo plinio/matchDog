@@ -22,13 +22,23 @@ class HomeController < ApplicationController
   end
   
   def curtir
-    @curtida = Curtida.new
-    @curtida.dog_id = @current_dog.id
-    @curtida.dog_alvo_id = params[:id]
-    @curtida.curtiu = params[:curtiu]
-    @curtida.save!
+    curtida = Curtida.new
+    curtida.dog_id = @current_dog.id
+    curtida.dog_alvo_id = params[:id]
+    curtida.curtiu = params[:curtiu]
+    curtida.save!
     
     #se gostou, tem que ver se deu match
+    if curtida.curtiu
+      curtida_correspondente = Curtida.where(dog_id: curtida.dog_alvo_id).where(dog_alvo_id: curtida.dog_id).where(curtiu: true).first
+      if curtida_correspondente
+        m = Match.new
+        m.dog1_id = curtida_correspondente.dog_id
+        m.dog2_id = curtida.dog_id
+        m.save
+      end
+        
+    end
     
     respond_to do |format|
       format.json { head :no_content } # 204 No Content

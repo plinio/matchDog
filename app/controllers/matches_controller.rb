@@ -2,22 +2,26 @@ class MatchesController < ApplicationController
   def index
     @matches = Match.where("dog1_id = #{@current_dog.id} OR dog2_id = #{@current_dog.id}").where.not("(datahora_dog1_desistiu IS NOT NULL OR datahora_dog2_desistiu IS NOT NULL)").order("created_at DESC")
     @matches.each do |m|
-      m.datahora_dog1_viu = Time.now
+      case @current_dog.id
+      when m.dog1.id
+        m.datahora_dog1_viu = Time.zone.now
+      when m.dog2.id
+        m.datahora_dog2_viu = Time.zone.now
+      end
       m.save
     end
     
   end
   
   def naorolamais
-      match= Match.find(params[:match_id])
-      time = Time.zone.now
+      m = Match.find(params[:match_id])
       case @current_dog.id
-      when match.dog1.id
-        match.datahora_dog1_desistiu = time
-      when match.dog2.id
-        match.datahora_dog2_desistiu = time
+      when m.dog1.id
+        m.datahora_dog1_desistiu = Time.zone.now
+      when m.dog2.id
+        m.datahora_dog2_desistiu = Time.zone.now
       end
-      match.save
+      m.save
   redirect_to "/matches"
   end
 
