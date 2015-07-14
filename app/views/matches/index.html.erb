@@ -4,14 +4,14 @@
 
 <div class="row-fluid">
     <div id="side-matches" class="col-md-6">
-        <span class="title-session glyphicon glyphicon-fire"></span><span class="title-session">Matches do <%= current_dog.nome %> ;)</span>
+        <span class="title-session glyphicon glyphicon-fire"></span><span class="title-session">Matches de <%= current_dog.nome %> ;)</span>
         <hr> 
         <div id="matches">
           
         <% @matches.each  do |m| %>
          
         <div id="match-<%= m.id %>" class="one-match">
-            <span class="title-date glyphicon glyphicon-fire"></span><span class="title-date"> Match em <%= m.created_at %></span>
+            <span class="title-date glyphicon glyphicon-fire"></span><span class="title-date"> Match em <%= m.created_at.strftime("%D às %R") %></span>
             <div class="row-fluid">
                 <div class="col-sm-3 foto-me-and-dog">  
                     <% if !current_user.foto.nil? %>

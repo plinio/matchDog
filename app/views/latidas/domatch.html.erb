@@ -14,7 +14,7 @@
                     <% end %>   
     </div>
     <div class="col-sm-6">
-        <%= "#{latida.enviada_em}  #{latida.mensagem}" %>
+        <%= "#{latida.enviada_em.strftime("%D às %R")}  #{latida.mensagem}" %>
     </div>
 <hr>
 </div>
