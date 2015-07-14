@@ -89,7 +89,7 @@ class DogsController < ApplicationController
     end
     
     @dog.save
-    flash[:notice] = "#{@dog.nome} foi Editado com sucesso."
+    flash[:notice] = "O Dog #{@dog.nome} foi Editado com sucesso."
     session[:dog_id] = @dog.id
     
     redirect_to dogs_url
@@ -106,10 +106,10 @@ class DogsController < ApplicationController
       if dog.dono.id === @current_user.id
         dog.datahora_excluido = Time.now
         dog.save
-        flash[:notice] = "O Dog "+dog.nome+"foi excluído!"
+        flash[:notice] = "O Dog #{@dog.nome} foi excluído com sucesso."
       end
     rescue
-      flash[:notice] = "O Dog não pode ser excluído!"  
+      flash[:warning] = "O Dog #{@dog.nome} foi Editado com sucesso."  
     end
     
     redirect_to dogs_url
@@ -123,9 +123,10 @@ class DogsController < ApplicationController
       dog = Dog.find(params[:id])
       if dog.dono.id === @current_user.id
         session[:dog_id] = dog.id
-        redirect_to root_path
+        flash[:notice] = "O Dog #{dog.nome} foi selecionado!"  
+        redirect_to root_url
       else
-        flash[:notice] = "O Dog não pode ser selecionado!"  
+        flash[:warning] = "O Dog não pode ser selecionado!"  
         redirect_to dogs_url  
       end
       

@@ -8,10 +8,13 @@ class ApplicationController < ActionController::Base
   before_filter :require_cadastro_completo
   
   before_filter :require_dog_selected
+  
+  after_filter :flash_to_headers
 
   private
   def require_login
     if session[:dono_id] == nil
+      flash[:warning] = "Faça login para continuar."
       redirect_to "/login"
     else
       @current_user = Dono.find(session[:dono_id]) if session[:dono_id]
@@ -27,15 +30,20 @@ class ApplicationController < ActionController::Base
   private 
   def require_cadastro_completo
     if (@current_user.sexo == "I" || @current_user.foto == nil || @current_user.foto == nil)
+      flash[:warning] = "Você precisa completar seu cadastro."
       redirect_to "/cadastro/complete" 
     else
-      redirect_to "/cadastro/first_dog" if (@current_user.dogs.count == 0)
+      if (@current_user.dogs.empty?)
+        flash[:warning] = "Você precisa cadastrar seu primeiro Dog."
+        redirect_to "/cadastro/first_dog" if (@current_user.dogs.count == 0)
+      end
     end
   end
   
   private 
   def require_dog_selected
     if session[:dog_id] == nil
+      flash[:warning] = "Selecione para qual Dog deseja encontrar um par."
       redirect_to "/dogs"
     else
       @current_user = Dono.find(session[:dono_id]) if session[:dono_id]
@@ -54,6 +62,30 @@ class ApplicationController < ActionController::Base
     faro.interessa_passear  ||= @current_dog.interessa_passear
     faro.interessa_cruzar   ||= @current_dog.interessa_cruzar
     return faro
+  end
+  
+  
+  
+  private 
+
+  def flash_to_headers
+    return unless request.xhr?
+    response.headers['X-Message'] = flash_message
+    response.headers["X-Message-Type"] = flash_type.to_s
+
+    flash.discard # don't want the flash to appear when you reload page
+  end
+
+  def flash_message
+    [:error, :warning, :notice, :success].each do |type|
+      return flash[type] unless flash[type].blank?
+    end
+  end
+
+  def flash_type
+    [:error, :warning, :notice, :success].each do |type|
+      return type unless flash[type].blank?
+    end
   end
   
   

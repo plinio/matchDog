@@ -1,0 +1,26 @@
+<!-- Id is used for ajax flashes -->
+<div id="flash-message">
+  <% if flash[:sucess] %>
+    <div class="alert alert-success">
+      <%= flash[:success] %>
+    </div>
+  <% elsif flash[:error] %>
+    <div class="alert alert-danger">
+      <%= flash[:error] %>
+    </div>
+  <% elsif flash[:notice] %>
+    <div class="alert alert-info">
+      <%= flash[:notice] %>
+    </div>
+  <% elsif flash[:warning] %>
+    <div class="alert alert-warning">
+      <%= flash[:warning] %>
+    </div>
+  <% end %>
+  <% flash.discard %>
+</div>
+<script>
+$( document ).ready(function() {
+     $("#flash-message").children().delay(3000).slideUp(500);
+});
+</script>

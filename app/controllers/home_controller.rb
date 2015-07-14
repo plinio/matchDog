@@ -29,9 +29,11 @@ class HomeController < ApplicationController
     curtida.save!
     
     #se gostou, tem que ver se deu match
+    deumatch = false
     if curtida.curtiu
       curtida_correspondente = Curtida.where(dog_id: curtida.dog_alvo_id).where(dog_alvo_id: curtida.dog_id).where(curtiu: true).first
       if curtida_correspondente
+        deumatch = true
         m = Match.new
         m.dog1_id = curtida_correspondente.dog_id
         m.dog2_id = curtida.dog_id
