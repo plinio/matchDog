@@ -14,37 +14,42 @@
             <span class="title-date glyphicon glyphicon-fire"></span><span class="title-date"> Match em <%= m.created_at.strftime("%D às %R") %></span>
             <div class="row-fluid">
                 <div class="col-sm-3 foto-me-and-dog">  
-                    <% if !current_user.foto.nil? %>
-                    <img class="mini-me" src="/images/<%= current_user.foto.url %>"> 
+                    <% if !current_dog.dono.foto.nil? %>
+                        <img class="mini-me" src="/images/<%= current_dog.dono.foto.url %>"> 
                     <% else %>    
-                    <%= image_tag "dono_default_image.png", class: "mini-me" %> 
+                        <%= image_tag "dono_default_image.png", class: "mini-me" %> 
                     <% end %>  
-                    <% if !m.dog2.foto.nil? %>
-                    <img class="mini-dog" src="/images/<%= m.dog2.foto.url %>">  
+                    <% if !current_dog.foto.nil? %>
+                        <img class="mini-dog" src="/images/<%= current_dog.foto.url %>">  
                     <% else %>    
-                    <%= image_tag "dog_default_image.png", class: "mini-dog" %> 
+                        <%= image_tag "dog_default_image.png", class: "mini-dog" %> 
                     <% end %>   
                 </div>
                 <div class="col-sm-1 versus">
                     <span class="title-session">X</span>
                 </div>
+                <% outro_dog = current_dog.id == m.dog1.id ? m.dog2 : m.dog1 %>
                 <div class="col-sm-2 foto-alvo-mini match-dog">
-                    <a href="/album/dog/<%= m.dog2.id %>" class="fancybox fancybox.ajax">
+                    <a href="/album/dog/<%= outro_dog.id %>" class="fancybox fancybox.ajax">
                         <span class="glyphicon glyphicon-camera"></span>
-                        <%= image_tag "dog_default_image.png" %>
+                        <% if !outro_dog.foto.nil? %>
+                            <img src="/images/<%= outro_dog.foto.url %>"> 
+                        <% else %>    
+                            <%= image_tag "dog_default_image.png" %> 
+                        <% end %>  
                     </a>
-                    <%= m.dog2.nome %>
+                    <%= outro_dog.nome %>
                 </div>
                 <div class="col-sm-2 foto-alvo-mini match-dono">
                     <a href="/album/dono/<%= m.dog2.id %>" class="fancybox fancybox.ajax">
                         <span class="glyphicon glyphicon-camera"></span>
-                        <% if !m.dog2.dono.foto.nil? %>
-                    <img class="mini-me" src="/images/<%= m.dog2.dono.foto.url %>"> 
-                    <% else %>    
-                    <%= image_tag "dono_default_image.png", class: "mini-me" %> 
-                    <% end %>
+                        <% if !outro_dog.dono.foto.nil? %>
+                            <img src="/images/<%= outro_dog.dono.foto.url %>"> 
+                        <% else %>    
+                            <%= image_tag "dono_default_image.png" %> 
+                        <% end %> 
                     </a>
-                    <%= m.dog2.dono.nome %>
+                    <%= outro_dog.dono.nome %>
                 </div>
                 <div class="col-sm-3">
                 <!--
