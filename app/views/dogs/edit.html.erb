@@ -28,7 +28,8 @@
      
 </div>
 
-
+ <div class="col-md-2"></div>
+ 
 <div class="col-md-5">
               
 <span class="title-session glyphiconsPro glyphicon-dog">
@@ -65,17 +66,14 @@
     </div>
 </div>
 <div class="form-group">
-<div class="col-md-2">
-        <label for="cidade_id">Cidade:</label>
-    </div>
-    <div class="col-md-10">
+    <div class="col-md-12">
         <%= select("dog","cidade_id",get_cidades,{:selected => @dog.cidade_id},{'class' => 'form-control'}) %>
     </div>
 </div>
 <div class="form-group">
     
     <div class="col-md-3">
-        <label for="cruzar">Quer Cruzar?</label>
+        <label for="cruzar">Cruzar?</label>
     </div>
     <div class="col-md-3">
         <select id="cruzar" name="dog[interessa_cruzar]" class="form-control">
@@ -84,7 +82,7 @@
         </select>
     </div>
     <div class="col-md-3">
-        <label for="passear">Quer Passear?</label>
+        <label for="passear">Passear?</label>
     </div>
     <div class="col-md-3">
         <select id="passear" name="dog[interessa_passear]" class="form-control">
@@ -102,7 +100,7 @@
 </div>
 
  </div>
- <div class="col-md-2"></div>
+
 </div>
 
 </form>
