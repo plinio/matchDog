@@ -161,6 +161,7 @@ $(document).ready(function() {
         $('#hiddenMatchId').val(match);
         
         getAjax(match);
+        
         reload = setInterval(function(){
              getAjax(match)   
         },3000);
@@ -194,6 +195,7 @@ $(document).ready(function() {
                   $('#latidas').append('<div id="one-latida" class="latida-'+ classs +' col-md-10">'+'<div id="avatar-latida-'+classs+'">'+'<img class="mini-me" src="/images/'+fotoDoEnviado.url+'"></div>'+'<div id="conteudo-latida">'+latida.mensagem+'</div>'+'<span class="data-envio">enviada em ' +latida.enviada_em+ '</span>'+'<div class="seta-'+classs+'"></div>'+'</div');
                       
                 });
+                $("#box-latidas").scrollTop($("#box-latidas").prop('scrollHeight'));
             }
         });
       }
