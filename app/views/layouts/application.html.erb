@@ -22,10 +22,12 @@
             <div class="col-sm-4">
               <div class="contadores">
                 <div id="conta_match">
-                  <a href="/matches/" title="Matches"> <span class="glyphicon glyphicon-fire"></span> <%= contador_matches if current_dog %> Matches </a>
+                  &nbsp;
+                  <% if current_dog %><a href="/matches/" title="Matches"> <span class="glyphicon glyphicon-fire"></span> <%= contador_matches %> Matches </a><% end %>
                 </div>
                 <div id="conta_chat">
-                  <a href="/matches/" title="Bate-papo"> <span class="glyphicon glyphicon-comment"></span> <%= contador_latidas if current_dog %> Latidas</a>
+                  &nbsp;
+                  <% if current_dog %><a href="/matches/" title="Bate-papo"> <span class="glyphicon glyphicon-comment"></span> <%= contador_latidas %> Latidas</a><% end %>
                 </div>
                 <div class="profile logout">
                   <a href="/logout">
