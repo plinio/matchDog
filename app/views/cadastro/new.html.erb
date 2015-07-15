@@ -1,5 +1,29 @@
 
 <% content_for :side_left_content do %>
+<span class="title-session glyphicon glyphicon-camera"></span><span class="title-session">Foto do Perfil</span>
+<hr>
+
+<output  id='fotoperfilinicial' style="display:block">
+    <div class="thumbnail">
+        <%= image_tag "dono_default_image.png" %> 
+     </div>
+</output>
+<output  id='fotoperfilnova' style="display:none">
+</output>
+
+<span class="file-input btn btn-default btn-block btn-file">
+                Procurar Foto&hellip; 
+                <input type="file" data-initial-image="fotoperfilinicial" data-output-image="fotoperfilnova" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
+</span>
+
+
+<script>
+  document.getElementById('foto').addEventListener('change', handleFileSelect, false);
+  
+</script>
+
+<% end %>
+<% content_for :side_right_content do %>
 <%= form_tag("cadastro", method: "post", multipart: true, class: "form-horizontal") %>
 <span class="title-session glyphicon glyphicon-edit"></span><span class="title-session">Seus dados</span>
 <hr>
@@ -37,30 +61,11 @@
 </div>
 
 
-<% end %>
-<% content_for :side_right_content do %>
-
-<span class="title-session glyphicon glyphicon-camera"></span><span class="title-session">Foto do Perfil</span>
-<hr>
-
-<output  id='fotoperfilinicial' style="display:block">
-    <div class="thumbnail">
-        <%= image_tag "dono_default_image.png" %> 
-     </div>
-</output>
-<output  id='fotoperfilnova' style="display:none">
-</output>
-
-<span class="file-input btn btn-default btn-block btn-file">
-                Procurar Foto&hellip; 
-                <input type="file" data-initial-image="fotoperfilinicial" data-output-image="fotoperfilnova" name="foto" id="foto" class="form-control" accept="image/x-png, image/gif, image/jpeg">
-</span>
 
 
-<script>
-  document.getElementById('foto').addEventListener('change', handleFileSelect, false);
-  
-</script>
+
+
+
 
 
 <% end %>
