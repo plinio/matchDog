@@ -22,13 +22,11 @@ def get_cidades
 end
 
 def contador_matches
-    m = Match.new;
-    m.get_match_count(@current_dog.id)
+    @current_dog.get_count_matches
 end
 
 def contador_latidas
-    m = Latida.new;
-    m.get_latidas_count(@current_dog.id)
+    @current_dog.get_count_latidas
 end
 
 end

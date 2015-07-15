@@ -1,24 +1,26 @@
 <!-- Id is used for ajax flashes -->
-<div id="flash-message">
-  <% if flash[:sucess] %>
-    <div class="alert alert-success">
-      <%= flash[:success] %>
-    </div>
-  <% elsif flash[:error] %>
-    <div class="alert alert-danger">
-      <%= flash[:error] %>
-    </div>
-  <% elsif flash[:notice] %>
-    <div class="alert alert-info">
-      <%= flash[:notice] %>
-    </div>
-  <% elsif flash[:warning] %>
-    <div class="alert alert-warning">
-      <%= flash[:warning] %>
-    </div>
-  <% end %>
-  <% flash.discard %>
-</div>
+    <div style="position: fixed; top: 140px;left: 850px; width: 400px; padding: 5px;z-index:9999; opacity:0.9;">
+      <div id="flash-message" style="margin: 0 auto;">
+        <% if flash[:sucess] %>
+          <div class="alert alert-success">
+            <%= flash[:success] %>
+          </div>
+        <% elsif flash[:error] %>
+          <div class="alert alert-danger">
+            <%= flash[:error] %>
+          </div>
+        <% elsif flash[:notice] %>
+          <div class="alert alert-info">
+            <%= flash[:notice] %>
+          </div>
+        <% elsif flash[:warning] %>
+          <div class="alert alert-warning">
+            <%= flash[:warning] %>
+          </div>
+        <% end %>
+        <% flash.discard %>
+      </div>
+  </div>
 <script>
 $( document ).ready(function() {
      $("#flash-message").children().delay(3000).slideUp(500);

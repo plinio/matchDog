@@ -9,9 +9,19 @@ class Dog < ActiveRecord::Base
     has_many :fotos_dogs
     has_many :fotos, :through => :fotos_dogs
     
+    def get_count_matches
+        m = Match.new;
+        m.get_match_count(:id)
+    end
+    
+    def get_count_latidas
+        m = Latida.new;
+        m.get_latidas_count(:id)
+    end
+    
 end
 
 class FotosDog < ActiveRecord::Base
-  belongs_to :foto, dependent: :destroy
+  belongs_to :foto
   belongs_to :dog
 end

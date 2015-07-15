@@ -23,10 +23,8 @@ class FotosController < ApplicationController
         dono.save
       end
     
-    if foto.save!
-      respond_to do |format|
-        format.json{ render :json => foto }
-      end
+    respond_to do |format|
+      format.json{ render :json => foto }
     end
   end
 
@@ -34,7 +32,6 @@ def destroy
   Foto.find(params[:id]).destroy
   
   respond_to do |format|
-      format.html { redirect_to :back, notice: 'Foto foi removida.' }
       format.json { head :no_content } # 204 No Content
     end
 end
@@ -44,10 +41,8 @@ def update
 
   respond_to do |format|
     if foto.update_attributes(foto_params)
-      format.html { redirect_to foto, notice: 'Foto foi atualizada.' }
       format.json { head :no_content } # 204 No Content
     else
-      format.html { render action: "edit" }
       format.json { render json: foto.errors, status: :unprocessable_entity }
     end
   end
