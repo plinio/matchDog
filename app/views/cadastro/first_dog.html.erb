@@ -1,4 +1,8 @@
-<% content_for :side_left_content do %>
+<% content_for :top_content do %>
+
+<%= form_tag("/dogs", method: "post", multipart: true,  class: "form-horizontal") %>
+
+<div class="col-md-5">
 
 
 <span class="title-session glyphicon glyphicon-camera"></span><span class="title-session">Foto do Perfil</span>
@@ -22,10 +26,11 @@
   document.getElementById('foto').addEventListener('change', handleFileSelect, false);
   
 </script>
+</div>
+<div class="col-md-2"></div>
+<div class="col-md-5">
 
-<% end %>
-<% content_for :side_right_content do %>
-<%= form_tag("/dogs", method: "post", multipart: true,  class: "form-horizontal") %>
+
 <span class="title-session glyphiconsPro glyphicon-dog">
      <span class="dog-icon-g"><%= image_tag "dog-icon.png" %></span>
 </span><span class="title-session">Seu dog</span>
@@ -95,7 +100,8 @@
     </div>
 </div>
 
-
+</form>
+</div>
 
 
 

@@ -1,6 +1,11 @@
 
-<% content_for :side_left_content do %>
+<% content_for :top_content do %>
+
 <%= form_tag("cadastro", method: "post", multipart: true, class: "form-horizontal") %>
+
+<div class="col-md-5">
+
+
 <span class="title-session glyphicon glyphicon-camera"></span><span class="title-session">Foto do Perfil</span>
 <hr>
 
@@ -23,9 +28,12 @@
   
 </script>
 
-<% end %>
-<% content_for :side_right_content do %>
-<div class="form-horizontal">
+</div>
+
+<div class="col-md-2"></div>
+<div class="col-md-5">
+    
+<div>
 <span class="title-session glyphicon glyphicon-edit"></span><span class="title-session">Seus dados</span>
 <hr>
 <div class="form-group">
@@ -64,7 +72,7 @@
 </form>
 </div>
 
-
+</div>
 
 
 
