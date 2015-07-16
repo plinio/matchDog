@@ -38,10 +38,9 @@ class HomeController < ApplicationController
         m.dog1_id = curtida_correspondente.dog_id
         m.dog2_id = curtida.dog_id
         m.save
+        flash[:error] = "MATCH!!!!"
       end
-        
     end
-    
     respond_to do |format|
       format.json { head :no_content } # 204 No Content
     end
