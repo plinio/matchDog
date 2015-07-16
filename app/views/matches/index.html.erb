@@ -190,7 +190,7 @@ $(document).ready(function() {
                 var usuario2 = data.match.dog2_id;
                 $('#latidas').empty();
                 data.latidas.forEach(function(latida){
-                    var classs = (usuarioLogado == latida.de_dog_id) ? 'right' : 'left';
+                    var classs = (usuarioLogado == latida.de_dog_id || usuarioLogado == latida.para_dog_id) ? 'right' : 'left';
                     var fotoDoEnviado = (usuario1 == latida.de_dog_id) ? data.foto_dono1 : data.foto_dono2;
                   $('#latidas').append('<div id="one-latida" class="latida-'+ classs +' col-md-10">'+'<div id="avatar-latida-'+classs+'">'+'<img class="mini-me" src="/images/'+fotoDoEnviado.url+'"></div>'+'<div id="conteudo-latida">'+latida.mensagem+'</div>'+'<span class="data-envio">enviada em ' +latida.enviada_em+ '</span>'+'<div class="seta-'+classs+'"></div>'+'</div');
                       
