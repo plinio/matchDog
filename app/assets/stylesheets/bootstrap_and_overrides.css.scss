@@ -250,13 +250,24 @@ textarea {
     display: none;
     padding-top: 30px;
     float: left;
--webkit-border-top-left-radius: 10px;
--webkit-border-top-right-radius: 10px;
--moz-border-radius-topleft: 10px;
--moz-border-radius-topright: 10px;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
+
 overflow-x: hidden;
+}
+
+#top-ocultar{
+  background-color: #FACA00;
+  width: 100%;
+  text-align: right;
+  display: none;
+    padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 #box-latidas .ocultar{
     position: absolute;
