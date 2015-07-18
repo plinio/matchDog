@@ -22,3 +22,5 @@ Os usuários realizam um cadastro e devem preencher:
 No formato "Tinder", os usuários vão "curtindo" os animais (e donos) que o sistema fornece aleatoreamente com base nos interesses cadastrados.
 
 Caso dois usuários se "curtam", ocorreu o Match! e o sistema exibe os contatos do par para que eles combinem o encontro dos bichinhos ;)
+
+<b>Match Dog! rodando em: http://matchdog.herokuapp.com/ </b>
