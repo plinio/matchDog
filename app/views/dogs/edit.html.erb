@@ -40,7 +40,7 @@
 
 <div class="form-group">
   <div class="col-md-6">
-     <input id="nome"  type="text" name="dog[nome]" class="form-control" placeholder="Nome" value="<%= @dog.nome %>">
+     <input id="nome" required="required" type="text" name="dog[nome]" class="form-control" placeholder="Nome" value="<%= @dog.nome %>">
   </div>
   <div class="col-md-6">
      <%= select("dog","raca_id",get_racas,{:selected => @dog.raca_id},{'class' => 'form-control'}) %>
@@ -48,7 +48,7 @@
 </div>
 <div class="form-group">
     <div class="col-md-5">
-    <select id="sexo" name="dog[sexo]" class="form-control">
+    <select id="sexo" name="dog[sexo]" required="required" class="form-control">
         <option value="M" <%=  'selected="selected"' if @dog.sexo == "M" %>>Masculino</option>
         <option value="F" <%=  'selected="selected"' if @dog.sexo == "F" %>>Feminino</option>
     </select>

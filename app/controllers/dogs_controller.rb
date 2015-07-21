@@ -100,18 +100,13 @@ class DogsController < ApplicationController
   end
 
   def destroy
-    
-    begin
-      dog = Dog.find(params[:id])
-      if dog.dono.id === @current_user.id
-        dog.datahora_excluido = Time.now
-        dog.save
-        flash[:notice] = "O Dog #{@dog.nome} foi excluído com sucesso."
-      end
-    rescue
-      flash[:warning] = "O Dog #{@dog.nome} foi Editado com sucesso."  
+    dog = Dog.find(params[:id])
+    if dog.dono.id === @current_user.id
+      dog.datahora_excluido = Time.now
+      dog.save
+      session[:dog_id] = nil if dog.id == @current_dog.id
+      flash[:notice] = "O Dog #{dog.nome} foi excluído com sucesso."
     end
-    
     redirect_to dogs_url
   end
 

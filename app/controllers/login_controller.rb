@@ -17,8 +17,11 @@ class LoginController < ApplicationController
     unless @dono == nil
       session[:dono_id] = @dono.id
       session[:dog_id] = @dono.dogs.first.id if !@dono.dogs.empty? and @dono.dogs.length == 1
+      redirect_to root_url
+    else
+      flash[:error] = "Login ou Senha inválidos!"
+      redirect_to :action => "index"
     end
-    redirect_to root_url
   end
 
 end

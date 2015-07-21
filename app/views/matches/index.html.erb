@@ -111,7 +111,7 @@
             <%= form_tag("/latidas/enviar", remote: true, id: "sendMessage") do |f| %>
                 <div class="col-sm-9">
                     <input type="hidden" id="hiddenMatchId" name="match_id" value="">
-                    <textarea name="mensagem" id="mensagemText" placeholder="au au!" class="form-control" rows="2" cols="50"></textarea>
+                    <textarea name="mensagem" required="required" id="mensagemText" placeholder="au au!" class="form-control" rows="2" cols="50"></textarea>
                 </div>
                 <div class="col-sm-3">
                     <button type="submit" name="singlebutton" class="btn btn-success form-control"><span class="glyphicon glyphicon-comment"></span> Latir</button>
