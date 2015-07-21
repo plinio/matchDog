@@ -1,4 +1,8 @@
 class FotosController < ApplicationController
+  
+  skip_before_filter :require_cadastro_completo
+  skip_before_filter :require_dog_selected
+  
   def create
     
       path = File.join(Rails.root + "public/images",params[:file].original_filename)
@@ -29,8 +33,10 @@ class FotosController < ApplicationController
   end
 
 def destroy
-  Foto.find(params[:id]).destroy
-  
+  begin
+    Foto.find(params[:id]).destroy
+  rescue
+  end
   respond_to do |format|
       format.json { head :no_content } # 204 No Content
     end
