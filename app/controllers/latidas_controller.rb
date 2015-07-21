@@ -6,6 +6,8 @@ class LatidasController < ApplicationController
         @latidas = Latida.where(match_id: params[:match_id]).order("enviada_em")
         @foto_dono1 = @match.dog1.dono.foto
         @foto_dono2 = @match.dog2.dono.foto
+        #marca as mensagens nao lidas como lidas
+        Latida.where("lida_em is null AND para_dog_id = #{@current_dog.id} AND match_id = #{params[:match_id]}").update_all({:lida_em => Time.zone.now})
         render json: {'match'=>@match , 'latidas'=>@latidas, 'foto_dono1'=> @foto_dono1, 'foto_dono2' => @foto_dono2}
     end
     
@@ -21,11 +23,4 @@ class LatidasController < ApplicationController
        
        render json: { 'result' => 1 }
     end
-    
-    def euvi
-        time = Time.zone.now
-        Latida.where("lida_em is null AND para_dog_id = #{@current_dog.id} AND match_id = #{params[:match_id]}").update_all({:lida_em => time})
-        render json: { 'result' => 1 }
-    end
-    
 end

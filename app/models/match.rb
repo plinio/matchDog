@@ -9,7 +9,7 @@ class Match < ActiveRecord::Base
     
     
     def get_match_count(cachorro)
-        Match.where("(dog1_id = #{cachorro} AND datahora_dog1_viu IS NULL) OR (dog2_id = #{cachorro} AND datahora_dog2_viu IS NULL)").where.not("(datahora_dog1_desistiu IS NOT NULL OR datahora_dog2_desistiu IS NOT NULL)").count
+        Match.where("dog1_id = #{cachorro}  OR dog2_id = #{cachorro}").where.not("(datahora_dog1_desistiu IS NOT NULL OR datahora_dog2_desistiu IS NOT NULL)").count
     end
     
 end

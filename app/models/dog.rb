@@ -11,12 +11,12 @@ class Dog < ActiveRecord::Base
     
     def get_count_matches
         m = Match.new;
-        m.get_match_count(:id)
+        m.get_match_count(self.id)
     end
     
     def get_count_latidas
         m = Latida.new;
-        m.get_latidas_count(:id)
+        m.get_latidas_count(self.id)
     end
     
 end
