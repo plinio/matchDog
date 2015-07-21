@@ -6,7 +6,6 @@ class Latida < ActiveRecord::Base
     belongs_to :para_dog, :class_name => "Dog"
     
     def get_latidas_count(cachorro)
-        aux = []
         Latida.where("(para_dog_id = #{cachorro} AND lida_em IS NULL)").count
     end
     

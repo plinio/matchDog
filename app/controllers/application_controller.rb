@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   
   private 
   def require_cadastro_completo
-    if (@current_user.sexo == "I" || @current_user.foto == nil || @current_user.foto == nil)
+    if (@current_user.sexo == "I")
       flash[:warning] = "Você precisa completar seu cadastro."
       redirect_to "/cadastro/complete" 
     else
